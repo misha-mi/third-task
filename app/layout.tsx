@@ -1,8 +1,37 @@
+import './style.sass';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
+import Header from '@/components/layout/header/header';
 
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+const inter = Inter({
+  variable: "--font-inter",
+  weight: ["500", "600", "700"],
+  subsets: ['latin'],
+  style: ["normal"],
+  display: 'swap'
+})
 
-const inter = Inter({ subsets: ['latin'] })
+const thicccboi = localFont({
+  variable: "--font-thicccboi",
+  src: [
+    {
+      path: '../lib/fonts/THICCCBOI-Medium.ttf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../lib/fonts/THICCCBOI-SemiBold.ttf',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../lib/fonts/THICCCBOI-Bold.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+})
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +45,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.variable} ${thicccboi.variable}`}>
+        <Header />
+        {children}
+      </body>
     </html>
   )
 }
