@@ -1,4 +1,4 @@
-import "./style.sass";
+import "./logo.sass";
 import Image from "next/image";
 import logo from "@/public/Logo.png";
 

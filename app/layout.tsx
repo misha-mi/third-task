@@ -1,4 +1,4 @@
-import './style.sass';
+import './app.sass';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
@@ -45,9 +45,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${thicccboi.variable}`}>
-        <Header />
-        {children}
+      <body className={`${thicccboi.variable} ${inter.variable}`}>
+        <div className="container">
+          <Header />
+          {children}
+        </div>
       </body>
     </html>
   )
