@@ -20,7 +20,13 @@ const Button = ({ text, theme = "primary1", width = "w120px", shadow = false, al
         className={buttonClass}
         disabled={disabled}
       >
-        <Spinner color={theme} />
+        {
+          loading ? (
+            <Spinner color={theme} />
+          ) : (
+            text
+          )
+        }
       </button>
     </div>
   )
