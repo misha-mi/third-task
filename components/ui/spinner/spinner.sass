@@ -1,0 +1,23 @@
+
+@import "@/lib/colors.sass"
+
+.spinner
+  width: 24px
+  height: 24px
+  border: 2px solid red
+  border-radius: 50%
+  display: inline-block
+  box-sizing: border-box
+  animation: rotation 1s linear infinite
+  &_primary1
+    border-color: $color100
+    border-bottom-color: transparent
+  &_color100
+    border-color: $primary1
+    border-bottom-color: transparent
+@keyframes rotation
+  0%
+    transform: rotate(0deg)
+
+  100%
+    transform: rotate(360deg)

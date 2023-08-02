@@ -14,7 +14,7 @@ export default async function Home() {
     <div className="home">
       <div className="container">
         <h1 className="home__title">Get started with Gscore today!</h1>
-        <Button text={"Get Gscore"} theme="bg_color100" width="w100" alternativeFontColor={true} />
+        <Button text={"Get Gscore"} theme="color100" width="w120px" alternativeFontColor={true} />
       </div>
     </div>
   )
