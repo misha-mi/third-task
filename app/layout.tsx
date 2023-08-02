@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
 import Header from '@/components/layout/header/header';
+import Footer from '@/components/layout/footer/footer';
 
 const inter = Inter({
   variable: "--font-inter",
@@ -46,9 +47,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${thicccboi.variable} ${inter.variable}`}>
-        <div className="container">
+        <div className="wrapper">
           <Header />
-          {children}
+          <main>
+            {children}
+          </main>
+          <Footer />
         </div>
       </body>
     </html>

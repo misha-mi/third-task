@@ -1,10 +1,14 @@
 @import "../lib/colors.sass"
 
+html
+  height: 100%
+
 body
   background-color: $color800
   font-family: var(--font-inter)
   margin: 0
   font-size: 18px
+  height: 100%
 
 *
   color: white
@@ -21,6 +25,11 @@ li
 a
   text-decoration: none
 
+.wrapper
+  min-height: 100%
+  display: flex
+  flex-direction: column
+
 .container
   width: 1268px
   margin: auto
@@ -30,3 +39,6 @@ a
     width: 800px
   @media ( max-width:  850px)
     width: 90%
+
+main
+  flex: 1 1 auto

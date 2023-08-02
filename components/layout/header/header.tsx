@@ -7,8 +7,12 @@ import Logo from "@/components/ui/logo/logo";
 const Header = () => {
   return (
     <div className="header">
-      <Logo />
-      <Nav />
+      <div className="container">
+        <div className="header__wrapper">
+          <Logo />
+          <Nav />
+        </div>
+      </div>
     </div>
   )
 }
