@@ -1,20 +1,25 @@
-import { TSubscription } from "./type"
-import Button from "@/components/ui/button/button";
+import "./home.sass";
 
-async function getSubscriptions() {
-  const response = await fetch("https://internship.purrweb.site/api/products");
-  return response.json();
-}
+import Products from "@/components/layout/products/products";
+import Link from "next/link";
 
-export default async function Home() {
 
-  const subscriptions: TSubscription[] = await getSubscriptions();
-
+export default function Home() {
   return (
     <div className="home">
       <div className="container">
+
         <h1 className="home__title">Get started with Gscore today!</h1>
-        <Button text={"Get Gscore"} theme="color100" width="w120px" alternativeFontColor={true} />
+
+        <div className="home__products">
+          <Products />
+        </div>
+
+        <p className="home__more">Have more than 10 sites?</p>
+        <div className="home__contact">
+          <Link href={"/"}>Contact us</Link>
+        </div>
+
       </div>
     </div>
   )

@@ -4,9 +4,6 @@ export type TSubscription = {
   name: string,
   prices: [
     {
-      id: number,
-      isActive: boolean,
-      productId: number,
       price: number
     }
   ]
