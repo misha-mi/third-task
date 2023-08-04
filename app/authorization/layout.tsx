@@ -1,6 +1,7 @@
 
 import type { Metadata } from 'next';
 import Input from '@/components/ui/input/input';
+import Steps from '@/components/ui/steps/steps';
 
 export const metadata: Metadata = {
   title: 'GScore | Authorization ',
@@ -14,6 +15,7 @@ export default function AuthorizationLayout({
 }) {
   return (
     <div className='container'>
+      <Steps />
       {children}
       <Input placeholder="Password" />
     </div>
