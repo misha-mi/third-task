@@ -22,7 +22,7 @@ export default function Authorization() {
       <p className="authorization__have">
         Have an account?
         <Link
-          href={"/"}
+          href={"/authorization/log-in"}
           className="authorization__next"
         >
           Go to the next step
