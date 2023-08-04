@@ -15,7 +15,7 @@ const Button = ({ text, theme = "primary1", width = "w120px", shadow = false, al
   const buttonClass = `button + button_bg_${theme} + button_${width}` + (alternativeFontColor ? " button_font_color800" : "");
 
   return (
-    <div className="button_shadow">
+    <div className={`button_shadow button_${width}`}>
       <button
         className={buttonClass}
         disabled={disabled}

@@ -1,6 +1,6 @@
+import "./authorization.sass";
 
 import type { Metadata } from 'next';
-import Input from '@/components/ui/input/input';
 import Steps from '@/components/ui/steps/steps';
 
 export const metadata: Metadata = {
@@ -14,10 +14,13 @@ export default function AuthorizationLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className='container'>
-      <Steps />
-      {children}
-      <Input placeholder="Password" />
+    <div className="authorization">
+      <div className='container'>
+        <div className="authorization__wrapper">
+          <Steps />
+          {children}
+        </div>
+      </div>
     </div>
   )
 }

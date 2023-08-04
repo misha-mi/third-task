@@ -10,7 +10,7 @@ const Input = ({ placeholder }: IInput) => {
   return (
     <input
       type="text"
-      className="input input_error"
+      className="input"
       placeholder={placeholder}
     />
   )
