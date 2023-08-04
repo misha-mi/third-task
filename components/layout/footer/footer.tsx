@@ -11,9 +11,9 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer__divider"></div>
       <div className="container">
-        <div className="footer__logo">
+        <Link href={"/"} className="footer__logo">
           <Logo />
-        </div>
+        </Link>
         <p className="footer__description">
           Ut enim ad minim veniam quis nostrud exercitation  ea commodo
         </p>

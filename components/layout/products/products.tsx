@@ -1,5 +1,6 @@
 
 import "./products.sass";
+import Link from "next/link";
 import { TSubscription } from "./type"
 import Button from "@/components/ui/button/button";
 
@@ -34,9 +35,12 @@ const Products = async () => {
             <li className="products__li">Billed annually</li>
           </ul>
 
-          <div className="products__button">
-            <Button text="Get Gscore" theme="color100" width="w100" alternativeFontColor={true} />
-          </div>
+          <Link
+            href={"/authorization"}
+            className="products__button"
+          >
+            <Button text="Get Gscore" theme="color100" width="w100" alternativeFontColor={id !== 1} />
+          </Link>
         </div>
       ))}
     </div>
