@@ -1,8 +1,6 @@
 import "./log-in.sass";
 
-
-import Button from "@/components/ui/button/button";
-import Input from "@/components/ui/input/input";
+import Form from "@/components/ui/form/form";
 
 const LogIn = () => {
   return (
@@ -10,13 +8,10 @@ const LogIn = () => {
 
       <h2 className="log-in__title">Log In</h2>
 
-      <form action="#" className="log-in__form">
-        <Input placeholder="Email" />
-        <Input placeholder="Password" />
-        <div className="log-in__submit">
-          <Button text="Log In" width="w200px" />
-        </div>
-      </form>
+      <Form inputs={{
+        "Email": "",
+        "Password": ""
+      }} buttonText="Send password" />
 
     </div>
   )

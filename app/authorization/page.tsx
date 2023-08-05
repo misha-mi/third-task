@@ -1,6 +1,5 @@
-import Input from "@/components/ui/input/input";
-import Button from "@/components/ui/button/button";
 import Link from "next/link";
+import Form from "@/components/ui/form/form";
 
 export default function Authorization() {
   return (
@@ -10,14 +9,9 @@ export default function Authorization() {
         You need to enter your name and email. We will send you a temporary password by email
       </p>
 
-      <form action="#" className="authorization__form">
-        <Input placeholder="Username" />
-        <Input placeholder="Email" />
-        <Input placeholder="Password" />
-        <div className="authorization__submit">
-          <Button text="Send password" width="w200px" />
-        </div>
-      </form>
+      <Form inputs={{
+        "Username": "", "Email": "", "Password": ""
+      }} buttonText="Send password" />
 
       <p className="authorization__have">
         Have an account?
