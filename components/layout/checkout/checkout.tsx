@@ -1,11 +1,13 @@
 import "./checkout.sass";
 import Button from "@/components/ui/button/button";
 import Cheque from "@/components/ui/cheque/cheque";
+import Title from "@/components/ui/title/title";
 
 const Checkout = () => {
   return (
     <div className="checkout">
-      <h2 className="checkout__title">Checkout</h2>
+
+      <Title titleText="Checkout" />
 
       <div className="checkout__cheque">
         <Cheque />
