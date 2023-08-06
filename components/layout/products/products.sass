@@ -6,7 +6,7 @@
   font-family: var(--font-thicccboi)
   &__item
     width: 404px
-    height: 641px
+    height: 601px
     border-radius: 12px
     padding: 42px 48px
     background-color: $color700
@@ -51,3 +51,39 @@
       color: $color100
     & .products__divider
       background-color: $color100
+  @media( max-width: 1300px )
+    &__item
+      padding: 20px
+      width: 320px
+      height: 548px
+    &__price
+      font-size: 46px
+    &__description
+      font-size: 16px
+    &__ul
+      font-size: 16px
+  @media( max-width: 1050px )
+    flex-direction: column
+    align-items: center
+    gap: 20px
+    &__item
+      height: auto
+      margin-top: 0
+  @media( max-width: 600px )
+    &__item
+      width: 300px
+    &__price
+      font-size: 36px
+    &__name
+      font-size: 20px
+    &__description
+      font-size: 14px
+      line-height: 20px
+    &__divider
+      margin-top: 15px
+    &__ul
+      margin-top: 15px
+      font-size: 14px
+    &__li::before
+      width: 20px
+      height: 20px
