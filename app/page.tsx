@@ -2,6 +2,7 @@ import "./home.sass";
 
 import Products from "@/components/layout/products/products";
 import Link from "next/link";
+import Title from "@/components/ui/title/title";
 
 
 export default function Home() {
@@ -9,7 +10,9 @@ export default function Home() {
     <div className="home">
       <div className="container">
 
-        <h1 className="home__title">Get started with Gscore today!</h1>
+        <div className="home__title">
+          <Title titleText="Get started with Gscore today!" />
+        </div>
 
         <div className="home__products">
           <Products />

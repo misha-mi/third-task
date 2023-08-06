@@ -1,10 +1,13 @@
 import Link from "next/link";
 import Form from "@/components/ui/form/form";
+import Title from "@/components/ui/title/title";
 
 export default function Authorization() {
   return (
     <>
-      <h2 className="authorization__title">Create account</h2>
+      <div className="authorization__title">
+        <Title titleText="Create account" />
+      </div>
       <p className="authorization__need">
         You need to enter your name and email. We will send you a temporary password by email
       </p>

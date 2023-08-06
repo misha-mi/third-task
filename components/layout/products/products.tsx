@@ -39,7 +39,7 @@ const Products = async () => {
             href={"/authorization"}
             className="products__button"
           >
-            <Button text="Get Gscore" theme="color100" width="w100" alternativeFontColor={id !== 1} />
+            <Button text="Get Gscore" theme="color100" width="w100" height="h72px" alternativeFontColor={id !== 1} />
           </Link>
         </div>
       ))}
