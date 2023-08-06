@@ -4,4 +4,5 @@ export interface IButton {
   width?: "w100" | "w200px" | "w160px" | "w120px"
   shadow?: boolean
   alternativeFontColor?: boolean
+  height?: "h58px" | "h72px"
 }

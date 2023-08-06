@@ -11,7 +11,7 @@ const LogIn = () => {
       <Form inputs={{
         "Email": "",
         "Password": ""
-      }} buttonText="Send password" />
+      }} buttonText="Log in" />
 
     </div>
   )

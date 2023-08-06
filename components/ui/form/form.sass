@@ -1,10 +1,12 @@
 @import "@/lib/colors.sass"
 
 .form
-  margin-top: 32px
   & div
     margin-top: 24px
     &:last-child
       margin-top: 48px
   &__error
     color: $red300
+  @media (max-width: 800px)
+    & div:last-child
+      margin-top: 24px

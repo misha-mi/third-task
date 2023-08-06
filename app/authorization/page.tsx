@@ -9,9 +9,11 @@ export default function Authorization() {
         You need to enter your name and email. We will send you a temporary password by email
       </p>
 
-      <Form inputs={{
-        "Username": "", "Email": "", "Password": ""
-      }} buttonText="Send password" />
+      <div className="authorization__form">
+        <Form inputs={{
+          "Username": "", "Email": "", "Password": ""
+        }} buttonText="Send password" />
+      </div>
 
       <p className="authorization__have">
         Have an account?
