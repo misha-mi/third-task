@@ -17,6 +17,11 @@ const thicccboi = localFont({
   variable: "--font-thicccboi",
   src: [
     {
+      path: '../lib/fonts/THICCCBOI-Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
       path: '../lib/fonts/THICCCBOI-Medium.ttf',
       weight: '500',
       style: 'normal',
