@@ -34,13 +34,16 @@
     display: flex
     align-items: center
     gap: 16px
-    &::before
-      content: ""
-      display: inline-block
-      width: 26px
-      height: 26px
-      border-radius: 100%
-      background-color: $color100
+  &__mark
+    width: 26px
+    height: 26px
+    border-radius: 100%
+    background-color: $color100
+    color: $color700
+    font-size: 24px
+    display: flex
+    justify-content: center
+    align-items: center
   &__button
     display: block
     margin-top: 32px
@@ -51,6 +54,8 @@
       color: $color100
     & .products__divider
       background-color: $color100
+    & .products__mark
+      color: $primary1
   @media( max-width: 1300px )
     &__item
       padding: 20px
@@ -84,6 +89,7 @@
     &__ul
       margin-top: 15px
       font-size: 14px
-    &__li::before
+    &__mark
       width: 20px
       height: 20px
+      font-size: 16px

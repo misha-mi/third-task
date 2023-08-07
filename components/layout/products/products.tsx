@@ -26,10 +26,22 @@ const Products = async () => {
           <div className="products__divider"></div>
 
           <ul className="products__ul">
-            <li className="products__li">{item.name + " license"}</li>
-            <li className="products__li">Special introductory pricing</li>
-            <li className="products__li">Unlimited Pages and Keywords</li>
-            <li className="products__li">Billed annually</li>
+            <li className="products__li">
+              <span className="icon-done products__mark"></span>
+              {item.name + " license"}
+            </li>
+            <li className="products__li">
+              <span className="icon-done products__mark"></span>
+              Special introductory pricing
+            </li>
+            <li className="products__li">
+              <span className="icon-done products__mark"></span>
+              Unlimited Pages and Keywords
+            </li>
+            <li className="products__li">
+              <span className="icon-done products__mark"></span>
+              Billed annually
+            </li>
           </ul>
 
           <Link
