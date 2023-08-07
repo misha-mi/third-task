@@ -10,19 +10,13 @@ const Dropdown = () => {
       <ul className="dropdown__wrapper">
         <li>
           <Link href="/" className="dropdown__item">
-            <Image
-              src={setting}
-              alt={"setting"}
-            />
+            <span className="icon-settings dropdown__icon"></span>
             Settings
           </Link>
         </li>
         <li>
           <Link href="/" className="dropdown__item">
-            <Image
-              src={logout}
-              alt={"logout"}
-            />
+            <span className="icon-logout dropdown__icon"></span>
             Logout
           </Link>
         </li>

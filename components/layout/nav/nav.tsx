@@ -45,11 +45,7 @@ const Nav = () => {
               onClick={() => setOpenDropdown(state => !state)}
             >
               Alex
-              <Image
-                className={chevronClassName}
-                src={chevron}
-                alt={'chevron'}
-              />
+              <span className={`icon-chevron ${chevronClassName}`}></span>
             </div>
             {openDropdown ? (
               <div className="nav__dropdown">
