@@ -10,7 +10,7 @@ const Checkout = () => {
       <Title titleText="Checkout" />
 
       <div className="checkout__cheque">
-        <Cheque />
+        <Cheque subscription={{ name: "ad", price: "adsf" }} />
       </div>
 
       <div className="checkout__total">

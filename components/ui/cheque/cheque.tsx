@@ -1,7 +1,14 @@
 
 import "./cheque.sass";
 
-const Cheque = () => {
+interface ICheque {
+  subscription: {
+    name: string
+    price: string
+  }
+}
+
+const Cheque = ({ subscription }: ICheque) => {
   return (
     <div className="cheque">
       <div className="cheque__name cheque__point">
@@ -10,9 +17,9 @@ const Cheque = () => {
       </div>
 
       <div className="cheque__price cheque__point">
-        <p className="cheque__key">Single site license</p>
+        <p className="cheque__key">{subscription.name}</p>
         <p className="cheque__value">
-          $77 + иконка
+          ${subscription.price}+ иконка
         </p>
       </div>
     </div>

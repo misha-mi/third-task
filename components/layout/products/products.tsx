@@ -4,10 +4,7 @@ import Link from "next/link";
 import { TSubscription } from "./type"
 import Button from "@/components/ui/button/button";
 
-async function getSubscriptions() {
-  const response = await fetch("https://internship.purrweb.site/api/products");
-  return response.json();
-}
+import getSubscriptions from "@/services/getSubscriptions";
 
 const Products = async () => {
 
