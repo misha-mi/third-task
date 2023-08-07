@@ -5,10 +5,11 @@ interface ICheque {
   subscription: {
     name: string
     price: string
-  }
+  },
+  basket?: boolean
 }
 
-const Cheque = ({ subscription }: ICheque) => {
+const Cheque = ({ subscription, basket = false }: ICheque) => {
   return (
     <div className="cheque">
       <div className="cheque__name cheque__point">
@@ -19,7 +20,10 @@ const Cheque = ({ subscription }: ICheque) => {
       <div className="cheque__price cheque__point">
         <p className="cheque__key">{subscription.name}</p>
         <p className="cheque__value">
-          ${subscription.price}+ иконка
+          ${subscription.price}
+          {basket ? (
+            <span className="icon-basket cheque__basket"></span>
+          ) : null}
         </p>
       </div>
     </div>
