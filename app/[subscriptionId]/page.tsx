@@ -18,7 +18,6 @@ export async function generateStaticParams() {
 const ChequePage = async ({ params: { subscriptionId } }: { params: { subscriptionId: string } }) => {
 
   const subscription = (await getSubscriptions())[+subscriptionId - 1];
-  console.log(subscription);
 
   return (
     <div className="cheque-page">
