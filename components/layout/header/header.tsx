@@ -1,7 +1,9 @@
-import Link from "next/link";
-import Nav from "../nav/nav";
 import "./header.sass";
 import Logo from "@/components/ui/logo/logo";
+
+import Link from "next/link";
+import Nav from "../nav/nav";
+
 
 
 const Header = () => {

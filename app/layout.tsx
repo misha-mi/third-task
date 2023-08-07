@@ -1,8 +1,11 @@
 import './app.sass';
 import '@/lib/icon.css';
+
 import type { Metadata } from 'next';
+
 import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
+
 import Header from '@/components/layout/header/header';
 import Footer from '@/components/layout/footer/footer';
 

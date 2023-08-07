@@ -1,14 +1,14 @@
 "use client";
 
 import "./nav.sass";
-import Link from "next/link";
-import Image from "next/image";
-import chevron from "@/public/Chevron.svg";
 import close from "@/public/close.svg";
 
 import Dropdown from "@/components/ui/dropdown/dropdown";
-import { useState } from "react";
 import Logo from "@/components/ui/logo/logo";
+import Link from "next/link";
+import Image from "next/image";
+
+import { useState } from "react";
 
 const Nav = () => {
 

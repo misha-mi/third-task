@@ -1,6 +1,7 @@
 import "./spinner.sass";
+import { ISpinner } from "./type";
 
-const Spinner = ({ color }: { color: "primary1" | "color100" }) => {
+const Spinner = ({ color }: ISpinner) => {
   return <div className={`spinner spinner_${color}`}></div>
 }
 

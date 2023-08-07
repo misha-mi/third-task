@@ -1,5 +1,6 @@
 
 import "./cheque-page.sass";
+import { TSubscription, IChequePage } from "./type";
 
 import Button from "@/components/ui/button/button";
 import Cheque from "@/components/ui/cheque/cheque";
@@ -10,14 +11,14 @@ import getSubscriptions from "@/services/getSubscriptions";
 export async function generateStaticParams() {
   const subscriptions = await getSubscriptions();
 
-  return subscriptions.map((subscription: any) => ({
+  return subscriptions.map((subscription: TSubscription) => ({
     subscriptionId: String(subscription.id)
   }))
 }
 
-const ChequePage = async ({ params: { subscriptionId } }: { params: { subscriptionId: string } }) => {
+const ChequePage = async ({ params: { subscriptionId } }: IChequePage) => {
 
-  const subscription = (await getSubscriptions())[+subscriptionId - 1];
+  const subscription: TSubscription = (await getSubscriptions())[+subscriptionId - 1];
 
   return (
     <div className="cheque-page">

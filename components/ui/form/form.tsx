@@ -1,23 +1,13 @@
 "use client";
 import "./form.sass";
+import { IInputs, IForm } from "./type";
 
-import { useForm, SubmitHandler } from "react-hook-form";
 import Input from "../input/input";
 import Button from "../button/button";
 
+import { useForm, SubmitHandler } from "react-hook-form";
 
-interface IInputs {
-  Username?: string,
-  Password?: string,
-  Email?: string,
-  CurrentPassword?: string,
-  NewPassword?: string,
-}
 
-interface IForm {
-  inputs: IInputs,
-  buttonText: string,
-}
 
 const Form = ({ inputs, buttonText }: IForm) => {
 

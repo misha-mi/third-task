@@ -1,6 +1,6 @@
-import Title from "@/components/ui/title/title";
 import "./log-in.sass";
 
+import Title from "@/components/ui/title/title";
 import Form from "@/components/ui/form/form";
 
 const LogIn = () => {

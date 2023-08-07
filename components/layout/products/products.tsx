@@ -1,7 +1,8 @@
 
 import "./products.sass";
-import Link from "next/link";
 import { TSubscription } from "./type"
+
+import Link from "next/link";
 import Button from "@/components/ui/button/button";
 
 import getSubscriptions from "@/services/getSubscriptions";
@@ -28,7 +29,7 @@ const Products = async () => {
           <ul className="products__ul">
             <li className="products__li">
               <span className="icon-done products__mark"></span>
-              {item.name + " license"}
+              {item.sitesCount + " license"}
             </li>
             <li className="products__li">
               <span className="icon-done products__mark"></span>

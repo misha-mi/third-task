@@ -1,6 +1,7 @@
 import "./logo.sass";
-import Image from "next/image";
 import logo from "@/public/Logo.png";
+
+import Image from "next/image";
 
 const Logo = () => {
   return (

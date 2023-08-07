@@ -1,22 +1,24 @@
 
 import "./checkout.sass";
+import { TSubscription, IChequePage } from "./type";
+
 import Button from "@/components/ui/button/button";
 import Cheque from "@/components/ui/cheque/cheque";
 import Title from "@/components/ui/title/title";
+import Link from "next/link";
 
 import getSubscriptions from "@/services/getSubscriptions";
-import Link from "next/link";
 
 export async function generateStaticParams() {
   const subscriptions = await getSubscriptions();
-  return subscriptions.map((subscription: any) => ({
+  return subscriptions.map((subscription: TSubscription) => ({
     checkoutId: String(subscription.id)
   }))
 }
 
-const Checkout = async ({ params: { checkoutId } }: { params: { checkoutId: string } }) => {
+const Checkout = async ({ params: { checkoutId } }: IChequePage) => {
 
-  const subscription = (await getSubscriptions())[+checkoutId - 1];
+  const subscription: TSubscription = (await getSubscriptions())[+checkoutId - 1];
   console.log(subscription);
   return (
     <div className="checkout">

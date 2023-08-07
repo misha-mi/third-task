@@ -1,17 +1,7 @@
 "use client"
 
-import { UseFormRegister } from "react-hook-form";
-
-
 import "./input.sass";
-
-interface IInput {
-  placeholder: string;
-  register: UseFormRegister<any>;
-  required: string;
-  status?: string
-};
-
+import { IInput } from "./type";
 
 const Input = ({ placeholder, register, required, status }: IInput) => {
 

@@ -1,8 +1,9 @@
-import Logo from "@/components/ui/logo/logo";
+import "./footer.sass";
 import twitter from "@/public/twitter.svg";
 import facebook from "@/public/facebook.svg";
 import linkedin from "@/public/in.svg";
-import "./footer.sass";
+
+import Logo from "@/components/ui/logo/logo";
 import Link from "next/link";
 import Image from "next/image";
 

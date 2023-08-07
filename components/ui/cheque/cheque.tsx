@@ -1,13 +1,6 @@
 
 import "./cheque.sass";
-
-interface ICheque {
-  subscription: {
-    name: string
-    price: string
-  },
-  basket?: boolean
-}
+import { ICheque } from "./type";
 
 const Cheque = ({ subscription, basket = false }: ICheque) => {
   return (

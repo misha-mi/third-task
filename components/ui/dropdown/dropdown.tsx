@@ -1,8 +1,6 @@
 import "./dropdown.sass";
+
 import Link from "next/link";
-import Image from "next/image";
-import logout from "@/public/logout.svg";
-import setting from "@/public/setting.svg";
 
 const Dropdown = () => {
   return (
