@@ -1,23 +1,40 @@
 @import "@/lib/colors.sass"
 
 .input
-  width: 100%
-  height: 68px
-  padding: 25px
-  border: 1px solid $color300
-  border-radius: 6px
-  background: $color100
-  box-shadow: 0px 2px 12px 0px rgba(20, 20, 43, 0.059)
-  caret-color: $primary1
-  color: $color600
-  font-family: var(--font-thicccboi)
-  font-size: 18px
+  position: relative
+  &__input
+    width: 100%
+    height: 68px
+    padding: 25px
+    border: 1px solid $color300
+    border-radius: 6px
+    background: $color100
+    box-shadow: 0px 2px 12px 0px rgba(20, 20, 43, 0.059)
+    caret-color: $primary1
+    color: $color600
+    font-family: var(--font-thicccboi)
+    font-size: 18px
   &:disabled
     background-color: $color300
+  &__icon
+    display: none
+    position: absolute
+    right: 25px
+    top: 50%
+    transform: translateY(-50%)
+    font-size: 26px
   &_success
-    border-color: $green300
+    & .input__input
+      border-color: $green300
+    & .input__icon-done
+      display: block
+      color: $green300
   &_error
-    border-color: $red300
+    & .input__input
+      border-color: $red300
+    & .input__icon-close
+      display: block
+      color: $red300
   @media (max-width: 800px)
     height: 60px
     padding: 20px

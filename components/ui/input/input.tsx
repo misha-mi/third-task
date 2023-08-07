@@ -26,12 +26,16 @@ const Input = ({ placeholder, register, required, status }: IInput) => {
   }
 
   return (
-    <input
-      type="text"
-      className={inputClassName}
-      placeholder={placeholder}
-      {...register(placeholder, { required })}
-    />
+    <div className={inputClassName}>
+      <input
+        type="text"
+        className="input__input"
+        placeholder={placeholder}
+        {...register(placeholder, { required })}
+      />
+      <span className="icon-close input__icon-close input__icon"></span>
+      <span className="icon-done input__icon-done input__icon"></span>
+    </div>
   )
 }
 
