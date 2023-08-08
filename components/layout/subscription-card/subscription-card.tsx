@@ -1,6 +1,7 @@
 import "./subscription-card.sass";
 
 import Button from "@/components/ui/button/button"
+import Status from "@/components/ui/status/status";
 import Title from "@/components/ui/title/title"
 
 const SubscriptionCard = () => {
@@ -8,7 +9,7 @@ const SubscriptionCard = () => {
     <article className="subscription-card">
       <header className="subscription-card__header">
         <div className="subscription-card__gscore">Gscore</div>
-        <div className="subscription-card__status">Active</div>
+        <Status status="active" />
       </header>
 
       <div className="subscription-card__divider"></div>
