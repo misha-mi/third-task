@@ -7,7 +7,7 @@ const Settings = () => {
     <div className="settings-page">
 
       <div className="settings-page__title">
-        <Title titleText="Change password" />
+        <Title titleText="Change password" type="h2" />
       </div>
 
       <div className="settings-page__wrapper">

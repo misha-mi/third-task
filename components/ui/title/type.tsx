@@ -1,3 +1,4 @@
 export interface ITitle {
-  titleText: string
+  titleText: string,
+  type?: "h1" | "h2"
 }
