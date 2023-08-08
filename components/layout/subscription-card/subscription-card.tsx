@@ -2,7 +2,6 @@ import "./subscription-card.sass";
 
 import Button from "@/components/ui/button/button"
 import Status from "@/components/ui/status/status";
-import Title from "@/components/ui/title/title"
 
 const SubscriptionCard = () => {
   return (
@@ -16,7 +15,7 @@ const SubscriptionCard = () => {
 
       <main className="subscription-card__content">
         <div className="subscription-card__subscription">
-          <Title titleText="Single site license" />
+          <div className="subscription-card__name">Single site license</div>
           <div className="subscription-card__price">$77</div>
         </div>
 
