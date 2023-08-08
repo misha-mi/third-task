@@ -14,9 +14,34 @@
   &_active
     color: $primary1
     border-bottom: 2px solid $primary1
+  @media ( max-width: 1300px )
+    margin-top: 8px
+    &__tabs
+      margin-top: 40px
+  @media( max-width: 1050px )
+    &__tabs
+      font-size: 16px
+  @media ( max-width: 800px )
+    &__tabs
+      margin-top: 30px
+  @media( max-width: 600px )
+    &__tabs
+      font-size: 12px
+      padding-bottom: 6px
+    &__link
+      padding: 0 12px 6px
 
 .settings-page
   &__title
     margin-top: 48px
   &__wrapper
     width: 512px
+  @media ( max-width: 1300px )
+    &__title
+      margin-top: 40px
+  @media ( max-width: 800px )
+    &__title
+      margin-top: 30px
+  @media ( max-width: 600px )
+    &__wrapper
+      width: 100%
