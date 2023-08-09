@@ -32,7 +32,7 @@ const ChequePage = async ({ params: { subscriptionId } }: IChequePage) => {
           </p>
 
           <div className="cheque-page__cheque">
-            <Cheque subscription={{ name: subscription.name, price: subscription.prices[0].price }} />
+            <Cheque subscription={{ name: subscription?.name, price: subscription?.prices[0].price }} />
           </div>
 
           <div className="cheque-page__button">
