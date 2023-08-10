@@ -2,10 +2,11 @@ import "./subscription-card.sass";
 
 import Button from "@/components/ui/button/button"
 import Status from "@/components/ui/status/status";
+import { ISubscriptionCard } from "./type";
 
-const SubscriptionCard = () => {
+const SubscriptionCard = ({ disabled }: ISubscriptionCard) => {
   return (
-    <article className="subscription-card">
+    <article className={"subscription-card"}>
       <header className="subscription-card__header">
         <div className="subscription-card__gscore">Gscore</div>
         <Status status="active" />
@@ -25,6 +26,7 @@ const SubscriptionCard = () => {
           <Button text="View" theme="color100" width="w120px" />
         </div>
       </main>
+      <div className={disabled ? " subscription-card__disabled" : ""}></div>
     </article>
   )
 }
