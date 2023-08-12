@@ -6,6 +6,7 @@
   &__header
     display: flex
     justify-content: space-between
+    align-items: center
   &__slider
     margin-top: 48px
   &__licenses
@@ -39,3 +40,13 @@
     font-weight: 400
     line-height: 30px
     text-align: center
+  &__button
+    margin-top: 48px
+    width: 148px
+  &_pos-right
+    display: flex
+    justify-content: right
+  @media ( max-width: 500px )
+    &__button
+      width: 100%
+      margin-top: 36px

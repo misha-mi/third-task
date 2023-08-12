@@ -8,7 +8,6 @@ import SubscriptionCard from "@/components/layout/subscription-card/subscription
 import Link from "next/link";
 
 const Subscriptions = () => {
-
   return (
     <div className="subscriptions">
       <div className="container">
@@ -17,7 +16,7 @@ const Subscriptions = () => {
           <>
             <div className="subscriptions__header">
               <Title titleText="My subscriptions" />
-              <Button text="Upgrade" />
+              <Button text="Upgrade" changingStyle={true} />
             </div>
 
             <div className="subscriptions__slider">
@@ -34,6 +33,12 @@ const Subscriptions = () => {
               <LicenseCard />
               <LicenseCard />
               <LicenseCard />
+            </div>
+
+            <div className="subscriptions_pos-right">
+              <div className="subscriptions__button">
+                <Button text="Confirm" width="w100" height="h72px" />
+              </div>
             </div>
           </>
         ) : (
