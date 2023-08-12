@@ -10,6 +10,7 @@
   grid-template-columns: 1fr 3fr 6fr 2fr
   row-gap: 12px
   column-gap: 28px
+  position: relative
   &__wrapper
     margin-left: 32px
     grid-column-start: 1
@@ -25,6 +26,7 @@
     top: 0
     left: 0
     opacity: 0
+    cursor: pointer
     &+label
       width: 100%
       height: 100%
@@ -38,6 +40,11 @@
     &:checked+label
       border: none
       background-color: $primary1
+    &:disabled+label
+      background-color: $color500
+      border-color: $color600
+      & span
+        color: $color500
   &__title
     font-size: 16px
     font-weight: 700
@@ -59,3 +66,45 @@
     color: $color500
   &_ml28px
     margin-left: 28px
+  @media (max-width: 1050px)
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    padding: 40px
+    &__wrapper
+      margin-left: 0
+    &__input
+      width: 100%
+      order: 2
+    &__domain-wrapper
+      width: 100%
+      order: 4
+    &_ml28px
+      margin-left: 0
+    &_none
+      display: none
+    &__status
+      position: absolute
+      left: 100px
+    &__button
+      position: absolute
+      top: 25px
+      right: 40px
+    &__license
+      order: 1
+    &__domain
+      order: 3
+  @media (max-width: 650px)
+    padding: 32px 20px
+    &__button
+      top: 21px
+      right: 20px
+    &__status
+      left: 68px
+  @media (max-width: 370px)
+    padding: 32px 10px
+    &__button
+      top: 21px
+      right: 10px
+    &__status
+      left: 50px
