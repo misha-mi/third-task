@@ -11,6 +11,7 @@ import getSubscriptions from "@/services/getSubscriptions";
 
 export async function generateStaticParams() {
   const subscriptions = await getSubscriptions();
+
   return subscriptions.map((subscription: TSubscription) => ({
     checkoutId: String(subscription.id)
   }))
@@ -19,7 +20,6 @@ export async function generateStaticParams() {
 const Checkout = async ({ params: { checkoutId } }: IChequePage) => {
 
   const subscription: TSubscription = (await getSubscriptions())[+checkoutId - 1];
-  console.log(subscription);
   return (
     <div className="checkout">
 

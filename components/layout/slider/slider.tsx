@@ -1,7 +1,8 @@
 "use client";
 
 import "./slider.sass"
-import { ISlider, THandlerSwipe, THandlerSwitchingSlider, THandlerTouchStart } from "./type";
+import { ISlider, THandlerSwitchingSlider } from "./type";
+import { TouchEventHandler } from "react";
 
 import { useRef, useState } from "react";
 
@@ -16,19 +17,19 @@ const Slider = ({ children }: ISlider) => {
 
   const handlerSwitchingSlider: THandlerSwitchingSlider = (step) => {
     if (refBand.current) {
-      const gap = (refBand.current.scrollWidth - children.length * refBand.current.children[0].offsetWidth) / (children.length - 1);
-      const moving = refBand.current.children[0].offsetWidth + gap;
+      const gap = (refBand.current.scrollWidth - children.length * (refBand.current.children[0] as HTMLElement).offsetWidth) / (children.length - 1);
+      const moving = (refBand.current.children[0] as HTMLElement).offsetWidth + gap;
       setPosition(moving * (slide + step - 1));
       setSlide(state => state + step);
     }
   }
 
-  const handlerTouchStart = (event: TouchEvent) => {
+  const handlerTouchStart = (event: any) => {
     setStartX(event.touches[0].clientX);
     setDifferenceY(event.touches[0].clientY);
   }
 
-  const handlerTouchEnd = (event: TouchEvent) => {
+  const handlerTouchEnd = (event: any) => {
     if (event.changedTouches[0].clientX - startX > 50 && slide !== 1) {
       handlerSwitchingSlider(-1);
     } else if (event.changedTouches[0].clientX - startX < -50 && slide !== children.length) {
