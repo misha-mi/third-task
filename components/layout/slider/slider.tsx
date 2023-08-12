@@ -1,7 +1,7 @@
 "use client";
 
 import "./slider.sass"
-import { ISlider, THandlerSwitchingSlider } from "./type";
+import { ISlider, THandlerSwipe, THandlerSwitchingSlider, THandlerTouchStart } from "./type";
 
 import { useRef, useState } from "react";
 
@@ -11,15 +11,33 @@ const Slider = ({ children }: ISlider) => {
 
   const [position, setPosition] = useState(0);
   const [slide, setSlide] = useState(1);
+  const [startX, setStartX] = useState(0);
+  const [differenceY, setDifferenceY] = useState(0);
 
   const handlerSwitchingSlider: THandlerSwitchingSlider = (step) => {
     if (refBand.current) {
       const gap = (refBand.current.scrollWidth - children.length * refBand.current.children[0].offsetWidth) / (children.length - 1);
       const moving = refBand.current.children[0].offsetWidth + gap;
-      setPosition(state => state + moving * step);
+      setPosition(moving * (slide + step - 1));
       setSlide(state => state + step);
     }
   }
+
+  const handlerTouchStart = (event: TouchEvent) => {
+    setStartX(event.touches[0].clientX);
+    setDifferenceY(event.touches[0].clientY);
+  }
+
+  const handlerTouchEnd = (event: TouchEvent) => {
+    if (event.changedTouches[0].clientX - startX > 50 && slide !== 1) {
+      handlerSwitchingSlider(-1);
+    } else if (event.changedTouches[0].clientX - startX < -50 && slide !== children.length) {
+      handlerSwitchingSlider(1);
+    } else {
+      handlerSwitchingSlider(0);
+    }
+  }
+
 
   return (
     <div className="slider">
@@ -27,6 +45,8 @@ const Slider = ({ children }: ISlider) => {
         ref={refBand}
         className="slider__band"
         style={{ transform: `translateX(-${position}px)` }}
+        onTouchStart={handlerTouchStart}
+        onTouchEnd={handlerTouchEnd}
       >
         {children}
       </div>
