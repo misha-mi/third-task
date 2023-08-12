@@ -7,8 +7,6 @@ import Button from "../button/button";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 
-
-
 const Form = ({ inputs, buttonText }: IForm) => {
 
   const { register, handleSubmit, formState: { errors } } = useForm<IInputs>({
@@ -25,7 +23,12 @@ const Form = ({ inputs, buttonText }: IForm) => {
     >
       {Object.keys(inputs).map((input, id) => (
         <div key={id}>
-          <Input placeholder={input} register={register} required={input + " is required"} status={errors[input as keyof IInputs]?.message} />
+          <Input
+            placeholder={input[0].toUpperCase() + input.slice(1)}
+            register={register}
+            required={input.replace(/[A-Z]/g, " $&").toLowerCase() + " is required"}
+            status={errors[input as keyof IInputs]?.message}
+          />
           <p className="form__error">{errors[input as keyof IInputs]?.message}</p>
         </div>
       ))}

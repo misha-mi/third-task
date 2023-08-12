@@ -1,9 +1,9 @@
 export interface IInputs {
-  Username?: string,
-  Password?: string,
-  Email?: string,
-  CurrentPassword?: string,
-  NewPassword?: string,
+  username?: string,
+  password?: string,
+  email?: string,
+  currentPassword?: string,
+  newPassword?: string,
 }
 
 export interface IForm {

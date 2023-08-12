@@ -11,7 +11,7 @@ const Settings = () => {
       </div>
 
       <div className="settings-page__wrapper">
-        <Form inputs={{ Username: "", Email: "" }} buttonText="Save" />
+        <Form inputs={{ username: "", email: "" }} buttonText="Save" />
       </div>
 
     </div>

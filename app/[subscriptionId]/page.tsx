@@ -8,6 +8,8 @@ import Title from "@/components/ui/title/title";
 
 import getSubscriptions from "@/services/getSubscriptions";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const subscriptions = await getSubscriptions();
 

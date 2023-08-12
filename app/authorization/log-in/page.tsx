@@ -12,8 +12,8 @@ const LogIn = () => {
       </div>
 
       <Form inputs={{
-        "Email": "",
-        "Password": ""
+        "email": "",
+        "password": ""
       }} buttonText="Log in" />
 
     </div>

@@ -20,8 +20,8 @@ const Input = ({ placeholder, register, required, status }: IInput) => {
       <input
         type="text"
         className="input__input"
-        placeholder={placeholder}
-        {...register(placeholder, { required })}
+        placeholder={placeholder.replace(/[A-Z]/g, " $&")}
+        {...register(placeholder[0].toLowerCase() + placeholder.slice(1), { required })}
       />
       <span className="icon-close input__icon-close input__icon"></span>
       <span className="icon-done input__icon-done input__icon"></span>

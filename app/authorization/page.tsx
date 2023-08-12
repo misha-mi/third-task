@@ -2,7 +2,9 @@ import Link from "next/link";
 import Form from "@/components/ui/form/form";
 import Title from "@/components/ui/title/title";
 
-export default function Authorization() {
+export default async function Authorization() {
+
+
   return (
     <>
       <div className="authorization__title">
@@ -14,7 +16,7 @@ export default function Authorization() {
 
       <div className="authorization__form">
         <Form inputs={{
-          "Username": "", "Email": "", "Password": ""
+          "username": "", "email": "", "password": ""
         }} buttonText="Send password" />
       </div>
 
