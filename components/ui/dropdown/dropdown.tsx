@@ -7,7 +7,7 @@ const Dropdown = () => {
     <div className="dropdown">
       <ul className="dropdown__wrapper">
         <li>
-          <Link href="/" className="dropdown__item">
+          <Link href="/settings" className="dropdown__item">
             <span className="icon-settings dropdown__icon"></span>
             Settings
           </Link>

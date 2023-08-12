@@ -35,7 +35,7 @@ const Nav = () => {
             </span>
             <Logo />
           </div>
-          <Link className="nav__my-subscriptions" href="/">My subscriptions</Link>
+          <Link className="nav__my-subscriptions" href="/subscriptions">My subscriptions</Link>
           <div className="nav__dividers">
             <div
               className="nav__user"
