@@ -8,6 +8,8 @@ import SubscriptionCard from "@/components/layout/subscription-card/subscription
 import Link from "next/link";
 import axios from "axios";
 
+import getCode from "@/services/getCode";
+
 const Subscriptions = async () => {
 
   const subscriptions = await axios<any, any>({
@@ -18,6 +20,7 @@ const Subscriptions = async () => {
     }
   }).then(res => res.data);
 
+  const codes = await getCode("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgxLCJlbWFpbCI6Im1pc2hhQG1pc2hhLnJ1IiwiaWF0IjoxNjkxODU3MTc3fQ.5TxOsX5kbUVH1WefHWRiDwfmND2ZgwV6B9iWcJJ7xAI", 268).then(res => res.data);
   return (
     <div className="subscriptions">
       <div className="container">
@@ -32,7 +35,7 @@ const Subscriptions = async () => {
             <div className="subscriptions__slider">
               <Slider>
                 {
-                  subscriptions.map((item, id) => (
+                  subscriptions.map((item: any, id: any) => (
                     <SubscriptionCard key={id} />
                   ))
                 }
@@ -40,9 +43,11 @@ const Subscriptions = async () => {
             </div>
 
             <div className="subscriptions__licenses">
-              <LicenseCard />
-              <LicenseCard />
-              <LicenseCard />
+              {
+                codes.map((item: any, id: any) => (
+                  <LicenseCard key={id} />
+                ))
+              }
             </div>
 
             <div className="subscriptions_pos-right">
