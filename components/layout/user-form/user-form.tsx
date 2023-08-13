@@ -23,8 +23,6 @@ const UserForm = () => {
       .finally(() => setLoading(false));
   }, [])
 
-  console.log(userData);
-
   const handlerSubmit = (data: any) => {
     patchUserData("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgxLCJlbWFpbCI6Im1pc2hhQG1pc2hhLnJ1IiwiaWF0IjoxNjkxODk1NzUxfQ.7L9J6IY2As_26Qc5O4emetntlXR6DS4a5G-0s6B3aJk", data)
       .then(res => setUserData(res.data));

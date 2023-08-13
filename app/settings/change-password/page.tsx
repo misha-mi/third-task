@@ -1,4 +1,4 @@
-import Form from "@/components/ui/form/form";
+import ChangePasswordForm from "@/components/layout/change-password-form/change-password-form";
 import Title from "@/components/ui/title/title"
 
 
@@ -10,9 +10,7 @@ const Settings = () => {
         <Title titleText="Change password" type="h2" />
       </div>
 
-      <div className="settings-page__wrapper">
-        <Form inputs={{ "currentPassword": "", "newPassword": "" }} buttonText="Save" />
-      </div>
+      <ChangePasswordForm />
 
     </div>
   )
