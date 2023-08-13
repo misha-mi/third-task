@@ -7,6 +7,8 @@ import Cheque from "@/components/ui/cheque/cheque";
 import Title from "@/components/ui/title/title";
 import Link from "next/link";
 
+import axios from "axios";
+
 import getSubscriptions from "@/services/getSubscriptions";
 
 export async function generateStaticParams() {
@@ -18,7 +20,6 @@ export async function generateStaticParams() {
 }
 
 const Checkout = async ({ params: { checkoutId } }: IChequePage) => {
-
   const subscription: TSubscription = (await getSubscriptions())[+checkoutId - 1];
   return (
     <div className="checkout">

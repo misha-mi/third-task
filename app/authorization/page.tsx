@@ -1,9 +1,21 @@
+"use client";
+
 import Link from "next/link";
 import Form from "@/components/ui/form/form";
 import Title from "@/components/ui/title/title";
 
-export default async function Authorization() {
+import axios from "axios";
 
+export default function Authorization() {
+
+  const handlerSubmit = async (data: { username: string, password: string, email: string }) => {
+    await axios({
+      method: "POST",
+      url: "http://localhost:3000/api/signUp",
+      data: data
+    })
+      .then(response => console.log(response.data));
+  }
 
   return (
     <>
@@ -15,9 +27,12 @@ export default async function Authorization() {
       </p>
 
       <div className="authorization__form">
-        <Form inputs={{
-          "username": "", "email": "", "password": ""
-        }} buttonText="Send password" />
+        <Form
+          inputs={{
+            "username": "", "email": "", "password": ""
+          }}
+          buttonText="Send password"
+          onSubmit={handlerSubmit} />
       </div>
 
       <p className="authorization__have">

@@ -6,8 +6,18 @@ import LicenseCard from "@/components/layout/license-card/license-card";
 import Slider from "@/components/layout/slider/slider";
 import SubscriptionCard from "@/components/layout/subscription-card/subscription-card";
 import Link from "next/link";
+import axios from "axios";
 
-const Subscriptions = () => {
+const Subscriptions = async () => {
+
+  const subscriptions = await axios<any, any>({
+    method: "GET",
+    url: "http://localhost:3000/api/self",
+    params: {
+      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgxLCJlbWFpbCI6Im1pc2hhQG1pc2hhLnJ1IiwiaWF0IjoxNjkxODU3MTc3fQ.5TxOsX5kbUVH1WefHWRiDwfmND2ZgwV6B9iWcJJ7xAI"
+    }
+  }).then(res => res.data);
+
   return (
     <div className="subscriptions">
       <div className="container">
@@ -21,11 +31,11 @@ const Subscriptions = () => {
 
             <div className="subscriptions__slider">
               <Slider>
-                <SubscriptionCard />
-                <SubscriptionCard disabled={true} />
-                <SubscriptionCard disabled={true} />
-                <SubscriptionCard disabled={true} />
-                <SubscriptionCard disabled={true} />
+                {
+                  subscriptions.map((item, id) => (
+                    <SubscriptionCard key={id} />
+                  ))
+                }
               </Slider>
             </div>
 

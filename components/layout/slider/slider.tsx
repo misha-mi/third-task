@@ -2,7 +2,6 @@
 
 import "./slider.sass"
 import { ISlider, THandlerSwitchingSlider } from "./type";
-import { TouchEventHandler } from "react";
 
 import { useRef, useState } from "react";
 

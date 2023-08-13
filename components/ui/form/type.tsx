@@ -1,3 +1,5 @@
+import { SubmitHandler } from "react-hook-form";
+
 export interface IInputs {
   username?: string,
   password?: string,
@@ -9,4 +11,5 @@ export interface IInputs {
 export interface IForm {
   inputs: IInputs,
   buttonText: string,
+  onSubmit: any
 }

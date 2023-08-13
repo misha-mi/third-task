@@ -5,17 +5,13 @@ import { IInputs, IForm } from "./type";
 import Input from "../input/input";
 import Button from "../button/button";
 
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
-const Form = ({ inputs, buttonText }: IForm) => {
+const Form = ({ inputs, buttonText, onSubmit }: IForm) => {
 
   const { register, handleSubmit, formState: { errors } } = useForm<IInputs>({
     defaultValues: inputs
   });
-
-  const onSubmit: SubmitHandler<{}> = data => {
-    alert(JSON.stringify(data));
-  };
 
   return (
     <form className="form"
