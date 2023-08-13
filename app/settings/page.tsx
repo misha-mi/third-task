@@ -1,4 +1,4 @@
-import Form from "@/components/ui/form/form";
+import UserForm from "@/components/layout/user-form/user-form";
 import Title from "@/components/ui/title/title"
 
 
@@ -10,9 +10,7 @@ const Settings = () => {
         <Title titleText="Settings" type="h2" />
       </div>
 
-      <div className="settings-page__wrapper">
-        <Form inputs={{ username: "", email: "" }} buttonText="Save" />
-      </div>
+      <UserForm />
 
     </div>
   )
