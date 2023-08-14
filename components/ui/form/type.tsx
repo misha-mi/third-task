@@ -11,5 +11,6 @@ export interface IInputs {
 export interface IForm {
   inputs: IInputs,
   buttonText: string,
-  onSubmit: any
+  onSubmit: any,
+  status?: "waiting" | "loading" | "error" | "success"
 }

@@ -6,4 +6,5 @@ export interface IButton {
   alternativeFontColor?: boolean
   height?: "h58px" | "h72px",
   changingStyle?: boolean
+  loading?: boolean
 }

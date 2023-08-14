@@ -1,4 +1,3 @@
-"use client";
 import "./log-in.sass";
 
 import Title from "@/components/ui/title/title";

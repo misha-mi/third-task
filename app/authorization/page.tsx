@@ -1,22 +1,11 @@
-"use client";
 
 import Link from "next/link";
-import Form from "@/components/ui/form/form";
 import Title from "@/components/ui/title/title";
 
-import axios from "axios";
+import SignUpForm from "@/components/layout/sign-up-form/sign-up-form";
+import ReduxProvider from "@/components/layout/provider/provider";
 
 export default function Authorization() {
-
-  const handlerSubmit = async (data: { username: string, password: string, email: string }) => {
-    await axios({
-      method: "POST",
-      url: "http://localhost:3000/api/signUp",
-      data: data
-    })
-      .then(response => console.log(response.data));
-  }
-
   return (
     <>
       <div className="authorization__title">
@@ -27,12 +16,9 @@ export default function Authorization() {
       </p>
 
       <div className="authorization__form">
-        <Form
-          inputs={{
-            "username": "", "email": "", "password": ""
-          }}
-          buttonText="Send password"
-          onSubmit={handlerSubmit} />
+        <ReduxProvider>
+          <SignUpForm />
+        </ReduxProvider>
       </div>
 
       <p className="authorization__have">

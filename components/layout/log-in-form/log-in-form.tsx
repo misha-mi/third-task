@@ -1,3 +1,5 @@
+"use client"
+
 import Form from "@/components/ui/form/form";
 
 import { useAppDispatch } from "@/store/ducks/redux-hooks";
