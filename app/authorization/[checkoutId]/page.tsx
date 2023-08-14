@@ -7,7 +7,7 @@ import Cheque from "@/components/ui/cheque/cheque";
 import Title from "@/components/ui/title/title";
 import Link from "next/link";
 
-import axios from "axios";
+
 
 import getSubscriptions from "@/services/getSubscriptions";
 

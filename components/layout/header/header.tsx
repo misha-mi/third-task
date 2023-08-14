@@ -4,7 +4,7 @@ import Logo from "@/components/ui/logo/logo";
 import Link from "next/link";
 import Nav from "../nav/nav";
 
-
+import ReduxProvider from "../provider/provider";
 
 const Header = () => {
   return (
@@ -15,7 +15,9 @@ const Header = () => {
             <Logo />
           </Link>
 
-          <Nav />
+          <ReduxProvider>
+            <Nav />
+          </ReduxProvider>
         </div>
       </div>
     </div>

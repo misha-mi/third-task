@@ -2,7 +2,18 @@ import "./dropdown.sass";
 
 import Link from "next/link";
 
+import { useAppDispatch } from "@/store/ducks/redux-hooks";
+import { setToken, setUsername } from "@/store/ducks/auth";
+
 const Dropdown = () => {
+
+  const dispatch = useAppDispatch();
+
+  const handlerLogOut = () => {
+    dispatch(setToken(""));
+    dispatch(setUsername(""));
+  }
+
   return (
     <div className="dropdown">
       <ul className="dropdown__wrapper">
@@ -13,7 +24,7 @@ const Dropdown = () => {
           </Link>
         </li>
         <li>
-          <Link href="/" className="dropdown__item">
+          <Link href="/" className="dropdown__item" onClick={handlerLogOut}>
             <span className="icon-logout dropdown__icon"></span>
             Logout
           </Link>
