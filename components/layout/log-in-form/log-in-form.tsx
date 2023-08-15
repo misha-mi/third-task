@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 
 import postAuth from "@/services/postAuth";
 
-const LogInForm = () => {
+const LogInForm = ({ productId }: { productId: number }) => {
 
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -18,7 +18,7 @@ const LogInForm = () => {
       if (!res.response.error) {
         dispatch(setUsername(res.response.user.username));
         dispatch(setToken(res.response.token));
-        router.push("/authorization/1");
+        router.push(`/authorization/${productId}`);
       }
     })
   }

@@ -5,7 +5,7 @@ import Title from "@/components/ui/title/title";
 import LogInForm from "@/components/layout/log-in-form/log-in-form";
 import ReduxProvider from "@/components/layout/provider/provider";
 
-const LogIn = () => {
+const LogIn = ({ searchParams }: { searchParams: { productId: number } }) => {
   return (
     <div className="log-in">
 
@@ -14,7 +14,7 @@ const LogIn = () => {
       </div>
 
       <ReduxProvider>
-        <LogInForm />
+        <LogInForm productId={searchParams.productId} />
       </ReduxProvider>
     </div>
   )

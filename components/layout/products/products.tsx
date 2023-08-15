@@ -1,4 +1,3 @@
-
 import "./products.sass";
 import { TSubscription } from "./type"
 
@@ -8,7 +7,6 @@ import Button from "@/components/ui/button/button";
 import getSubscriptions from "@/services/getSubscriptions";
 
 const Products = async () => {
-
 
   const subscriptions: TSubscription[] = await getSubscriptions();
 
@@ -46,7 +44,7 @@ const Products = async () => {
           </ul>
 
           <Link
-            href={"/authorization"}
+            href={`/authorization?productId=${item.id}`}
             className="products__button"
           >
             <Button text="Get Gscore" theme="color100" width="w100" height="h72px" alternativeFontColor={id !== 1} />
