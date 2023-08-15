@@ -1,4 +1,5 @@
 
+import PrivateRoute from "@/components/layout/private-route/private-route";
 import "./cheque-page.sass";
 import { TSubscription, IChequePage } from "./type";
 
@@ -23,27 +24,29 @@ const ChequePage = async ({ params: { subscriptionId } }: IChequePage) => {
   const subscription: TSubscription = (await getSubscriptions())[+subscriptionId - 1];
 
   return (
-    <div className="cheque-page">
-      <div className="container">
-        <div className="cheque-page__wrapper">
+    <PrivateRoute>
+      <div className="cheque-page">
+        <div className="container">
+          <div className="cheque-page__wrapper">
 
-          <Title titleText="Start your subscription" />
+            <Title titleText="Start your subscription" />
 
-          <p className="cheque-page__subtitle">
-            We have sent you a payment receipt by e-mail and a link to download the plugin with a license key.
-          </p>
+            <p className="cheque-page__subtitle">
+              We have sent you a payment receipt by e-mail and a link to download the plugin with a license key.
+            </p>
 
-          <div className="cheque-page__cheque">
-            <Cheque subscription={{ name: subscription?.name, price: subscription?.prices[0].price }} />
+            <div className="cheque-page__cheque">
+              <Cheque subscription={{ name: subscription?.name, price: subscription?.prices[0].price }} />
+            </div>
+
+            <div className="cheque-page__button">
+              <Button text="Go to my subscriptions" width="w100" />
+            </div>
+
           </div>
-
-          <div className="cheque-page__button">
-            <Button text="Go to my subscriptions" width="w100" />
-          </div>
-
         </div>
       </div>
-    </div>
+    </PrivateRoute>
   )
 }
 
