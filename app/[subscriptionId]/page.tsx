@@ -8,6 +8,7 @@ import Cheque from "@/components/ui/cheque/cheque";
 import Title from "@/components/ui/title/title";
 
 import getSubscriptions from "@/services/getSubscriptions";
+import Link from "next/link";
 
 export const dynamicParams = false;
 
@@ -39,9 +40,9 @@ const ChequePage = async ({ params: { subscriptionId } }: IChequePage) => {
               <Cheque subscription={{ name: subscription?.name, price: subscription?.prices[0].price }} />
             </div>
 
-            <div className="cheque-page__button">
+            <Link href={"/subscriptions"} className="cheque-page__button">
               <Button text="Go to my subscriptions" width="w100" />
-            </div>
+            </Link>
 
           </div>
         </div>

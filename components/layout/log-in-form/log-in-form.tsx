@@ -4,17 +4,22 @@ import Form from "@/components/ui/form/form";
 
 import { useAppDispatch } from "@/store/ducks/redux-hooks";
 import { setToken, setUsername } from "@/store/ducks/auth";
+import { useRouter } from "next/navigation";
 
 import postAuth from "@/services/postAuth";
 
 const LogInForm = () => {
 
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const handlerSubmit = (data: { email: string, password: string }) => {
     postAuth(data).then(res => {
-      dispatch(setUsername(res.response.user.username));
-      dispatch(setToken(res.response.token));
+      if (!res.response.error) {
+        dispatch(setUsername(res.response.user.username));
+        dispatch(setToken(res.response.token));
+        router.push("/authorization/1");
+      }
     })
   }
 
