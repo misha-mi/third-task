@@ -9,7 +9,7 @@ export interface IAuthState {
 
 const initialState: IAuthState = {
   username: "",
-  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgxLCJlbWFpbCI6Im1pc2hhQG1pc2hhLnJ1IiwiaWF0IjoxNjkxODU3MTc3fQ.5TxOsX5kbUVH1WefHWRiDwfmND2ZgwV6B9iWcJJ7xAI",
+  token: "",
 };
 
 const authSlice = createSlice({

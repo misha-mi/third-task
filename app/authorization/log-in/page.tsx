@@ -6,8 +6,6 @@ import LogInForm from "@/components/layout/log-in-form/log-in-form";
 import ReduxProvider from "@/components/layout/provider/provider";
 
 const LogIn = () => {
-
-
   return (
     <div className="log-in">
 

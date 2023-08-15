@@ -7,6 +7,7 @@ import Cheque from "@/components/ui/cheque/cheque";
 import Title from "@/components/ui/title/title";
 import Link from "next/link";
 
+import { store } from "@/store/ducks/store";
 
 
 import getSubscriptions from "@/services/getSubscriptions";
@@ -18,7 +19,7 @@ export async function generateStaticParams() {
     checkoutId: String(subscription.id)
   }))
 }
-
+console.log(store.getState().authReducer.token);
 const Checkout = async ({ params: { checkoutId } }: IChequePage) => {
   const subscription: TSubscription = (await getSubscriptions())[+checkoutId - 1];
   return (
