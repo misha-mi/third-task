@@ -16,7 +16,8 @@ const Button = ({
   shadow = true,
   alternativeFontColor = false,
   changingStyle = false,
-  loading = false
+  loading = false,
+  onClick
 }: IButton) => {
 
   const [disabled, setDisabled] = useState<boolean>(false);
@@ -29,6 +30,7 @@ const Button = ({
       <button
         className={buttonClass}
         disabled={disabled || loading}
+        onClick={onClick}
       >
         {
           loading ? (

@@ -1,3 +1,7 @@
 export interface ISubscriptionCard {
-  disabled?: boolean
+  name: string;
+  date: string;
+  price: number;
+  status: string;
+  onView: () => void;
 }

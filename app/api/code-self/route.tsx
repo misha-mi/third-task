@@ -8,8 +8,6 @@ export async function GET(req: Request) {
 
   const subscriptionId = await searchParams.get("subscriptionID");
 
-  console.log(subscriptionId);
-
   let products = await fetch(
     `https://internship.purrweb.site/api/code/self`,
     {
@@ -23,6 +21,13 @@ export async function GET(req: Request) {
   if (subscriptionId) {
     products = products.filter((item: any) => item.subscribe.id === +subscriptionId)
   }
+
+  products = products.map((item: any) => ({
+    codeId: item.id,
+    code: item.code,
+    origin: item.origin || "",
+    status: item.status,
+  }))
 
   return NextResponse.json(products);
 }

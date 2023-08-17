@@ -11,6 +11,5 @@ export default async function getCode(token: string, subscriptionID?: number) {
     }
   });
 
-
   return response;
 }

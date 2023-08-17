@@ -24,6 +24,17 @@
     cursor: pointer
     &:disabled
       color: $color500
+  &__disabled
+    position: relative
+    &::before
+      content: ""
+      display: block
+      width: 100%
+      height: 100%
+      background-color: rgba(0, 0, 0, 0.3)
+      position: absolute
+      z-index: 1
+      border-radius: 12px
   @media (hover: none) and ( pointer: coarse )
     &__band
       gap: 12px

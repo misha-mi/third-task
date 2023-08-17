@@ -15,6 +15,22 @@ export async function GET(req: Request) {
         "Authorization": `Bearer ${token}`
       }
     }
-  ).then(res => res.json());
+  )
+    .then(res => res.json())
+    .then(res => ({
+      firstSubscriptionsCodes: res[0].codes.map((item: any) => ({
+        codeId: item.id,
+        code: item.code,
+        origin: item.origin || "",
+        status: item.status
+      })).reverse(),
+      subscriptions: res.map((item: any) => ({
+        id: item.id,
+        name: item.product.name,
+        date: new Date(+item.currentPeriodEnd),
+        price: item.product.prices[0].price,
+        status: item.status
+      }))
+    }))
   return NextResponse.json(products);
 }

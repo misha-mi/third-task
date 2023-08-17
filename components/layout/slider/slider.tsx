@@ -48,7 +48,11 @@ const Slider = ({ children }: ISlider) => {
         onTouchStart={handlerTouchStart}
         onTouchEnd={handlerTouchEnd}
       >
-        {children}
+        {children.map((item, id) => (
+          <div className={(id + 1) === slide ? "" : "slider__disabled"} key={id}>
+            {item}
+          </div>
+        ))}
       </div>
 
       <div className="slider__controllers">
