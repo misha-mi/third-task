@@ -8,10 +8,12 @@ import SubscriptionCard from "../subscription-card/subscription-card";
 
 import { useAppDispatch, useAppSelector } from "@/store/ducks/redux-hooks";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getUsersSubscriptions, getCodesById, activateCode } from "@/store/ducks/subscriptions";
 
 const SubscriptionList = () => {
+
+  const [upgrade, setUpgrade] = useState(false);
 
   const subscriptions = useAppSelector(store => store.subscriptionReducer.subscriptions);
   const codes = useAppSelector(store => store.subscriptionReducer.codes);
@@ -34,7 +36,11 @@ const SubscriptionList = () => {
     <>
       <div className="subscriptions__header">
         <Title titleText="My subscriptions" />
-        <Button text="Upgrade" changingStyle={true} />
+        <Button
+          text="Upgrade"
+          changingStyle={true}
+          onClick={() => setUpgrade(true)}
+        />
       </div>
 
       <div className="subscriptions__slider">
@@ -63,6 +69,7 @@ const SubscriptionList = () => {
               status={item.status}
               onActivate={(domain: string, code: string) => handlerActivateCode(domain, code, id)}
               key={item.codeId}
+              upgrade={upgrade}
             />
           ))
         }
@@ -70,7 +77,12 @@ const SubscriptionList = () => {
 
       <div className="subscriptions_pos-right">
         <div className="subscriptions__button">
-          <Button text="Confirm" width="w100" height="h72px" />
+          <Button
+            text="Confirm"
+            width="w100"
+            height="h72px"
+            onClick={() => setUpgrade(false)}
+          />
         </div>
       </div>
     </>
