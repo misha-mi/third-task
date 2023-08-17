@@ -1,5 +1,6 @@
 import getCode from "@/services/getCode";
 import getPurchasedSubscriptions from "@/services/getPurchasedSubscriptions";
+import postActivateCode from "@/services/postActivateCode";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 
@@ -16,6 +17,18 @@ export const getCodesById = createAsyncThunk("subscriptions/codes", async ({ sub
   try {
     return await getCode(token, subscriptionId)
       .then(res => res.data);
+  } catch (error) {
+    thunkAPI.rejectWithValue(error);
+  }
+})
+
+export const activateCode = createAsyncThunk("subscriptions/activate", async ({ domain, code, id }: { domain: string, code: string, id: number }, thunkAPI) => {
+  try {
+    return await postActivateCode(domain, code)
+      .then(res => ({
+        id: id,
+        code: res.data
+      }));
   } catch (error) {
     thunkAPI.rejectWithValue(error);
   }
@@ -69,8 +82,17 @@ const subscriptionsSlice = createSlice({
         state.loading = false;
         state.codes = action.payload;
       })
+      .addCase(activateCode.pending, state => {
+        state.loading = true
+      })
+      .addCase(activateCode.fulfilled, (state, action) => {
+        state.loading = false;
+        if (action.payload) {
+          state.codes[action.payload.id] = action.payload.code;
+        }
+      })
   }
 });
 
-export const { } = subscriptionsSlice.actions;
+// export const {  } = subscriptionsSlice.actions;
 export default subscriptionsSlice.reducer;

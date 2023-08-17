@@ -9,7 +9,7 @@ import SubscriptionCard from "../subscription-card/subscription-card";
 import { useAppDispatch, useAppSelector } from "@/store/ducks/redux-hooks";
 
 import { useEffect } from "react";
-import { getUsersSubscriptions, getCodesById } from "@/store/ducks/subscriptions";
+import { getUsersSubscriptions, getCodesById, activateCode } from "@/store/ducks/subscriptions";
 
 const SubscriptionList = () => {
 
@@ -24,6 +24,10 @@ const SubscriptionList = () => {
 
   const handlerViewSubscription = (newSubscriptionId: number) => {
     dispatch(getCodesById({ subscriptionId: newSubscriptionId, token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgxLCJlbWFpbCI6Im1pc2hhQG1pc2hhLnJ1IiwiaWF0IjoxNjkxODU3MTc3fQ.5TxOsX5kbUVH1WefHWRiDwfmND2ZgwV6B9iWcJJ7xAI" }));
+  }
+
+  const handlerActivateCode = (domain: string, code: string, id: number) => {
+    dispatch(activateCode({ domain, code, id }));
   }
 
   return (
@@ -52,12 +56,13 @@ const SubscriptionList = () => {
 
       <div className="subscriptions__licenses">
         {
-          codes.map((item: any) => (
+          codes.map((item: any, id: number) => (
             <LicenseCard
               code={item.code}
               origin={item.origin}
               status={item.status}
-              key={item.id}
+              onActivate={(domain: string, code: string) => handlerActivateCode(domain, code, id)}
+              key={item.codeId}
             />
           ))
         }

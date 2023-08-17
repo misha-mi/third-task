@@ -4,15 +4,17 @@ import Button from "@/components/ui/button/button";
 import "./license-card.sass";
 
 import Status from "@/components/ui/status/status";
+import { useState } from "react";
 
 interface ILicenseCard {
   code: string,
   origin: string,
-  status: string
+  status: string,
+  onActivate: (domain: string, code: string) => void
 }
 
-const LicenseCard = ({ code, status, origin }: ILicenseCard) => {
-
+const LicenseCard = ({ code, status, origin, onActivate }: ILicenseCard) => {
+  const [domain, setDomain] = useState("");
 
   return (
     <div className="license-card">
@@ -31,12 +33,23 @@ const LicenseCard = ({ code, status, origin }: ILicenseCard) => {
       <input type="text" className="license-card__input" value={code} />
 
       <div className="license-card__domain-wrapper">
-        <input className="license-card__input license-card__domain" value={origin} />
-        {status === "inactive" ? (
-          <div className="license-card__button">
-            <Button text="Activate" theme="color100" width="w120px" />
-          </div>
-        ) : null
+        <input
+          className="license-card__input license-card__domain"
+          value={origin || domain}
+          onInput={(e) => setDomain(e.currentTarget.value)}
+        />
+
+        {
+          status.toLowerCase() === "inactive" ? (
+            <div className="license-card__button">
+              <Button
+                text="Activate"
+                theme="color100"
+                width="w120px"
+                onClick={() => onActivate(domain, code)}
+              />
+            </div>
+          ) : null
         }
       </div>
 
