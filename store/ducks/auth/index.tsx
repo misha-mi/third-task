@@ -13,7 +13,7 @@ const initialState: IAuthState = {
 };
 
 const authSlice = createSlice({
-  name: "search",
+  name: "auth",
   initialState,
   reducers: {
     setToken: (state, action: PayloadAction<string>) => {
