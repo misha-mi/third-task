@@ -6,7 +6,7 @@ import Dropdown from "@/components/ui/dropdown/dropdown";
 import Logo from "@/components/ui/logo/logo";
 import Link from "next/link";
 
-import { useAppSelector } from "@/store/ducks/redux-hooks";
+import { useAppSelector } from "@/store/redux-hooks";
 
 import { useState } from "react";
 
@@ -15,7 +15,7 @@ const Nav = () => {
   const [openDropdown, setOpenDropdown] = useState<boolean>(false);
   const [openNav, setOpenNav] = useState<boolean>(false);
 
-  const username = useAppSelector(state => state.authReducer.username);
+  const username = useAppSelector(state => state.auth.username);
 
   const chevronClassName = "nav__chevron" + (openDropdown ? " active" : "");
   const navClassName = "nav" + (openNav ? " open" : "");

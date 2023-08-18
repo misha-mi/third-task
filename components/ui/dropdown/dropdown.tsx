@@ -2,7 +2,7 @@ import "./dropdown.sass";
 
 import Link from "next/link";
 
-import { useAppDispatch } from "@/store/ducks/redux-hooks";
+import { useAppDispatch } from "@/store/redux-hooks";
 import { setToken, setUsername } from "@/store/ducks/auth";
 
 const Dropdown = () => {

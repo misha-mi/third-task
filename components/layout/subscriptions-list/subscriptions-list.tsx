@@ -6,26 +6,27 @@ import Slider from "../slider/slider";
 import LicenseCard from "../license-card/license-card";
 import SubscriptionCard from "../subscription-card/subscription-card";
 
-import { useAppDispatch, useAppSelector } from "@/store/ducks/redux-hooks";
+import { useAppDispatch, useAppSelector } from "@/store/redux-hooks";
 
 import { useEffect, useState } from "react";
-import { getUsersSubscriptions, getCodesById, activateCode } from "@/store/ducks/subscriptions";
+import { getUsersSubscriptions, getCodesById, activateCode } from "@/store/ducks/subscriptions/actions";
 
 const SubscriptionList = () => {
 
   const [upgrade, setUpgrade] = useState(false);
 
-  const subscriptions = useAppSelector(store => store.subscriptionReducer.subscriptions);
-  const codes = useAppSelector(store => store.subscriptionReducer.codes);
-  const loading = useAppSelector(store => store.subscriptionReducer.loading);
+  const subscriptions = useAppSelector(store => store.subscriptions.subscriptions);
+  const codes = useAppSelector(store => store.subscriptions.codes);
+  const loading = useAppSelector(store => store.subscriptions.loading);
+  const token = useAppSelector(store => store.auth.token);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getUsersSubscriptions("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgxLCJlbWFpbCI6Im1pc2hhQG1pc2hhLnJ1IiwiaWF0IjoxNjkxODU3MTc3fQ.5TxOsX5kbUVH1WefHWRiDwfmND2ZgwV6B9iWcJJ7xAI"));
+    dispatch(getUsersSubscriptions(token));
   }, [])
 
   const handlerViewSubscription = (newSubscriptionId: number) => {
-    dispatch(getCodesById({ subscriptionId: newSubscriptionId, token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgxLCJlbWFpbCI6Im1pc2hhQG1pc2hhLnJ1IiwiaWF0IjoxNjkxODU3MTc3fQ.5TxOsX5kbUVH1WefHWRiDwfmND2ZgwV6B9iWcJJ7xAI" }));
+    dispatch(getCodesById({ subscriptionId: newSubscriptionId, token }));
   }
 
   const handlerActivateCode = (domain: string, code: string, id: number) => {

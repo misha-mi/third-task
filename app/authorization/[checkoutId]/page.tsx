@@ -7,7 +7,7 @@ import Cheque from "@/components/ui/cheque/cheque";
 import Title from "@/components/ui/title/title";
 import Link from "next/link";
 
-import { store } from "@/store/ducks/store";
+import { store } from "@/store/store";
 
 
 import getSubscriptions from "@/services/getSubscriptions";
