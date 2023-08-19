@@ -1,4 +1,5 @@
 import ChangePasswordForm from "@/components/layout/change-password-form/change-password-form";
+import ReduxProvider from "@/components/layout/provider/provider";
 import Title from "@/components/ui/title/title"
 
 
@@ -10,7 +11,9 @@ const Settings = () => {
         <Title titleText="Change password" type="h2" />
       </div>
 
-      <ChangePasswordForm />
+      <ReduxProvider>
+        <ChangePasswordForm />
+      </ReduxProvider>
 
     </div>
   )

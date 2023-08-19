@@ -10,7 +10,13 @@ export async function POST(req: Request) {
       'Content-type': " application/json"
     },
     body: JSON.stringify(body)
-  }).then(res => res.json())
-
+  })
+    .then(res => res.json())
+    .then(res => {
+      if (typeof res.message === "string") {
+        res.message = [res.message];
+      }
+      return res;
+    })
   return NextResponse.json({ response })
 }

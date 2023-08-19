@@ -6,6 +6,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 const initialState: IAuthState = {
   username: "",
   token: "",
+  email: ""
 };
 
 const authSlice = createSlice({
@@ -17,9 +18,12 @@ const authSlice = createSlice({
     },
     setUsername: (state, action: PayloadAction<string>) => {
       state.username = action.payload;
-    }
+    },
+    setEmail: (state, action: PayloadAction<string>) => {
+      state.email = action.payload;
+    },
   },
 });
 
-export const { setToken, setUsername } = authSlice.actions;
+export const { setToken, setUsername, setEmail } = authSlice.actions;
 export default authSlice.reducer;

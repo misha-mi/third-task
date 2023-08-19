@@ -1,45 +1,86 @@
 "use client";
-import Form from "@/components/ui/form/form"
-import getUserData from "@/services/getUserData";
+
+import Button from "@/components/ui/button/button";
+import Input from "@/components/ui/input/input";
+import { useAppDispatch, useAppSelector } from "@/store/redux-hooks";
+import { setEmail, setUsername } from "@/store/ducks/auth";
+import { useForm } from "react-hook-form";
+
+
 import patchUserData from "@/services/patchUsersData";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
+interface IForm {
+  username: string;
+  email: string;
+}
 
 const UserForm = () => {
 
-  const [loading, setLoading] = useState(true);
+  const [status, setStatus] = useState("start");
 
-  const [userData, setUserData] = useState({
-    email: "",
-    username: "",
-    id: 0
-  });
+  const dispatch = useAppDispatch();
+  const username = useAppSelector(store => store.auth.username);
+  const email = useAppSelector(store => store.auth.email);
+  const token = useAppSelector(store => store.auth.token);
 
-
-  useEffect(() => {
-    setLoading(true);
-    getUserData("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgxLCJlbWFpbCI6Im1pc2hhQG1pc2hhLnJ1IiwiaWF0IjoxNjkxODk1NzUxfQ.7L9J6IY2As_26Qc5O4emetntlXR6DS4a5G-0s6B3aJk")
-      .then(res => setUserData(res.data))
-      .finally(() => setLoading(false));
-  }, [])
+  const { register, handleSubmit, formState: { errors } } = useForm<IForm>(
+    {
+      defaultValues: {
+        username: username,
+        email: email
+      }
+    }
+  );
 
   const handlerSubmit = (data: any) => {
-    patchUserData("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgxLCJlbWFpbCI6Im1pc2hhQG1pc2hhLnJ1IiwiaWF0IjoxNjkxODk1NzUxfQ.7L9J6IY2As_26Qc5O4emetntlXR6DS4a5G-0s6B3aJk", data)
-      .then(res => setUserData(res.data));
+    setStatus("loading");
+    patchUserData(token, data)
+      .then(res => {
+        if (res.data.message) {
+          setStatus(res.data.message);
+        } else {
+          dispatch(setUsername(res.data.username));
+          dispatch(setEmail(res.data.email));
+
+          setStatus("success")
+        }
+      });
   }
 
   return (
-    <div className="settings-page__wrapper">
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        <Form
-          inputs={{ username: userData.username, email: userData.email }}
-          buttonText="Save"
-          onSubmit={handlerSubmit}
-        />
-      )}
-    </div>
+    <form onSubmit={handleSubmit(handlerSubmit)}>
+
+      <Input
+        register={register}
+        placeholder="Username"
+        required={"username is required"}
+        status={status}
+        error={status[0].includes("username") || Boolean(errors.username?.message)}
+      />
+      <p className="sign-up-form__error">{errors.username?.message}</p>
+
+      <Input
+        register={register}
+        placeholder="Email"
+        required={"email is required"}
+        status={status}
+        error={status[0].includes("email") || Boolean(errors.email?.message)}
+        pattern={/[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+/}
+      />
+      <p className="sign-up-form__error">{errors.email?.message}</p>
+
+      <p className="sign-up-form__error">{typeof status !== "string" ? status[0] : null}</p>
+      <p className="sign-up-form__success">{status === "success" ? "Change user date is success" : null}</p>
+
+      <Button
+        text={"Save"}
+        width="w200px"
+        loading={status === "loading"}
+        onClick={() => setStatus("after")}
+      />
+    </form>
   )
 }
 

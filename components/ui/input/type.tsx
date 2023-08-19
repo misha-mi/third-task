@@ -5,4 +5,7 @@ export interface IInput {
   register: UseFormRegister<any>;
   required: string;
   status?: string;
+  error?: boolean
+  pattern?: RegExp,
+  minLength?: number;
 };
