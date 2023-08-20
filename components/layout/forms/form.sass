@@ -1,14 +1,19 @@
 @import "@/lib/colors.sass"
 
-.sign-up-form
-  & div
+.form
+  &__input
     margin-top: 24px
-    &:last-child
-      margin-top: 48px
+  &__button
+    margin-top: 48px
   &__error
     color: $red300
   &__success
     color: $green300
+  &_w512px
+    width: 512px
   @media (max-width: 800px)
-    & div:last-child
+    &__button
       margin-top: 24px
+  @media (max-width: 600px)
+    &_w512px
+      width: 100%

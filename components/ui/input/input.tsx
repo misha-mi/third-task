@@ -31,12 +31,7 @@ const Input = ({ placeholder, register, required, status, error = false, pattern
                 message: `${placeholder} must be longer than or equal to ${minLength} characters`
               }
             ) : undefined,
-            pattern: pattern ? (
-              {
-                value: pattern,
-                message: "email must be an email"
-              }
-            ) : undefined
+            pattern: pattern
           }
         )
         }

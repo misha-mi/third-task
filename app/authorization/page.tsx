@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Title from "@/components/ui/title/title";
 
-import SignUpForm from "@/components/layout/sign-up-form/sign-up-form";
+import SignUpForm from "@/components/layout/forms/sign-up-form/sign-up-form";
 import ReduxProvider from "@/components/layout/provider/provider";
 
 export default function Authorization({ searchParams }: { searchParams: { productId: number } }) {

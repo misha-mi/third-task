@@ -6,6 +6,9 @@ export interface IInput {
   required: string;
   status?: string;
   error?: boolean
-  pattern?: RegExp,
+  pattern?: {
+    value: RegExp,
+    message: string
+  },
   minLength?: number;
 };

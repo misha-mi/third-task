@@ -1,5 +1,5 @@
 import ReduxProvider from "@/components/layout/provider/provider";
-import UserForm from "@/components/layout/user-form/user-form";
+import UserForm from "@/components/layout/forms/user-form/user-form";
 import Title from "@/components/ui/title/title"
 
 
