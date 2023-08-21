@@ -9,67 +9,39 @@ import ReduxProvider from "@/components/layout/provider/provider";
 const Subscriptions = async () => {
 
   return (
-    // <PrivateRoute>
-    //   <div className="subscriptions">
-    //     <div className="container">
+    <ReduxProvider>
+      <PrivateRoute destinationPath="/authorization?destinationPath=/subscriptions">
+        <div className="subscriptions">
+          <div className="container">
 
-    //       {true ? (
-    //         <SubscriptionList />
-    //       ) : (
-    //         <div className="subscriptions__empty">
-    //           <Title titleText="My subscriptions" />
+            {true ? (
+              <SubscriptionList />
+            ) : (
+              <div className="subscriptions__empty">
+                <Title titleText="My subscriptions" />
 
-    //           <div className="subscriptions__no-active">
-    //             <div className="subscriptions__circle">
-    //               <span className="icon-close"></span>
-    //             </div>
+                <div className="subscriptions__no-active">
+                  <div className="subscriptions__circle">
+                    <span className="icon-close"></span>
+                  </div>
 
-    //             <p className="subscriptions__message">No active subscriptions</p>
-    //             <p className="subscriptions__offer">
-    //               You can subscribe right now by <br />
-    //               clicking on the button below
-    //             </p>
+                  <p className="subscriptions__message">No active subscriptions</p>
+                  <p className="subscriptions__offer">
+                    You can subscribe right now by <br />
+                    clicking on the button below
+                  </p>
 
-    //             <Link href={"/"}>
-    //               <Button text="Get Gscore" width="w160px" height="h72px" />
-    //             </Link>
-    //           </div>
-    //         </div>
-    //       )}
-    //     </div>
-    //   </div>
-    // </PrivateRoute>
-
-    <div className="subscriptions">
-      <div className="container">
-
-        {true ? (
-          <ReduxProvider>
-            <SubscriptionList />
-          </ReduxProvider>
-        ) : (
-          <div className="subscriptions__empty">
-            <Title titleText="My subscriptions" />
-
-            <div className="subscriptions__no-active">
-              <div className="subscriptions__circle">
-                <span className="icon-close"></span>
+                  <Link href={"/"}>
+                    <Button text="Get Gscore" width="w160px" height="h72px" />
+                  </Link>
+                </div>
               </div>
-
-              <p className="subscriptions__message">No active subscriptions</p>
-              <p className="subscriptions__offer">
-                You can subscribe right now by <br />
-                clicking on the button below
-              </p>
-
-              <Link href={"/"}>
-                <Button text="Get Gscore" width="w160px" height="h72px" />
-              </Link>
-            </div>
+            )}
           </div>
-        )}
-      </div>
-    </div>
+        </div>
+      </PrivateRoute>
+    </ReduxProvider>
+
   )
 }
 

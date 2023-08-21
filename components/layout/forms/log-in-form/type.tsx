@@ -4,5 +4,5 @@ export interface IForm {
 }
 
 export interface ILogInForm {
-  productId: number
+  destinationPath: string
 }

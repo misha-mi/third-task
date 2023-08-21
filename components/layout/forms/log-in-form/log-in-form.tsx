@@ -15,7 +15,7 @@ import { useState } from "react";
 import postAuth from "@/services/postAuth";
 
 
-const LogInForm = ({ productId }: ILogInForm) => {
+const LogInForm = ({ destinationPath }: ILogInForm) => {
 
   const [status, setStatus] = useState("start");
   const dispatch = useAppDispatch();
@@ -29,7 +29,7 @@ const LogInForm = ({ productId }: ILogInForm) => {
         dispatch(setUsername(res.response.user.username));
         dispatch(setToken(res.response.token));
 
-        router.push(`/authorization/${productId}`);
+        router.push(destinationPath);
       } else {
         setStatus(res.response.message);
       }

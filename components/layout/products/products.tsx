@@ -44,7 +44,7 @@ const Products = async () => {
           </ul>
 
           <Link
-            href={`/authorization?productId=${item.id}`}
+            href={`/authorization?destinationPath=/authorization/${item.id}`}
             className="products__button"
           >
             <Button text="Get Gscore" theme="color100" width="w100" height="h72px" alternativeFontColor={id !== 1} />

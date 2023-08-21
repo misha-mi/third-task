@@ -9,6 +9,7 @@ import Title from "@/components/ui/title/title";
 
 import getSubscriptions from "@/services/getSubscriptions";
 import Link from "next/link";
+import ReduxProvider from "@/components/layout/provider/provider";
 
 export const dynamicParams = false;
 
@@ -25,29 +26,31 @@ const ChequePage = async ({ params: { subscriptionId } }: IChequePage) => {
   const subscription: TSubscription = (await getSubscriptions())[+subscriptionId - 1];
 
   return (
-    <PrivateRoute>
-      <div className="cheque-page">
-        <div className="container">
-          <div className="cheque-page__wrapper">
+    <ReduxProvider>
+      <PrivateRoute destinationPath={`/authorization?destinationPath=/${subscriptionId}`}>
+        <div className="cheque-page">
+          <div className="container">
+            <div className="cheque-page__wrapper">
 
-            <Title titleText="Start your subscription" />
+              <Title titleText="Start your subscription" />
 
-            <p className="cheque-page__subtitle">
-              We have sent you a payment receipt by e-mail and a link to download the plugin with a license key.
-            </p>
+              <p className="cheque-page__subtitle">
+                We have sent you a payment receipt by e-mail and a link to download the plugin with a license key.
+              </p>
 
-            <div className="cheque-page__cheque">
-              <Cheque subscription={{ name: subscription?.name, price: subscription?.prices[0].price }} />
+              <div className="cheque-page__cheque">
+                <Cheque subscription={{ name: subscription?.name, price: subscription?.prices[0].price }} />
+              </div>
+
+              <Link href={"/subscriptions"} className="cheque-page__button">
+                <Button text="Go to my subscriptions" width="w100" />
+              </Link>
+
             </div>
-
-            <Link href={"/subscriptions"} className="cheque-page__button">
-              <Button text="Go to my subscriptions" width="w100" />
-            </Link>
-
           </div>
         </div>
-      </div>
-    </PrivateRoute>
+      </PrivateRoute>
+    </ReduxProvider>
   )
 }
 

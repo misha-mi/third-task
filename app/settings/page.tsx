@@ -10,11 +10,7 @@ const Settings = () => {
       <div className="settings-page__title">
         <Title titleText="Settings" type="h2" />
       </div>
-
-      <ReduxProvider>
-        <UserForm />
-      </ReduxProvider>
-
+      <UserForm />
     </div>
   )
 }

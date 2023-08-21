@@ -5,7 +5,7 @@ import Title from "@/components/ui/title/title";
 import SignUpForm from "@/components/layout/forms/sign-up-form/sign-up-form";
 import ReduxProvider from "@/components/layout/provider/provider";
 
-export default function Authorization({ searchParams }: { searchParams: { productId: number } }) {
+export default function Authorization({ searchParams }: { searchParams: { destinationPath: string } }) {
   return (
     <>
       <div className="authorization__title">
@@ -24,7 +24,7 @@ export default function Authorization({ searchParams }: { searchParams: { produc
       <p className="authorization__have">
         Have an account?
         <Link
-          href={`/authorization/log-in?productId=${searchParams.productId}`}
+          href={`/authorization/log-in?destinationPath=${searchParams.destinationPath}`}
           className="authorization__next"
         >
           Go to the next step
