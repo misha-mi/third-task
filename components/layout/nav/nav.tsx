@@ -1,7 +1,6 @@
 "use client";
 
 import "./nav.sass";
-
 import Dropdown from "@/components/ui/dropdown/dropdown";
 import Logo from "@/components/ui/logo/logo";
 import Link from "next/link";

@@ -4,9 +4,7 @@ import Title from "@/components/ui/title/title"
 
 import { Metadata } from "next"
 import Link from "next/link"
-
-import PrivateRoute from "@/components/layout/private-route/private-route";
-import ReduxProvider from "@/components/layout/provider/provider";
+import PrivateRoute from "@/components/HOC/private-route";
 
 export const metadata: Metadata = {
   title: 'GScore',
@@ -19,21 +17,19 @@ export default function SettingLayout({
   children: React.ReactNode
 }) {
   return (
-    <ReduxProvider>
-      <PrivateRoute destinationPath="/authorization?destinationPath=/settings">
-        <div className="settings-layout">
-          <div className="container">
-            <Title titleText="Settings" />
+    <PrivateRoute destinationPath="/settings">
+      <div className="settings-layout">
+        <div className="container">
+          <Title titleText="Settings" />
 
-            <div className="settings-layout__tabs">
-              <Link href={"/settings"} className="settings-layout__link settings-layout_active">Personal info</Link>
-              <Link href={"/settings/change-password"} className="settings-layout__link">Change password</Link>
-            </div>
-
-            {children}
+          <div className="settings-layout__tabs">
+            <Link href={"/settings"} className="settings-layout__link settings-layout_active">Personal info</Link>
+            <Link href={"/settings/change-password"} className="settings-layout__link">Change password</Link>
           </div>
+
+          {children}
         </div>
-      </PrivateRoute>
-    </ReduxProvider>
+      </div>
+    </PrivateRoute>
   )
 }

@@ -1,4 +1,4 @@
-import ReduxProvider from "@/components/layout/provider/provider";
+import ReduxProvider from "@/components/HOC/provider";
 import UserForm from "@/components/layout/forms/user-form/user-form";
 import Title from "@/components/ui/title/title"
 
@@ -10,7 +10,10 @@ const Settings = () => {
       <div className="settings-page__title">
         <Title titleText="Settings" type="h2" />
       </div>
-      <UserForm />
+
+      <ReduxProvider>
+        <UserForm />
+      </ReduxProvider>
     </div>
   )
 }

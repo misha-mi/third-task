@@ -3,7 +3,7 @@ import "./dropdown.sass";
 import Link from "next/link";
 
 import { useAppDispatch } from "@/store/redux-hooks";
-import { setToken, setUsername } from "@/store/ducks/auth";
+import { setEmail, setToken, setUsername } from "@/store/ducks/auth";
 
 const Dropdown = () => {
 
@@ -12,6 +12,10 @@ const Dropdown = () => {
   const handlerLogOut = () => {
     dispatch(setToken(""));
     dispatch(setUsername(""));
+    dispatch(setEmail(""));
+
+    document.cookie = "token = ''; maxAge = -1";
+    location.replace("/");
   }
 
   return (

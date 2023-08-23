@@ -4,8 +4,10 @@ import Products from "@/components/layout/products/products";
 import Link from "next/link";
 import Title from "@/components/ui/title/title";
 
+export const dynamicParams = false;
 
-export default function Home() {
+export default async function Home() {
+
   return (
     <div className="home">
       <div className="container">
@@ -22,7 +24,6 @@ export default function Home() {
         <div className="home__contact">
           <Link href={"/"}>Contact us</Link>
         </div>
-
       </div>
     </div>
   )

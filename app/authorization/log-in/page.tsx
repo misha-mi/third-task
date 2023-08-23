@@ -3,7 +3,7 @@ import "./log-in.sass";
 import Title from "@/components/ui/title/title";
 
 import LogInForm from "@/components/layout/forms/log-in-form/log-in-form";
-import ReduxProvider from "@/components/layout/provider/provider";
+import ReduxProvider from "@/components/HOC/provider";
 
 const LogIn = ({ searchParams }: { searchParams: { destinationPath: string } }) => {
   return (

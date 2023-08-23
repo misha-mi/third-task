@@ -7,8 +7,7 @@ import Input from "@/components/ui/input/input";
 import Button from "@/components/ui/button/button";
 
 import { useAppDispatch } from "@/store/redux-hooks";
-import { setToken, setUsername } from "@/store/ducks/auth";
-import { useRouter } from "next/navigation";
+import { setEmail, setToken, setUsername } from "@/store/ducks/auth";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
@@ -19,17 +18,20 @@ const LogInForm = ({ destinationPath }: ILogInForm) => {
 
   const [status, setStatus] = useState("start");
   const dispatch = useAppDispatch();
-  const router = useRouter();
   const { register, handleSubmit, formState: { errors } } = useForm<IForm>();
+  console.log(destinationPath);
 
   const handlerSubmit = (data: IForm) => {
     setStatus("loading");
     postAuth(data).then(res => {
       if (!res.response.message) {
+
         dispatch(setUsername(res.response.user.username));
         dispatch(setToken(res.response.token));
+        dispatch(setEmail(res.response.user.email));
 
-        router.push(destinationPath);
+        document.cookie = `token = ${res.response.token}; expires=3600`;
+        location.replace(destinationPath)
       } else {
         setStatus(res.response.message);
       }

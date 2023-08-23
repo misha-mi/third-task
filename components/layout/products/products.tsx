@@ -6,9 +6,24 @@ import Button from "@/components/ui/button/button";
 
 import getSubscriptions from "@/services/getSubscriptions";
 
-const Products = async () => {
+import axios from "axios";
+import { cookies } from 'next/headers';
 
+
+const Products = async () => {
   const subscriptions: TSubscription[] = await getSubscriptions();
+
+  const cookiesStore = cookies();
+  const token = cookiesStore.get("token");
+  let auth = false;
+
+  await axios({
+    method: "GET",
+    url: "http://localhost:3000/api/me",
+    params: { token: token?.value || "" }
+  }).then(res => {
+    auth = !res.data.message;
+  });
 
   return (
     <div className="products">
@@ -44,7 +59,7 @@ const Products = async () => {
           </ul>
 
           <Link
-            href={`/authorization?destinationPath=/authorization/${item.id}`}
+            href={`/authorization${auth ? "" : "?destinationPath=/authorization"}/${item.id}`}
             className="products__button"
           >
             <Button text="Get Gscore" theme="color100" width="w100" height="h72px" alternativeFontColor={id !== 1} />

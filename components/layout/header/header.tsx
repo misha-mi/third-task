@@ -3,8 +3,8 @@ import Logo from "@/components/ui/logo/logo";
 
 import Link from "next/link";
 import Nav from "../nav/nav";
+import ReduxProvider from "@/components/HOC/provider";
 
-import ReduxProvider from "../provider/provider";
 
 const Header = () => {
   return (

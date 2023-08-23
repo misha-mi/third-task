@@ -1,5 +1,5 @@
 import ChangePasswordForm from "@/components/layout/forms/change-password-form/change-password-form";
-import ReduxProvider from "@/components/layout/provider/provider";
+import ReduxProvider from "@/components/HOC/provider";
 import Title from "@/components/ui/title/title"
 
 
