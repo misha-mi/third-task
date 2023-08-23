@@ -8,6 +8,8 @@ import Link from "next/link";
 
 import getSubscriptions from "@/services/getSubscriptions";
 import PrivateRoute from "@/components/HOC/private-route";
+import ReduxProvider from "@/components/HOC/provider";
+import PurchaseButton from "@/components/ui/purchase-button/purchase-button";
 
 export async function generateStaticParams() {
   const subscriptions = await getSubscriptions();
@@ -38,9 +40,12 @@ const Checkout = async ({ params: { checkoutId } }: IChequePage) => {
           </p>
         </div>
 
-        <Link href={`/${checkoutId}`} className="checkout__button">
-          <Button text="Purchase" width="w200px" />
-        </Link>
+        <div className="checkout__button">
+          <ReduxProvider>
+            <PurchaseButton subscriptionId={+checkoutId} />
+          </ReduxProvider>
+        </div>
+
       </div>
     </PrivateRoute>
   )
