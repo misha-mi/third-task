@@ -5,7 +5,7 @@ import Button from "@/components/ui/button/button"
 import Status from "@/components/ui/status/status";
 import { ISubscriptionCard } from "./type";
 
-const SubscriptionCard = ({ name, date, price, status, onView }: ISubscriptionCard) => {
+const SubscriptionCard = ({ name, date, price, status, isUpgrade, onView, onChange }: ISubscriptionCard) => {
   return (
     <article className={"subscription-card"} >
       <header className="subscription-card__header">
@@ -30,6 +30,14 @@ const SubscriptionCard = ({ name, date, price, status, onView }: ISubscriptionCa
             width="w120px"
             onClick={onView}
           />
+          {isUpgrade ? (
+            <Button
+              text="Change"
+              theme="color100"
+              width="w120px"
+              onClick={onChange}
+            />
+          ) : null}
         </div>
       </main>
       <div className={""}></div>

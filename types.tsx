@@ -10,7 +10,9 @@ export type TSubscription = {
   name: string,
   date: string,
   price: number,
-  status: string
+  status: string,
+  productId: number,
+  sitesCount: number
 }
 
 export type TPurchasedSubscriptions = {

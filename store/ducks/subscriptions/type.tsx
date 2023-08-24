@@ -2,7 +2,10 @@ export type TSubscription = {
   status: string,
   name: string,
   date: string,
-  price: number
+  price: number,
+  id: number,
+  productId: number,
+  sitesCount: number
 }
 
 export type TCode = {
@@ -15,7 +18,9 @@ export type TCode = {
 export interface ISubscriptionState {
   loading: boolean,
   subscriptions: TSubscription[],
-  codes: TCode[]
+  codes: TCode[],
+  viewSubscriptionsId: number,
+  sitesCount: number
 }
 
 export interface IGetCodesById {

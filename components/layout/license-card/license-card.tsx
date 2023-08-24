@@ -11,10 +11,12 @@ interface ILicenseCard {
   origin: string,
   status: string,
   onActivate: (domain: string, code: string) => void,
-  upgrade: boolean
+  upgrade: boolean,
+  onCheckCode: () => void
+  isChecked: boolean
 }
 
-const LicenseCard = ({ code, status, origin, onActivate, upgrade }: ILicenseCard) => {
+const LicenseCard = ({ code, status, origin, onActivate, upgrade, onCheckCode, isChecked }: ILicenseCard) => {
   const [domain, setDomain] = useState("");
 
   return (
@@ -26,6 +28,8 @@ const LicenseCard = ({ code, status, origin, onActivate, upgrade }: ILicenseCard
           name="checkbox"
           className="license-card__checkbox"
           disabled={!upgrade}
+          checked={isChecked}
+          onChange={onCheckCode}
         />
         <label htmlFor="checkbox"><span className="icon-done"></span></label>
       </div>

@@ -3,20 +3,22 @@
 import Title from "@/components/ui/title/title";
 import Button from "@/components/ui/button/button";
 import Slider from "../slider/slider";
-import LicenseCard from "../license-card/license-card";
 import SubscriptionCard from "../subscription-card/subscription-card";
+import UpgradeModal from "../upgrade-modal/upgrade-modal";
 
 import { useAppDispatch, useAppSelector } from "@/store/redux-hooks";
 
 import { useEffect, useState } from "react";
-import { getUsersSubscriptions, getCodesById, activateCode } from "@/store/ducks/subscriptions/actions";
+import { getUsersSubscriptions, getCodesById } from "@/store/ducks/subscriptions/actions";
+import CodesList from "../codes-list/codes-list";
+import { setSitesCount, setViewSubscriptionsId } from "@/store/ducks/subscriptions";
 
 const SubscriptionList = () => {
 
-  const [upgrade, setUpgrade] = useState(false);
+  const [isUpgrade, setIsUpgrade] = useState(false);
+  const [changeableSubscription, setChangeableSubscription] = useState({ subscriptionId: 0, activeProductId: 0 });
 
   const subscriptions = useAppSelector(store => store.subscriptions.subscriptions);
-  const codes = useAppSelector(store => store.subscriptions.codes);
   const loading = useAppSelector(store => store.subscriptions.loading);
   const token = useAppSelector(store => store.auth.token);
   const dispatch = useAppDispatch();
@@ -25,12 +27,10 @@ const SubscriptionList = () => {
     dispatch(getUsersSubscriptions(token));
   }, [])
 
-  const handlerViewSubscription = (newSubscriptionId: number) => {
+  const handlerViewSubscription = (newSubscriptionId: number, sitesCount: number) => {
     dispatch(getCodesById({ subscriptionId: newSubscriptionId, token }));
-  }
-
-  const handlerActivateCode = (domain: string, code: string, id: number) => {
-    dispatch(activateCode({ domain, code, id }));
+    dispatch(setViewSubscriptionsId(newSubscriptionId));
+    dispatch(setSitesCount(sitesCount));
   }
 
   return (
@@ -40,7 +40,7 @@ const SubscriptionList = () => {
         <Button
           text="Upgrade"
           changingStyle={true}
-          onClick={() => setUpgrade(true)}
+          onClick={() => setIsUpgrade(true)}
         />
       </div>
 
@@ -53,7 +53,9 @@ const SubscriptionList = () => {
                 date={item.date}
                 price={item.price}
                 status={item.status}
-                onView={() => handlerViewSubscription(item.id)}
+                isUpgrade={isUpgrade}
+                onView={() => handlerViewSubscription(item.id, item.sitesCount)}
+                onChange={() => setChangeableSubscription({ subscriptionId: item.id, activeProductId: item.productId })}
                 key={item.id}
               />
             ))
@@ -61,31 +63,13 @@ const SubscriptionList = () => {
         </Slider>
       </div>
 
-      <div className="subscriptions__licenses">
-        {
-          codes.map((item: any, id: number) => (
-            <LicenseCard
-              code={item.code}
-              origin={item.origin}
-              status={item.status}
-              onActivate={(domain: string, code: string) => handlerActivateCode(domain, code, id)}
-              key={item.codeId}
-              upgrade={upgrade}
-            />
-          ))
-        }
-      </div>
+      <CodesList isUpgrade={isUpgrade} />
 
-      <div className="subscriptions_pos-right">
-        <div className="subscriptions__button">
-          <Button
-            text="Confirm"
-            width="w100"
-            height="h72px"
-            onClick={() => setUpgrade(false)}
-          />
-        </div>
-      </div>
+
+      <UpgradeModal
+        changeableSubscription={changeableSubscription}
+        onClose={() => setChangeableSubscription({ subscriptionId: 0, activeProductId: 0 })}
+      />
     </>
   )
 }

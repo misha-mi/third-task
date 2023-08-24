@@ -23,13 +23,15 @@ export async function GET(req: Request) {
         code: item.code,
         origin: item.origin || "",
         status: item.status
-      })).reverse(),
+      })),
       subscriptions: res.map((item: any) => ({
         id: item.id,
         name: item.product.name,
         date: new Date(+item.currentPeriodEnd),
         price: item.product.prices[0].price,
-        status: item.status
+        status: item.status,
+        productId: item.productId,
+        sitesCount: item.product.sitesCount
       }))
     }))
   return NextResponse.json(products);
