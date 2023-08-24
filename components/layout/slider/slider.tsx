@@ -1,6 +1,7 @@
 "use client";
 
 import "./slider.sass"
+import ArrowSVG from "@/lib/svg/arrow-svg";
 import { ISlider, THandlerSwitchingSlider } from "./type";
 
 import { useRef, useState } from "react";
@@ -60,13 +61,17 @@ const Slider = ({ children }: ISlider) => {
           className="slider__controller"
           onClick={() => handlerSwitchingSlider(-1)}
           disabled={slide === 1}
-        >-1</button>
+        >
+          <ArrowSVG className="slider_rotate-180" />
+        </button>
         <div className="slider__counter">{slide}<span>/{children.length}</span></div>
         <button
           className="slider__controller"
           onClick={() => handlerSwitchingSlider(1)}
           disabled={slide === children.length}
-        >1</button>
+        >
+          <ArrowSVG />
+        </button>
       </div>
     </div>
   )

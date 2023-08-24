@@ -22,8 +22,13 @@
     border-radius: 12px
     background-color: transparent
     cursor: pointer
-    &:disabled
-      color: $color500
+    display: flex
+    justify-content: center
+    align-items: center
+    &:disabled path
+      stroke: $color500
+  &_rotate-180
+    transform: rotate(180deg)
   &__disabled
     position: relative
     &::before

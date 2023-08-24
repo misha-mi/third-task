@@ -1,4 +1,6 @@
 import "./dropdown.sass";
+import SettingsSVG from "@/lib/svg/settings-svg";
+import LogOutSVG from "@/lib/svg/log-out-svg";
 
 import Link from "next/link";
 
@@ -23,13 +25,13 @@ const Dropdown = () => {
       <ul className="dropdown__wrapper">
         <li>
           <Link href="/settings" className="dropdown__item">
-            <span className="icon-settings dropdown__icon"></span>
+            <SettingsSVG className="dropdown__icon" />
             Settings
           </Link>
         </li>
         <li>
           <Link href="/" className="dropdown__item" onClick={handlerLogOut}>
-            <span className="icon-logout dropdown__icon"></span>
+            <LogOutSVG className="dropdown__icon" />
             Logout
           </Link>
         </li>

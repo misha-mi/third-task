@@ -1,25 +1,31 @@
 import "./footer.sass";
-import twitter from "@/public/twitter.svg";
-import facebook from "@/public/facebook.svg";
-import linkedin from "@/public/in.svg";
+import TwitterSVG from "@/lib/svg/twitter-svg";
+import FacebookSVG from "@/lib/svg/facebook-svg";
+import LinkedinSVG from "@/lib/svg/linkedin-svg";
 
 import Logo from "@/components/ui/logo/logo";
 import Link from "next/link";
-import Image from "next/image";
 
 const Footer = () => {
   return (
     <footer className="footer">
+
       <div className="footer__divider"></div>
+
       <div className="container">
+
         <Link href={"/"} className="footer__logo">
           <Logo />
         </Link>
+
         <p className="footer__description">
           Ut enim ad minim veniam quis nostrud exercitation  ea commodo
         </p>
+
         <div className="footer__divider footer_mt60"></div>
+
         <div className="footer__bottom">
+
           <div className="footer__copyright">
             Copyright © 2022 GScore | All Rights Reserved |
             <Link href={"/"}>
@@ -30,32 +36,19 @@ const Footer = () => {
               Privacy Policy
             </Link>
           </div>
+
           <ul className="footer__messages">
             <li>
-              <Link href={"/"}>
-                <Image
-                  src={facebook}
-                  alt={"facebook"}
-                />
-              </Link>
+              <FacebookSVG />
             </li>
             <li>
-              <Link href={"/"}>
-                <Image
-                  src={twitter}
-                  alt={"twitter"}
-                />
-              </Link>
+              <TwitterSVG />
             </li>
             <li>
-              <Link href={"/"}>
-                <Image
-                  src={linkedin}
-                  alt={"linkedin"}
-                />
-              </Link>
+              <LinkedinSVG />
             </li>
           </ul>
+
         </div>
       </div>
     </footer>

@@ -28,13 +28,15 @@
       border-color: $green300
     & .input__icon-done
       display: block
-      color: $green300
+      & path
+        stroke: $green300
   &_error
     & .input__input
       border-color: $red300
     & .input__icon-close
       display: block
-      color: $red300
+      & path
+        stroke: $red300
   @media (max-width: 800px)
     &__input
       height: 60px

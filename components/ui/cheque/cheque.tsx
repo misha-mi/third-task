@@ -1,5 +1,5 @@
-
 import "./cheque.sass";
+import BasketSVG from "@/lib/svg/basket-svg";
 import { ICheque } from "./type";
 
 const Cheque = ({ subscription, basket = false }: ICheque) => {
@@ -15,7 +15,7 @@ const Cheque = ({ subscription, basket = false }: ICheque) => {
         <p className="cheque__value">
           ${subscription.price}
           {basket ? (
-            <span className="icon-basket cheque__basket"></span>
+            <BasketSVG className="cheque__basket" />
           ) : null}
         </p>
       </div>

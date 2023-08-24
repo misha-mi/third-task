@@ -3,11 +3,11 @@ import { TSubscription, IChequePage } from "./type";
 
 import Cheque from "@/components/ui/cheque/cheque";
 import Title from "@/components/ui/title/title";
-
-import getProducts from "@/services/get-products";
 import PrivateRoute from "@/components/HOC/private-route";
 import ReduxProvider from "@/components/HOC/provider";
 import PurchaseButton from "@/components/ui/purchase-button/purchase-button";
+
+import getProducts from "@/services/get-products";
 
 export async function generateStaticParams() {
   const subscriptions = await getProducts();

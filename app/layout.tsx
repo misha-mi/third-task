@@ -1,5 +1,4 @@
 import './app.sass';
-import '@/lib/icon.css';
 
 import type { Metadata } from 'next';
 

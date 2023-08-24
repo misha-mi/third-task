@@ -1,5 +1,6 @@
 import "./products.sass";
 import { TSubscription } from "./type"
+import CheckSVG from "@/lib/svg/check-svg";
 
 import Link from "next/link";
 import Button from "@/components/ui/button/button";
@@ -41,19 +42,27 @@ const Products = async () => {
 
           <ul className="products__ul">
             <li className="products__li">
-              <span className="icon-done products__mark"></span>
+              <div className="products__mark">
+                <CheckSVG />
+              </div>
               {item.sitesCount + " license"}
             </li>
             <li className="products__li">
-              <span className="icon-done products__mark"></span>
+              <div className="products__mark">
+                <CheckSVG />
+              </div>
               Special introductory pricing
             </li>
             <li className="products__li">
-              <span className="icon-done products__mark"></span>
+              <div className="products__mark">
+                <CheckSVG />
+              </div>
               Unlimited Pages and Keywords
             </li>
             <li className="products__li">
-              <span className="icon-done products__mark"></span>
+              <div className="products__mark">
+                <CheckSVG />
+              </div>
               Billed annually
             </li>
           </ul>

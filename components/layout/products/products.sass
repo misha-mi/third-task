@@ -39,11 +39,13 @@
     height: 26px
     border-radius: 100%
     background-color: $color100
-    color: $color700
-    font-size: 24px
     display: flex
     justify-content: center
     align-items: center
+    & svg
+      width: 16px
+    & path
+      stroke: $color700
   &__button
     display: block
     margin-top: 32px
@@ -55,7 +57,8 @@
     & .products__divider
       background-color: $color100
     & .products__mark
-      color: $primary1
+      & path
+        stroke: $primary1
   @media( max-width: 1300px )
     &__item
       padding: 20px
@@ -93,3 +96,5 @@
       width: 20px
       height: 20px
       font-size: 16px
+      & svg
+        width: 12px

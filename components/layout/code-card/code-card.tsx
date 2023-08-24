@@ -1,10 +1,12 @@
 "use client";
+import "./code-card.sass";
+import CopySVG from "@/lib/svg/copy-svg";
+import CheckSVG from "@/lib/svg/check-svg";
 
 import Button from "@/components/ui/button/button";
-import "./code-card.sass";
 
 import Status from "@/components/ui/status/status";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 interface ILicenseCard {
   code: string,
@@ -19,6 +21,15 @@ interface ILicenseCard {
 const CodeCard = ({ code, status, origin, onActivate, upgrade, onCheckCode, isChecked }: ILicenseCard) => {
   const [domain, setDomain] = useState("");
 
+  const refCode = useRef<HTMLInputElement>(null);
+
+  const handlerCopy = () => {
+    if (refCode.current) {
+      refCode.current.select();
+      document.execCommand("copy");
+    }
+  }
+
   return (
     <div className="code-card">
 
@@ -31,7 +42,7 @@ const CodeCard = ({ code, status, origin, onActivate, upgrade, onCheckCode, isCh
           checked={isChecked}
           onChange={onCheckCode}
         />
-        <label htmlFor="checkbox"><span className="icon-done"></span></label>
+        <label htmlFor="checkbox"><CheckSVG /></label>
       </div>
 
       <span></span>
@@ -40,7 +51,10 @@ const CodeCard = ({ code, status, origin, onActivate, upgrade, onCheckCode, isCh
       <div className="code-card__title code-card__domain">Domain</div>
       <div className="code-card__title code-card_none code-card_ml28px">Status</div>
 
-      <input type="text" className="code-card__input" value={code} />
+      <div className="code-card_position-relative">
+        <input ref={refCode} type="text" className="code-card__input" value={code} />
+        <CopySVG className="code-card__copy" onClick={handlerCopy} />
+      </div>
 
       <div className="code-card__domain-wrapper">
         <input
@@ -68,7 +82,7 @@ const CodeCard = ({ code, status, origin, onActivate, upgrade, onCheckCode, isCh
         <Status status={status.toLowerCase()} />
       </div>
 
-    </div>
+    </div >
   )
 }
 

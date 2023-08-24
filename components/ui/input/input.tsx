@@ -1,6 +1,9 @@
 "use client"
 
 import "./input.sass";
+import CheckSVG from "@/lib/svg/check-svg";
+import CloseSVG from "@/lib/svg/close-svg";
+
 import { IInput } from "./type";
 
 const Input = ({ placeholder, register, required, status, error = false, pattern, minLength = 0 }: IInput) => {
@@ -36,8 +39,9 @@ const Input = ({ placeholder, register, required, status, error = false, pattern
         )
         }
       />
-      <span className="icon-close input__icon-close input__icon"></span>
-      <span className="icon-done input__icon-done input__icon"></span>
+
+      <CheckSVG className="input__icon-done input__icon" />
+      <CloseSVG className="input__icon-close input__icon" />
     </div>
   )
 }
