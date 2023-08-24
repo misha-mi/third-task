@@ -1,5 +1,7 @@
 "use client";
 
+import "./my-subscriptions.sass";
+
 import Title from "@/components/ui/title/title";
 import Button from "@/components/ui/button/button";
 import UpgradeModal from "../upgrade-modal/upgrade-modal";
@@ -8,14 +10,14 @@ import PurchasedSubscriptionsList from "../purchased-subscriptions-list/purchase
 
 import { useState } from "react";
 
-const SubscriptionList = () => {
+const MySubscriptions = () => {
 
   const [isUpgrade, setIsUpgrade] = useState(false);
   const [changeableSubscription, setChangeableSubscription] = useState({ subscriptionId: 0, activeProductId: 0 });
 
   return (
     <>
-      <div className="subscriptions__header">
+      <div className="my-subscriptions__header">
         <Title titleText="My subscriptions" />
         <Button
           text="Upgrade"
@@ -24,12 +26,16 @@ const SubscriptionList = () => {
         />
       </div>
 
-      <PurchasedSubscriptionsList
-        isUpgrade={isUpgrade}
-        onSetChangeableSubscription={setChangeableSubscription}
-      />
+      <div className="my-subscriptions__slider">
+        <PurchasedSubscriptionsList
+          isUpgrade={isUpgrade}
+          onSetChangeableSubscription={setChangeableSubscription}
+        />
+      </div>
 
-      <CodesList isUpgrade={isUpgrade} />
+      <div className="my-subscriptions__codes-list">
+        <CodesList isUpgrade={isUpgrade} />
+      </div>
 
       <UpgradeModal
         changeableSubscription={changeableSubscription}
@@ -39,4 +45,4 @@ const SubscriptionList = () => {
   )
 }
 
-export default SubscriptionList;
+export default MySubscriptions;

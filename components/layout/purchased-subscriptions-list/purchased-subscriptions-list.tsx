@@ -25,24 +25,22 @@ const PurchasedSubscriptionsList = ({ isUpgrade, onSetChangeableSubscription }: 
   }
 
   return (
-    <div className="subscriptions__slider">
-      <Slider>
-        {
-          subscriptions.map((item: any) => (
-            <SubscriptionCard
-              name={item.name}
-              date={item.date}
-              price={item.price}
-              status={item.status}
-              isUpgrade={isUpgrade}
-              onView={() => handlerViewSubscription(item.id, item.sitesCount)}
-              onChange={() => onSetChangeableSubscription({ subscriptionId: item.id, activeProductId: item.productId })}
-              key={item.id}
-            />
-          ))
-        }
-      </Slider>
-    </div>
+    <Slider>
+      {
+        subscriptions.map((item: any) => (
+          <SubscriptionCard
+            name={item.name}
+            date={item.date}
+            price={item.price}
+            status={item.status}
+            isUpgrade={isUpgrade}
+            onView={() => handlerViewSubscription(item.id, item.sitesCount)}
+            onChange={() => onSetChangeableSubscription({ subscriptionId: item.id, activeProductId: item.productId })}
+            key={item.id}
+          />
+        ))
+      }
+    </Slider>
   )
 }
 

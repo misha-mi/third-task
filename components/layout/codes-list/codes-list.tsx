@@ -1,13 +1,13 @@
+import "./codes-list.sass";
 
 import CodeCard from "../code-card/code-card"
+import Button from "@/components/ui/button/button";
+
+import putManageCode from "@/services/put-manage-codes";
 
 import { useAppDispatch, useAppSelector } from "@/store/redux-hooks";
 import { activateCode, getCodesById } from "@/store/ducks/subscriptions/actions";
 import { useState } from "react";
-
-import Button from "@/components/ui/button/button";
-
-import putManageCode from "@/services/put-manage-codes";
 
 const CodesList = ({ isUpgrade }: { isUpgrade: boolean }) => {
 
@@ -46,7 +46,9 @@ const CodesList = ({ isUpgrade }: { isUpgrade: boolean }) => {
 
   return (
     <>
-      <div className="subscriptions__licenses">
+
+
+      <div className="codes-list__licenses">
         {
           codes.map((item: any, id: number) => (
             <CodeCard
@@ -62,17 +64,20 @@ const CodesList = ({ isUpgrade }: { isUpgrade: boolean }) => {
           ))
         }
       </div>
-      <div className="subscriptions_pos-right">
-        <div className="subscriptions__button">
-          <Button
-            text="Confirm"
-            width="w100"
-            height="h72px"
-            onClick={handlerConfirm}
-            disabled={!isUpgrade}
-          />
+
+      {isUpgrade ? (
+        <div className="codes-list_pos-right">
+          <div className="codes-list__button">
+            <Button
+              text="Confirm"
+              width="w100"
+              height="h72px"
+              onClick={handlerConfirm}
+            />
+          </div>
         </div>
-      </div>
+      ) : null}
+
     </>
   )
 }
