@@ -4,7 +4,7 @@ export default async function postSignUp(data: { username: string, password: str
 
   const response = await axios({
     method: "POST",
-    url: "http://localhost:3000/api/signUp",
+    url: "http://localhost:3000/api/sign-up",
     data: data
   }).then(res => res.data)
 

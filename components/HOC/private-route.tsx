@@ -11,7 +11,7 @@ const PrivateRoute = async ({ children, destinationPath }: { children: ReactElem
 
   await axios({
     method: "GET",
-    url: "http://localhost:3000/api/me",
+    url: "http://localhost:3000/api/get-user-data",
     params: { token: token?.value || "" }
   }).then(res => {
     if (res.data.message) {

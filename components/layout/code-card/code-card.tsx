@@ -1,7 +1,7 @@
 "use client";
 
 import Button from "@/components/ui/button/button";
-import "./license-card.sass";
+import "./code-card.sass";
 
 import Status from "@/components/ui/status/status";
 import { useState } from "react";
@@ -16,17 +16,17 @@ interface ILicenseCard {
   isChecked: boolean
 }
 
-const LicenseCard = ({ code, status, origin, onActivate, upgrade, onCheckCode, isChecked }: ILicenseCard) => {
+const CodeCard = ({ code, status, origin, onActivate, upgrade, onCheckCode, isChecked }: ILicenseCard) => {
   const [domain, setDomain] = useState("");
 
   return (
-    <div className="license-card">
+    <div className="code-card">
 
-      <div className="license-card__wrapper">
+      <div className="code-card__wrapper">
         <input
           type="checkbox"
           name="checkbox"
-          className="license-card__checkbox"
+          className="code-card__checkbox"
           disabled={!upgrade}
           checked={isChecked}
           onChange={onCheckCode}
@@ -36,22 +36,22 @@ const LicenseCard = ({ code, status, origin, onActivate, upgrade, onCheckCode, i
 
       <span></span>
 
-      <div className="license-card__title license-card__license">License code</div>
-      <div className="license-card__title license-card__domain">Domain</div>
-      <div className="license-card__title license-card_none license-card_ml28px">Status</div>
+      <div className="code-card__title code-card__license">License code</div>
+      <div className="code-card__title code-card__domain">Domain</div>
+      <div className="code-card__title code-card_none code-card_ml28px">Status</div>
 
-      <input type="text" className="license-card__input" value={code} />
+      <input type="text" className="code-card__input" value={code} />
 
-      <div className="license-card__domain-wrapper">
+      <div className="code-card__domain-wrapper">
         <input
-          className="license-card__input license-card__domain"
+          className="code-card__input code-card__domain"
           value={origin || domain}
           onInput={(e) => setDomain(e.currentTarget.value)}
         />
 
         {
           status.toLowerCase() === "inactive" ? (
-            <div className="license-card__button">
+            <div className="code-card__button">
               <Button
                 text="Activate"
                 theme="color100"
@@ -64,7 +64,7 @@ const LicenseCard = ({ code, status, origin, onActivate, upgrade, onCheckCode, i
         }
       </div>
 
-      <div className="license-card_ml28px license-card__status">
+      <div className="code-card_ml28px code-card__status">
         <Status status={status.toLowerCase()} />
       </div>
 
@@ -72,4 +72,4 @@ const LicenseCard = ({ code, status, origin, onActivate, upgrade, onCheckCode, i
   )
 }
 
-export default LicenseCard;
+export default CodeCard;

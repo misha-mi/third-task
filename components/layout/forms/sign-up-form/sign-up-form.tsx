@@ -8,7 +8,7 @@ import Button from "@/components/ui/button/button";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import postSignUp from "@/services/postSignUp";
+import postSignUp from "@/services/post-sign-up";
 
 
 const SignUpForm = () => {

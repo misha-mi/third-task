@@ -7,13 +7,13 @@ import Button from "@/components/ui/button/button";
 import Cheque from "@/components/ui/cheque/cheque";
 import Title from "@/components/ui/title/title";
 
-import getSubscriptions from "@/services/getSubscriptions";
+import getProducts from "@/services/get-products";
 import Link from "next/link";
 
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const subscriptions = await getSubscriptions();
+  const subscriptions = await getProducts();
 
   return subscriptions.map((subscription: TSubscription) => ({
     subscriptionId: String(subscription.id)
@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 
 const ChequePage = async ({ params: { subscriptionId } }: IChequePage) => {
 
-  const subscription: TSubscription = (await getSubscriptions())[+subscriptionId - 1];
+  const subscription: TSubscription = (await getProducts())[+subscriptionId - 1];
 
   return (
     <PrivateRoute destinationPath={`${subscriptionId}`}>

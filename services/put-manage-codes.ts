@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default function putManageCode(token: string, subscribeId: number, codesIds: number[]) {
+export default function putManageCodes(token: string, subscribeId: number, codesIds: number[]) {
   return axios({
     method: "PUT",
     url: "https://internship.purrweb.site/api/code/manage",

@@ -14,7 +14,7 @@ const Dropdown = () => {
     dispatch(setUsername(""));
     dispatch(setEmail(""));
 
-    document.cookie = "token = ''; maxAge = -1";
+    document.cookie = 'token=; path=/; expires=-1';
     location.replace("/");
   }
 

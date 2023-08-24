@@ -1,30 +1,28 @@
 import "./checkout.sass";
 import { TSubscription, IChequePage } from "./type";
 
-import Button from "@/components/ui/button/button";
 import Cheque from "@/components/ui/cheque/cheque";
 import Title from "@/components/ui/title/title";
-import Link from "next/link";
 
-import getSubscriptions from "@/services/getSubscriptions";
+import getProducts from "@/services/get-products";
 import PrivateRoute from "@/components/HOC/private-route";
 import ReduxProvider from "@/components/HOC/provider";
 import PurchaseButton from "@/components/ui/purchase-button/purchase-button";
 
 export async function generateStaticParams() {
-  const subscriptions = await getSubscriptions();
+  const subscriptions = await getProducts();
 
   return subscriptions.map((subscription: TSubscription) => ({
-    checkoutId: String(subscription.id)
+    subscriptionId: String(subscription.id)
   }))
 }
 
-const Checkout = async ({ params: { checkoutId } }: IChequePage) => {
+const Checkout = async ({ params: { subscriptionId } }: IChequePage) => {
 
-  const subscription: TSubscription = (await getSubscriptions())[+checkoutId - 1];
+  const subscription: TSubscription = (await getProducts())[+subscriptionId - 1];
 
   return (
-    <PrivateRoute destinationPath={`/authorization/${checkoutId}`}>
+    <PrivateRoute destinationPath={`/authorization/${subscriptionId}`}>
       <div className="checkout">
 
         <Title titleText="Checkout" />
@@ -42,7 +40,7 @@ const Checkout = async ({ params: { checkoutId } }: IChequePage) => {
 
         <div className="checkout__button">
           <ReduxProvider>
-            <PurchaseButton subscriptionId={+checkoutId} />
+            <PurchaseButton subscriptionId={+subscriptionId} />
           </ReduxProvider>
         </div>
 

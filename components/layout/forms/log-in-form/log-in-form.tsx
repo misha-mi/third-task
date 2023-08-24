@@ -11,7 +11,7 @@ import { setEmail, setToken, setUsername } from "@/store/ducks/auth";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
-import postAuth from "@/services/postAuth";
+import postSignIn from "@/services/post-sign-in";
 
 
 const LogInForm = ({ destinationPath }: ILogInForm) => {
@@ -23,7 +23,7 @@ const LogInForm = ({ destinationPath }: ILogInForm) => {
 
   const handlerSubmit = (data: IForm) => {
     setStatus("loading");
-    postAuth(data).then(res => {
+    postSignIn(data).then(res => {
       if (!res.response.message) {
 
         dispatch(setUsername(res.response.user.username));

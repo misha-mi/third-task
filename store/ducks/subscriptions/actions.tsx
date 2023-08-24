@@ -1,14 +1,14 @@
 import { IGetCodesById, IActivateCode, TCode } from "./type";
 
-import getCode from "@/services/getCode";
-import getPurchasedSubscriptions from "@/services/getPurchasedSubscriptions";
-import postActivateCode from "@/services/postActivateCode";
+import getCode from "@/services/get-codes";
+import getPurchasedSubscriptions from "@/services/get-purchased-subscriptions";
+import postActivateCode from "@/services/post-activate-code";
 import { TPurchasedSubscriptions } from "@/types";
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getUsersSubscriptions = createAsyncThunk<TPurchasedSubscriptions, string>(
-  "subscriptions/getSubscriptions",
+  "subscriptions/getProducts",
   async (token: string) => {
     return await getPurchasedSubscriptions(token)
       .then(res => res.data);

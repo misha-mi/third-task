@@ -10,6 +10,6 @@ export type TSubscription = {
 
 export interface IChequePage {
   params: {
-    checkoutId: string
+    subscriptionId: string
   }
 }

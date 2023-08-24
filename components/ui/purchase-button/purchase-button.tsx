@@ -1,13 +1,10 @@
 "use client"
 import { useAppSelector } from "@/store/redux-hooks";
 
-import postBuySubscription from "@/services/postBuySubscription";
+import postBuySubscription from "@/services/post-buy-subscription";
 import Button from "../button/button";
 import { useRouter } from 'next/navigation'
 import { useState } from "react";
-
-
-
 
 const PurchaseButton = ({ subscriptionId }: { subscriptionId: number }) => {
 

@@ -4,14 +4,14 @@ import { TSubscription } from "./type"
 import Link from "next/link";
 import Button from "@/components/ui/button/button";
 
-import getSubscriptions from "@/services/getSubscriptions";
+import getProducts from "@/services/get-products";
 
 import axios from "axios";
 import { cookies } from 'next/headers';
 
 
 const Products = async () => {
-  const subscriptions: TSubscription[] = await getSubscriptions();
+  const subscriptions: TSubscription[] = await getProducts();
 
   const cookiesStore = cookies();
   const token = cookiesStore.get("token");
@@ -19,7 +19,7 @@ const Products = async () => {
 
   await axios({
     method: "GET",
-    url: "http://localhost:3000/api/me",
+    url: "http://localhost:3000/api/get-user-data",
     params: { token: token?.value || "" }
   }).then(res => {
     auth = !res.data.message;

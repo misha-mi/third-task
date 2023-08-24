@@ -11,7 +11,7 @@ import { setEmail, setUsername } from "@/store/ducks/auth";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
-import patchUserData from "@/services/patchUsersData";
+import patchUserData from "@/services/patch-users-data";
 
 
 const UserForm = () => {

@@ -6,7 +6,7 @@ import Button from "@/components/ui/button/button";
 
 import postChangeSubscription from "@/services/post-change-subscription";
 import { useEffect, useState } from "react";
-import getSubscriptions from "@/services/getSubscriptions";
+import getProducts from "@/services/get-products";
 import { useAppDispatch, useAppSelector } from "@/store/redux-hooks";
 import { getCodesById } from "@/store/ducks/subscriptions/actions";
 import { setSitesCount, updateSubscription } from "@/store/ducks/subscriptions";
@@ -49,7 +49,7 @@ const UpgradeModal = ({ changeableSubscription, onClose }: {
   }
 
   useEffect(() => {
-    getSubscriptions()
+    getProducts()
       .then(res => {
         setSubscriptions(res);
       })

@@ -1,13 +1,13 @@
 
-import LicenseCard from "../license-card/license-card"
+import CodeCard from "../code-card/code-card"
 
 import { useAppDispatch, useAppSelector } from "@/store/redux-hooks";
 import { activateCode, getCodesById } from "@/store/ducks/subscriptions/actions";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import Button from "@/components/ui/button/button";
 
-import putManageCode from "@/services/put-manage-code";
+import putManageCode from "@/services/put-manage-codes";
 
 const CodesList = ({ isUpgrade }: { isUpgrade: boolean }) => {
 
@@ -49,7 +49,7 @@ const CodesList = ({ isUpgrade }: { isUpgrade: boolean }) => {
       <div className="subscriptions__licenses">
         {
           codes.map((item: any, id: number) => (
-            <LicenseCard
+            <CodeCard
               code={item.code}
               origin={item.origin}
               status={item.status}
@@ -69,6 +69,7 @@ const CodesList = ({ isUpgrade }: { isUpgrade: boolean }) => {
             width="w100"
             height="h72px"
             onClick={handlerConfirm}
+            disabled={!isUpgrade}
           />
         </div>
       </div>

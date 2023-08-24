@@ -10,7 +10,7 @@ import { useAppSelector } from "@/store/redux-hooks";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import patchUpdatePassword from "@/services/patchUpdatePassword";
+import patchUpdatePassword from "@/services/patch-update-password";
 
 const ChangePasswordForm = () => {
 
