@@ -6,7 +6,7 @@ import { ISlider, THandlerSwitchingSlider } from "./type";
 
 import { useRef, useState } from "react";
 
-const Slider = ({ children }: ISlider) => {
+const Slider = ({ children, loading }: ISlider) => {
 
   const refBand = useRef<HTMLDivElement>(null);
 
@@ -60,7 +60,7 @@ const Slider = ({ children }: ISlider) => {
         <button
           className="slider__controller"
           onClick={() => handlerSwitchingSlider(-1)}
-          disabled={slide === 1}
+          disabled={slide === 1 || loading}
         >
           <ArrowSVG className="slider_rotate-180" />
         </button>
@@ -68,7 +68,7 @@ const Slider = ({ children }: ISlider) => {
         <button
           className="slider__controller"
           onClick={() => handlerSwitchingSlider(1)}
-          disabled={slide === children.length}
+          disabled={slide === children.length || loading}
         >
           <ArrowSVG />
         </button>

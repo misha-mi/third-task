@@ -20,9 +20,9 @@ const MySubscriptions = () => {
       <div className="my-subscriptions__header">
         <Title titleText="My subscriptions" />
         <Button
-          text="Upgrade"
+          text={!isUpgrade ? "Upgrade" : "Finish"}
           changingStyle={true}
-          onClick={() => setIsUpgrade(true)}
+          onClick={() => setIsUpgrade(state => !state)}
         />
       </div>
 

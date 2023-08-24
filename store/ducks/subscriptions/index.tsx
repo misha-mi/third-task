@@ -9,7 +9,9 @@ import { TSubscription } from "@/types";
 
 
 const initialState: ISubscriptionState = {
-  loading: false,
+  loadingSubscriptions: false,
+  loadingCodes: false,
+  loadingActivate: false,
   subscriptions: [],
   codes: [],
   viewSubscriptionsId: 0,
@@ -37,10 +39,10 @@ const subscriptionsSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getUsersSubscriptions.pending, state => {
-        state.loading = true
+        state.loadingSubscriptions = true
       })
       .addCase(getUsersSubscriptions.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingSubscriptions = false;
         state.subscriptions = action.payload.subscriptions;
         state.codes = action.payload.firstSubscriptionsCodes;
         state.viewSubscriptionsId = action.payload.subscriptions[0].id;
@@ -48,18 +50,18 @@ const subscriptionsSlice = createSlice({
       })
 
       .addCase(getCodesById.pending, state => {
-        state.loading = true
+        state.loadingCodes = true
       })
       .addCase(getCodesById.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingCodes = false;
         state.codes = action.payload;
       })
 
       .addCase(activateCode.pending, state => {
-        state.loading = true
+        state.loadingActivate = true
       })
       .addCase(activateCode.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingActivate = false;
         if (action.payload) {
           state.codes[action.payload.id] = action.payload.code;
         }

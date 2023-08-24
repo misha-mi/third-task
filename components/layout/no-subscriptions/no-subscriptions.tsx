@@ -1,4 +1,5 @@
 import "./no-subscriptions.sass";
+import CloseSVG from "@/lib/svg/close-svg";
 
 import Title from "@/components/ui/title/title"
 import Link from "next/link"
@@ -11,7 +12,7 @@ const NoSubscriptions = () => {
 
       <div className="no-subscriptions__no-active">
         <div className="no-subscriptions__circle">
-          <span className="icon-close"></span>
+          <CloseSVG />
         </div>
 
         <p className="no-subscriptions__message">No active subscriptions</p>

@@ -1,3 +1,4 @@
+import "./purchased-subscriptions-list.sass";
 
 import Slider from "../slider/slider";
 import SubscriptionCard from "../subscription-card/subscription-card";
@@ -12,6 +13,7 @@ const PurchasedSubscriptionsList = ({ isUpgrade, onSetChangeableSubscription }: 
 
   const subscriptions = useAppSelector(store => store.subscriptions.subscriptions);
   const token = useAppSelector(store => store.auth.token);
+  const loading = useAppSelector(store => store.subscriptions.loadingSubscriptions);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -24,23 +26,36 @@ const PurchasedSubscriptionsList = ({ isUpgrade, onSetChangeableSubscription }: 
     dispatch(setSitesCount(sitesCount));
   }
 
+  const handlerChangeSubscriptions = (subscriptionId: number, activeProductId: number) => {
+    onSetChangeableSubscription({ subscriptionId, activeProductId })
+    dispatch(setViewSubscriptionsId(subscriptionId));
+  }
+
   return (
-    <Slider>
-      {
-        subscriptions.map((item: any) => (
-          <SubscriptionCard
-            name={item.name}
-            date={item.date}
-            price={item.price}
-            status={item.status}
-            isUpgrade={isUpgrade}
-            onView={() => handlerViewSubscription(item.id, item.sitesCount)}
-            onChange={() => onSetChangeableSubscription({ subscriptionId: item.id, activeProductId: item.productId })}
-            key={item.id}
-          />
-        ))
-      }
-    </Slider>
+    <>
+      <Slider loading={loading}>
+        {!loading ? (
+          subscriptions.map((item: any) => (
+            <SubscriptionCard
+              name={item.name}
+              date={item.date}
+              price={item.price}
+              status={item.status}
+              isUpgrade={isUpgrade}
+              onView={() => handlerViewSubscription(item.id, item.sitesCount)}
+              onChange={() => handlerChangeSubscriptions(item.id, item.productId)}
+              key={item.id}
+            />
+          ))
+        ) : (
+          [
+            (<div className="purchased-subscriptions-list__loading" key={1}></div>),
+            (<div className="purchased-subscriptions-list__loading" key={2}></div>),
+            (<div className="purchased-subscriptions-list__loading" key={3}></div>)
+          ]
+        )}
+      </Slider>
+    </>
   )
 }
 

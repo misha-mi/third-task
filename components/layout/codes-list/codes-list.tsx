@@ -20,6 +20,10 @@ const CodesList = ({ isUpgrade }: { isUpgrade: boolean }) => {
   const viewSubscriptionsId = useAppSelector(store => store.subscriptions.viewSubscriptionsId);
   const sitesCount = useAppSelector(store => store.subscriptions.sitesCount);
 
+  const loadingSubscriptions = useAppSelector(store => store.subscriptions.loadingSubscriptions);
+  const loadingCodes = useAppSelector(store => store.subscriptions.loadingCodes);
+  const loading = loadingSubscriptions || loadingCodes;
+
   const handlerActivateCode = (domain: string, code: string, id: number) => {
     dispatch(activateCode({ domain, code, id }));
   }
@@ -46,10 +50,8 @@ const CodesList = ({ isUpgrade }: { isUpgrade: boolean }) => {
 
   return (
     <>
-
-
       <div className="codes-list__licenses">
-        {
+        {!loading ? (
           codes.map((item: any, id: number) => (
             <CodeCard
               code={item.code}
@@ -62,7 +64,13 @@ const CodesList = ({ isUpgrade }: { isUpgrade: boolean }) => {
               onCheckCode={() => handlerCheckCode(item.codeId)}
             />
           ))
-        }
+        ) : (
+          <>
+            <div className="codes-list__loading"></div>
+            <div className="codes-list__loading"></div>
+            <div className="codes-list__loading"></div>
+          </>
+        )}
       </div>
 
       {isUpgrade ? (
@@ -73,6 +81,7 @@ const CodesList = ({ isUpgrade }: { isUpgrade: boolean }) => {
               width="w100"
               height="h72px"
               onClick={handlerConfirm}
+              disabled={markedCodes.length === 0}
             />
           </div>
         </div>
