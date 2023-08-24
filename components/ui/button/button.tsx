@@ -17,10 +17,9 @@ const Button = ({
   alternativeFontColor = false,
   changingStyle = false,
   loading = false,
+  disabled = false,
   onClick
 }: IButton) => {
-
-  const [disabled, setDisabled] = useState<boolean>(false);
 
   const buttonClass = `button button_bg_${theme} button_${width} button_${height}` + (alternativeFontColor ? " button_font_color800" : "") + (disabled ? " button_disabled" : "");
   const buttonShadow = `button_${width}` + (shadow ? " button_shadow" : "") + (changingStyle ? " button_changing-style" : "");

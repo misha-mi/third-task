@@ -56,6 +56,7 @@ const LicenseCard = ({ code, status, origin, onActivate, upgrade, onCheckCode, i
                 text="Activate"
                 theme="color100"
                 width="w120px"
+                disabled={domain === ""}
                 onClick={() => onActivate(domain, code)}
               />
             </div>

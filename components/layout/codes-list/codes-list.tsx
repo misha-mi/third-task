@@ -3,7 +3,7 @@ import LicenseCard from "../license-card/license-card"
 
 import { useAppDispatch, useAppSelector } from "@/store/redux-hooks";
 import { activateCode, getCodesById } from "@/store/ducks/subscriptions/actions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Button from "@/components/ui/button/button";
 
