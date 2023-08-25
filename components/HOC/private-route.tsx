@@ -3,21 +3,20 @@ import { ReactElement } from "react";
 import axios from "axios";
 import { cookies } from 'next/headers';
 import { redirect } from "next/navigation";
+import getUserData from "@/services/get-user-data";
 
 const PrivateRoute = async ({ children, destinationPath }: { children: ReactElement, destinationPath: string }) => {
 
   const cookiesStore = cookies();
   const token = cookiesStore.get("token");
 
-  await axios({
-    method: "GET",
-    url: "http://localhost:3000/api/get-user-data",
-    params: { token: token?.value || "" }
-  }).then(res => {
-    if (res.data.message) {
-      redirect(`/authorization?destinationPath=${destinationPath}`);
-    }
-  });
+  getUserData(token?.value || "")
+    .then(res => {
+      if (res.data.message) {
+        redirect(`/authorization?destinationPath=${destinationPath}`);
+      }
+    });
+
   return children;
 }
 

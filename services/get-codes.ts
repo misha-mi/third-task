@@ -6,8 +6,10 @@ export default async function getCodes(token: string, subscriptionID?: number) {
     method: "GET",
     url: "http://localhost:3000/api/get-codes",
     params: {
-      token: token,
       subscriptionID: subscriptionID
+    },
+    headers: {
+      token: token
     }
   });
 

@@ -4,7 +4,7 @@ export default async function patchUserData(token: string, userData: { email: st
   const response = await axios({
     method: "PATCH",
     url: "http://localhost:3000/api/update-user-data",
-    params: {
+    headers: {
       token: token
     },
     data: userData

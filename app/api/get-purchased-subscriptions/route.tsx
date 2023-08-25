@@ -1,11 +1,10 @@
-
 import { NextResponse } from 'next/server';
+import { headers } from 'next/headers';
 
-export async function GET(req: Request) {
+export async function GET() {
 
-  const { searchParams } = new URL(req.url);
-
-  const token = await searchParams.get("token");
+  const headersList = headers();
+  const token = headersList.get("token");
 
   const products = await fetch(
     `https://internship.purrweb.site/api/subscribe/self`,
@@ -17,7 +16,7 @@ export async function GET(req: Request) {
     }
   )
     .then(res => res.json())
-    .then(res => ({
+    .then(res => !res.message ? ({
       firstSubscriptionsCodes: res[0].codes.map((item: any) => ({
         codeId: item.id,
         code: item.code,
@@ -27,12 +26,13 @@ export async function GET(req: Request) {
       subscriptions: res.map((item: any) => ({
         id: item.id,
         name: item.product.name,
-        date: new Date(+item.currentPeriodEnd),
+        date: new Date(+item.currentPeriodEnd * 1000),
         price: item.product.prices[0].price,
         status: item.status,
         productId: item.productId,
         sitesCount: item.product.sitesCount
       }))
-    }))
+    }) : res)
+
   return NextResponse.json(products);
 }

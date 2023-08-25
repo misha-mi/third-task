@@ -4,7 +4,7 @@ export default async function postBuySubscription(token: string, priceId: number
   const response = await axios({
     method: "POST",
     url: "http://localhost:3000/api/buy",
-    params: {
+    headers: {
       token: token
     },
     data: {

@@ -1,11 +1,11 @@
+import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 export async function PATCH(req: Request) {
   const data = await req.json();
 
-  const { searchParams } = new URL(req.url);
-
-  const token = await searchParams.get("token");
+  const headersList = headers();
+  const token = headersList.get("token");
 
   const products = await fetch(
     "https://internship.purrweb.site/api/users",

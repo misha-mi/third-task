@@ -55,6 +55,8 @@ const UpgradeModal = ({ changeableSubscription, onClose }: {
       })
   }, [])
 
+  console.log(subscription);
+
   return (
     changeableSubscription.subscriptionId ? (
       <div className="upgrade-modal">

@@ -1,12 +1,13 @@
 import { NextResponse } from 'next/server';
+import { headers } from 'next/headers';
 
 export async function GET(req: Request) {
 
   const { searchParams } = new URL(req.url);
-
-  const token = await searchParams.get("token");
-
   const subscriptionId = await searchParams.get("subscriptionID");
+
+  const headersList = headers();
+  const token = headersList.get("token")
 
   let products = await fetch(
     `https://internship.purrweb.site/api/code/self`,
@@ -22,12 +23,12 @@ export async function GET(req: Request) {
     products = products.filter((item: any) => item.subscribe.id === +subscriptionId)
   }
 
-  products = products.map((item: any) => ({
+  products = !products.message ? products.map((item: any) => ({
     codeId: item.id,
     code: item.code,
     origin: item.origin || "",
     status: item.status,
-  }))
+  })) : products;
 
   return NextResponse.json(products);
 }

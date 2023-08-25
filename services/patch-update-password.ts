@@ -4,7 +4,7 @@ export default async function patchUpdatePassword(token: string, passwordData: {
   const response = await axios({
     method: "PATCH",
     url: "http://localhost:3000/api/update-password",
-    params: {
+    headers: {
       token: token
     },
     data: passwordData

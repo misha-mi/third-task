@@ -20,8 +20,7 @@ const PurchaseButton = ({ subscriptionId }: { subscriptionId: number }) => {
     setStatus("loading");
     postBuySubscription(token, subscriptionId)
       .then(res => {
-        if (res.subscribe.status) {
-          setStatus("waiting");
+        if (!res.message) {
           router.push(`/${subscriptionId}`)
         }
       });

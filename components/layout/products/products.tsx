@@ -6,8 +6,8 @@ import Link from "next/link";
 import Button from "@/components/ui/button/button";
 
 import getProducts from "@/services/get-products";
+import getUserData from "@/services/get-user-data";
 
-import axios from "axios";
 import { cookies } from 'next/headers';
 
 
@@ -18,13 +18,10 @@ const Products = async () => {
   const token = cookiesStore.get("token");
   let auth = false;
 
-  await axios({
-    method: "GET",
-    url: "http://localhost:3000/api/get-user-data",
-    params: { token: token?.value || "" }
-  }).then(res => {
-    auth = !res.data.message;
-  });
+  await getUserData(token?.value || "")
+    .then(res => {
+      auth = !res.data.message;
+    });
 
   return (
     <div className="products">
