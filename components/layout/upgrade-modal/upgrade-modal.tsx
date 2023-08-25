@@ -10,6 +10,7 @@ import getProducts from "@/services/get-products";
 import { useAppDispatch, useAppSelector } from "@/store/redux-hooks";
 import { getCodesById } from "@/store/ducks/subscriptions/actions";
 import { setSitesCount, updateSubscription } from "@/store/ducks/subscriptions";
+import CloseSVG from "@/lib/svg/close-svg";
 
 
 const UpgradeModal = ({ changeableSubscription, onClose }: {
@@ -76,7 +77,9 @@ const UpgradeModal = ({ changeableSubscription, onClose }: {
             </div>
           ))
         }
-        <div className="upgrade-modal__close" onClick={onClose}>X</div>
+        <div className="upgrade-modal__close" onClick={onClose}>
+          <CloseSVG />
+        </div>
       </div>
     ) : null
   )

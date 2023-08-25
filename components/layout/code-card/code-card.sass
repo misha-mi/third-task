@@ -60,7 +60,6 @@
     width: 100%
     height: 68px
     padding: 25px
-    padding-right: 60px
     border: none
     border-radius: 6px
     background-color: $color600
@@ -70,6 +69,8 @@
     margin-left: 28px
   &_position-relative
     position: relative
+    & input
+      padding-right: 56px
   &__copy
     position: absolute
     right: 0
@@ -84,6 +85,9 @@
     &__wrapper
       margin-left: 0
     &__input
+      width: 100%
+      order: 2
+    &_position-relative
       width: 100%
       order: 2
     &__domain-wrapper

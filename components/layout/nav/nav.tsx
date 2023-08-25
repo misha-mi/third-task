@@ -2,6 +2,7 @@
 
 import "./nav.sass";
 import ChevronSVG from "@/lib/svg/chevron-svg";
+import CloseSVG from "@/lib/svg/close-svg";
 
 import Dropdown from "@/components/ui/dropdown/dropdown";
 import Logo from "@/components/ui/logo/logo";
@@ -37,10 +38,10 @@ const Nav = () => {
             <div className="nav__wrapper">
 
               <div className="nav__header">
-                <span
-                  className="icon-close nav__close"
-                  onClick={() => setOpenNav(false)}>
-                </span>
+                <CloseSVG
+                  className="nav__close"
+                  onClick={() => setOpenNav(false)}
+                />
                 <Logo />
               </div>
 

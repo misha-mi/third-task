@@ -35,9 +35,9 @@
     top: calc( 50% - 180px)
     right: calc( 50% - 455px)
     cursor: pointer
-  @media ( max-width: 900px )
+  @media ( max-width: 950px )
     &__close
-      right: 20px
+      right: 40px
   @media ( max-width: 850px )
     gap: 20px
     &__subscription
@@ -46,6 +46,8 @@
       font-size: 46px
     &__name
       font-size: 24px
+    &__close
+      top: calc( 50% - 160px)
   @media ( max-width: 600px )
     flex-direction: column
     justify-content: flex-start
@@ -62,4 +64,5 @@
     &__status
       margin-top: 15px
     &__close
-      top: 20px
+      top: 15px
+      right: 15px
