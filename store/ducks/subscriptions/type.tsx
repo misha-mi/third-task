@@ -32,5 +32,4 @@ export interface IGetCodesById {
 export interface IActivateCode {
   domain: string,
   code: string,
-  id: number
 }

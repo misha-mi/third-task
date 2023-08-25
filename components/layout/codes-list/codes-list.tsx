@@ -6,7 +6,7 @@ import Button from "@/components/ui/button/button";
 import putManageCode from "@/services/put-manage-codes";
 
 import { useAppDispatch, useAppSelector } from "@/store/redux-hooks";
-import { activateCode, getCodesById } from "@/store/ducks/subscriptions/actions";
+import { getCodesById } from "@/store/ducks/subscriptions/actions";
 import { useState } from "react";
 
 const CodesList = ({ isUpgrade }: { isUpgrade: boolean }) => {
@@ -23,10 +23,6 @@ const CodesList = ({ isUpgrade }: { isUpgrade: boolean }) => {
   const loadingSubscriptions = useAppSelector(store => store.subscriptions.loadingSubscriptions);
   const loadingCodes = useAppSelector(store => store.subscriptions.loadingCodes);
   const loading = loadingSubscriptions || loadingCodes;
-
-  const handlerActivateCode = (domain: string, code: string, id: number) => {
-    dispatch(activateCode({ domain, code, id }));
-  }
 
   const handlerCheckCode = (codeId: number) => {
     setMarkedCodes(state => {
@@ -52,12 +48,11 @@ const CodesList = ({ isUpgrade }: { isUpgrade: boolean }) => {
     <>
       <div className="codes-list__licenses">
         {!loading ? (
-          codes.map((item: any, id: number) => (
+          codes.map((item) => (
             <CodeCard
               code={item.code}
               origin={item.origin}
               status={item.status}
-              onActivate={(domain: string, code: string) => handlerActivateCode(domain, code, id)}
               key={item.codeId}
               upgrade={isUpgrade && sitesCount > markedCodes?.length && sitesCount < codes.length || markedCodes.includes(item.codeId)}
               isChecked={markedCodes.includes(item.codeId)}

@@ -22,12 +22,9 @@ export const getCodesById = createAsyncThunk<TCode[], IGetCodesById>(
 
   })
 
-export const activateCode = createAsyncThunk<{ code: TCode, id: number }, IActivateCode>(
+export const activateCode = createAsyncThunk<TCode, IActivateCode>(
   "subscriptions/activate",
-  async ({ domain, code, id }) => {
+  async ({ domain, code }) => {
     return await postActivateCode(domain, code)
-      .then(res => ({
-        id: id,
-        code: res.data
-      }));
+      .then(res => res.data);
   })

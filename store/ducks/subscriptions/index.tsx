@@ -58,7 +58,12 @@ const subscriptionsSlice = createSlice({
 
       .addCase(activateCode.fulfilled, (state, action) => {
         if (action.payload) {
-          state.codes[action.payload.id] = action.payload.code;
+          state.codes = state.codes.map(item => {
+            if (item.codeId === action.payload.codeId) {
+              return action.payload
+            }
+            return item;
+          })
         }
       })
   }

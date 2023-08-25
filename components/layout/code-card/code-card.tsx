@@ -4,24 +4,35 @@ import CopySVG from "@/lib/svg/copy-svg";
 import CheckSVG from "@/lib/svg/check-svg";
 
 import Button from "@/components/ui/button/button";
-
 import Status from "@/components/ui/status/status";
+
 import { useRef, useState } from "react";
+import { useAppDispatch } from "@/store/redux-hooks";
+import { activateCode } from "@/store/ducks/subscriptions/actions";
 
 interface ILicenseCard {
   code: string,
   origin: string,
   status: string,
-  onActivate: (domain: string, code: string) => void,
   upgrade: boolean,
   onCheckCode: () => void
   isChecked: boolean
 }
 
-const CodeCard = ({ code, status, origin, onActivate, upgrade, onCheckCode, isChecked }: ILicenseCard) => {
+const CodeCard = ({ code, status, origin, upgrade, onCheckCode, isChecked }: ILicenseCard) => {
   const [domain, setDomain] = useState("");
+  const [activateLoading, setActivateLoading] = useState(false);
 
   const refCode = useRef<HTMLInputElement>(null);
+
+  const dispatch = useAppDispatch();
+
+
+  const handlerActivateCode = (domain: string, code: string) => {
+    setActivateLoading(true);
+    dispatch(activateCode({ domain, code }))
+      .then(() => setActivateLoading(false));
+  }
 
   const handlerCopy = () => {
     if (refCode.current) {
@@ -72,7 +83,8 @@ const CodeCard = ({ code, status, origin, onActivate, upgrade, onCheckCode, isCh
                 theme="color100"
                 width="w120px"
                 disabled={domain === ""}
-                onClick={() => onActivate(domain, code)}
+                loading={activateLoading}
+                onClick={() => handlerActivateCode(domain, code)}
               />
             </div>
           ) : null
