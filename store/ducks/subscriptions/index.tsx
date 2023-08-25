@@ -11,7 +11,6 @@ import { TSubscription } from "@/types";
 const initialState: ISubscriptionState = {
   loadingSubscriptions: false,
   loadingCodes: false,
-  loadingActivate: false,
   subscriptions: [],
   codes: [],
   viewSubscriptionsId: 0,
@@ -57,11 +56,7 @@ const subscriptionsSlice = createSlice({
         state.codes = action.payload;
       })
 
-      .addCase(activateCode.pending, state => {
-        state.loadingActivate = true
-      })
       .addCase(activateCode.fulfilled, (state, action) => {
-        state.loadingActivate = false;
         if (action.payload) {
           state.codes[action.payload.id] = action.payload.code;
         }

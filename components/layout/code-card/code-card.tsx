@@ -52,7 +52,7 @@ const CodeCard = ({ code, status, origin, onActivate, upgrade, onCheckCode, isCh
       <div className="code-card__title code-card_none code-card_ml28px">Status</div>
 
       <div className="code-card_position-relative">
-        <input ref={refCode} type="text" className="code-card__input" value={code} />
+        <input ref={refCode} type="text" className="code-card__input" value={code} readOnly />
         <CopySVG className="code-card__copy" onClick={handlerCopy} />
       </div>
 
@@ -60,6 +60,7 @@ const CodeCard = ({ code, status, origin, onActivate, upgrade, onCheckCode, isCh
         <input
           className="code-card__input code-card__domain"
           value={origin || domain}
+          disabled={status === "HOLD"}
           onInput={(e) => setDomain(e.currentTarget.value)}
         />
 

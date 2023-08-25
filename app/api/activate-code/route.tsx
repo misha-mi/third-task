@@ -18,7 +18,8 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify(data)
     }
-  ).then(res => res.json());
+  )
+    .then(res => res.json());
 
   return NextResponse.json(products);
 }

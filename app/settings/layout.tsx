@@ -1,10 +1,9 @@
 import "./settings.sass";
-
 import Title from "@/components/ui/title/title"
 
 import { Metadata } from "next"
-import Link from "next/link"
 import PrivateRoute from "@/components/HOC/private-route";
+import SettingsTabs from "@/components/ui/settings-tabs/settings-tabs";
 
 export const metadata: Metadata = {
   title: 'GScore',
@@ -22,10 +21,7 @@ export default function SettingLayout({
         <div className="container">
           <Title titleText="Settings" />
 
-          <div className="settings-layout__tabs">
-            <Link href={"/settings"} className="settings-layout__link settings-layout_active">Personal info</Link>
-            <Link href={"/settings/change-password"} className="settings-layout__link">Change password</Link>
-          </div>
+          <SettingsTabs />
 
           {children}
         </div>

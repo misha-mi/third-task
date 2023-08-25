@@ -18,7 +18,6 @@ export type TCode = {
 export interface ISubscriptionState {
   loadingSubscriptions: boolean,
   loadingCodes: boolean,
-  loadingActivate: boolean,
   subscriptions: TSubscription[],
   codes: TCode[],
   viewSubscriptionsId: number,

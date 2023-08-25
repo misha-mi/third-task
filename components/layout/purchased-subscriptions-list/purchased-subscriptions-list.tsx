@@ -11,10 +11,11 @@ import { setSitesCount, setViewSubscriptionsId } from "@/store/ducks/subscriptio
 
 const PurchasedSubscriptionsList = ({ isUpgrade, onSetChangeableSubscription }: { isUpgrade: boolean, onSetChangeableSubscription: ({ subscriptionId, activeProductId }: { subscriptionId: number, activeProductId: number }) => void }) => {
 
+  const dispatch = useAppDispatch();
+
   const subscriptions = useAppSelector(store => store.subscriptions.subscriptions);
   const token = useAppSelector(store => store.auth.token);
   const loading = useAppSelector(store => store.subscriptions.loadingSubscriptions);
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getUsersSubscriptions(token));
@@ -27,7 +28,7 @@ const PurchasedSubscriptionsList = ({ isUpgrade, onSetChangeableSubscription }: 
   }
 
   const handlerChangeSubscriptions = (subscriptionId: number, activeProductId: number) => {
-    onSetChangeableSubscription({ subscriptionId, activeProductId })
+    onSetChangeableSubscription({ subscriptionId, activeProductId });
     dispatch(setViewSubscriptionsId(subscriptionId));
   }
 

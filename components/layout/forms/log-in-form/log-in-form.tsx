@@ -19,7 +19,6 @@ const LogInForm = ({ destinationPath }: ILogInForm) => {
   const [status, setStatus] = useState("start");
   const dispatch = useAppDispatch();
   const { register, handleSubmit, formState: { errors } } = useForm<IForm>();
-  console.log(destinationPath);
 
   const handlerSubmit = (data: IForm) => {
     setStatus("loading");
