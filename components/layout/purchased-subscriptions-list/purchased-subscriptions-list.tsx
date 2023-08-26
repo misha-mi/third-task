@@ -8,8 +8,11 @@ import { useAppDispatch, useAppSelector } from "@/store/redux-hooks";
 import { useEffect } from "react";
 import { getUsersSubscriptions, getCodesById } from "@/store/ducks/subscriptions/actions";
 import { setSitesCount, setViewSubscriptionsId } from "@/store/ducks/subscriptions";
+import { useRouter } from "next/navigation";
 
 const PurchasedSubscriptionsList = ({ isUpgrade, onSetChangeableSubscription }: { isUpgrade: boolean, onSetChangeableSubscription: ({ subscriptionId, activeProductId }: { subscriptionId: number, activeProductId: number }) => void }) => {
+
+  const router = useRouter();
 
   const dispatch = useAppDispatch();
 
@@ -18,8 +21,14 @@ const PurchasedSubscriptionsList = ({ isUpgrade, onSetChangeableSubscription }: 
   const loading = useAppSelector(store => store.subscriptions.loadingSubscriptions);
 
   useEffect(() => {
-    dispatch(getUsersSubscriptions(token));
+    dispatch(getUsersSubscriptions(token))
+      .then(res => {
+        if (Array.isArray(res.payload)) {
+          router.push("/no-subscriptions");
+        }
+      });
   }, [])
+
 
   const handlerViewSubscription = (newSubscriptionId: number, sitesCount: number) => {
     dispatch(getCodesById({ subscriptionId: newSubscriptionId, token }));

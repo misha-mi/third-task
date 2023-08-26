@@ -1,6 +1,7 @@
 
 import Link from "next/link";
 import Title from "@/components/ui/title/title";
+import Spinner from "@/components/ui/spinner/spinner";
 
 import SignUpForm from "@/components/layout/forms/sign-up-form/sign-up-form";
 import ReduxProvider from "@/components/HOC/provider";

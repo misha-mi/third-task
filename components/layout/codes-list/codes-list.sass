@@ -28,6 +28,12 @@
       width: 150px
       background: linear-gradient(to right, transparent 0%, $color400 50%, transparent 100%)
       animation: load 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite
+  @media ( max-width: 1050px )
+    &__loading
+      height: 342px
+  @media ( max-width: 650px )
+    &__loading
+      height: 326px
   @media ( max-width: 500px )
     &__button
       width: 100%

@@ -3,7 +3,6 @@ import "./subscriptions.sass";
 import MySubscriptions from "@/components/layout/my-subscriptions/my-subscriptions";
 import ReduxProvider from "@/components/HOC/provider";
 import PrivateRoute from "@/components/HOC/private-route";
-import NoSubscriptions from "@/components/layout/no-subscriptions/no-subscriptions";
 
 
 const Subscriptions = async () => {
@@ -12,13 +11,10 @@ const Subscriptions = async () => {
       <div className="subscriptions">
         <div className="container">
 
-          {true ? (
-            <ReduxProvider>
-              <MySubscriptions />
-            </ReduxProvider>
-          ) : (
-            <NoSubscriptions />
-          )}
+          <ReduxProvider>
+            <MySubscriptions />
+          </ReduxProvider>
+
         </div>
       </div>
     </PrivateRoute>

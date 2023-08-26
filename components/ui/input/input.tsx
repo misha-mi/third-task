@@ -36,8 +36,7 @@ const Input = ({ placeholder, register, required, status, error = false, pattern
             ) : undefined,
             pattern: pattern
           }
-        )
-        }
+        )}
       />
 
       <CheckSVG className="input__icon-done input__icon" />

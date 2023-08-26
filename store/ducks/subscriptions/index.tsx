@@ -6,6 +6,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { PayloadAction } from "@reduxjs/toolkit";
 import { TSubscription } from "@/types";
+import { redirect } from "next/navigation";
 
 
 const initialState: ISubscriptionState = {
@@ -41,11 +42,13 @@ const subscriptionsSlice = createSlice({
         state.loadingSubscriptions = true
       })
       .addCase(getUsersSubscriptions.fulfilled, (state, action) => {
+        if (action.payload.subscriptions) {
+          state.subscriptions = action.payload.subscriptions;
+          state.codes = action.payload.firstSubscriptionsCodes;
+          state.viewSubscriptionsId = action.payload.subscriptions[0].id;
+          state.sitesCount = action.payload.subscriptions[0].sitesCount;
+        }
         state.loadingSubscriptions = false;
-        state.subscriptions = action.payload.subscriptions;
-        state.codes = action.payload.firstSubscriptionsCodes;
-        state.viewSubscriptionsId = action.payload.subscriptions[0].id;
-        state.sitesCount = action.payload.subscriptions[0].sitesCount;
       })
 
       .addCase(getCodesById.pending, state => {

@@ -16,8 +16,8 @@ export async function GET() {
     }
   )
     .then(res => res.json())
-    .then(res => !res.message ? ({
-      firstSubscriptionsCodes: res[0].codes.map((item: any) => ({
+    .then(res => !res.message && res.length !== 0 ? ({
+      firstSubscriptionsCodes: res[0]?.codes.map((item: any) => ({
         codeId: item.id,
         code: item.code,
         origin: item.origin || "",
