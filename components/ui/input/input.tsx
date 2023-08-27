@@ -10,6 +10,8 @@ const Input = ({ placeholder, register, required, status, error = false, pattern
 
   let inputClassName: string;
 
+  const inputName = placeholder[0].toUpperCase() + placeholder.replace(/[A-ZА-ЯЁ]/g, " $&").slice(1);
+
   if (status === "start") {
     inputClassName = "input"
   } else if (!error) {
@@ -21,9 +23,9 @@ const Input = ({ placeholder, register, required, status, error = false, pattern
   return (
     <div className={inputClassName}>
       <input
-        type="text"
+        type={placeholder.toLowerCase().includes("password") ? "password" : "text"}
         className="input__input"
-        placeholder={placeholder}
+        placeholder={inputName}
         {...register(
           placeholder,
           {
@@ -31,7 +33,7 @@ const Input = ({ placeholder, register, required, status, error = false, pattern
             minLength: minLength ? (
               {
                 value: minLength,
-                message: `${placeholder} must be longer than or equal to ${minLength} characters`
+                message: `${inputName} must be longer than or equal to ${minLength} characters`
               }
             ) : undefined,
             pattern: pattern
@@ -46,3 +48,4 @@ const Input = ({ placeholder, register, required, status, error = false, pattern
 }
 
 export default Input;
+

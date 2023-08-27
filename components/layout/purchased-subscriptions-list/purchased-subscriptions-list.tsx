@@ -40,6 +40,7 @@ const PurchasedSubscriptionsList = ({ isUpgrade, onSetChangeableSubscription }: 
 
   const handlerChangeSubscription: THandlerChangeSubscription = (subscriptionId: number, activeProductId: number) => {
     onSetChangeableSubscription({ subscriptionId, activeProductId });
+
     dispatch(setViewSubscriptionsId(subscriptionId));
   }
 

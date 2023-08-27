@@ -1,16 +1,17 @@
-import { headers } from 'next/headers';
 import { NextResponse } from 'next/server';
+import { headers } from 'next/headers';
 
-export async function PATCH(req: Request) {
+export async function POST(req: Request) {
+
   const data = await req.json();
 
   const headersList = headers();
   const token = headersList.get("token");
 
   const products = await fetch(
-    "https://internship.purrweb.site/api/users",
+    "https://internship.purrweb.site/api/subscribe/change-product",
     {
-      method: "PATCH",
+      method: "POST",
       headers: {
         "accept": "application/json",
         'Content-type': " application/json",
@@ -18,14 +19,7 @@ export async function PATCH(req: Request) {
       },
       body: JSON.stringify(data)
     }
-  ).then(res => res.json())
-    .then(res => {
-      if (typeof res.message === "string") {
-        res.message = [res.message];
-      }
-      return res;
-    })
-
+  )
+    .then(res => res.json())
   return NextResponse.json(products);
 }
-

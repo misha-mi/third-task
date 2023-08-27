@@ -4,11 +4,11 @@ import { ICodeList, THandlerCheckCode, TMarkedCodes } from "./type";
 import CodeCard from "../code-card/code-card"
 import Button from "@/components/ui/button/button";
 
-import putManageCode from "@/services/put-manage-codes";
+import putManageCodes from "@/services/put-manage-codes";
 
 import { useAppDispatch, useAppSelector } from "@/store/redux-hooks";
 import { getCodesById } from "@/store/ducks/subscriptions/actions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const CodesList = ({ isUpgrade }: ICodeList) => {
 
@@ -35,8 +35,8 @@ const CodesList = ({ isUpgrade }: ICodeList) => {
     })
   }
 
-  const handlerConfirm = () => {
-    putManageCode(token, viewSubscriptionsId, markedCodes)
+  const handlerConfirm = (markedCodes: number[]) => {
+    putManageCodes(token, viewSubscriptionsId, markedCodes)
       .then(res => {
         if (!res.data.message) {
           dispatch(getCodesById({ subscriptionId: viewSubscriptionsId, token }));
@@ -45,10 +45,19 @@ const CodesList = ({ isUpgrade }: ICodeList) => {
       })
   }
 
+  const isHoldAndEqualityCodes = codes.length !== 0 && sitesCount === codes.length && codes[0].status === "HOLD";
+
+  useEffect(() => {
+    if (isHoldAndEqualityCodes) {
+      const codesIdList = codes.map(item => item.codeId);
+      handlerConfirm(codesIdList);
+    }
+  }, [isHoldAndEqualityCodes])
+
   return (
     <>
       <div className="codes-list__licenses">
-        {!loading ? (
+        {!loading && !isHoldAndEqualityCodes ? (
           codes.map((item) => (
             <CodeCard
               code={item.code}
@@ -76,7 +85,7 @@ const CodesList = ({ isUpgrade }: ICodeList) => {
               text="Confirm"
               width="w100"
               height="h72px"
-              onClick={handlerConfirm}
+              onClick={() => handlerConfirm(markedCodes)}
               disabled={markedCodes.length === 0}
             />
           </div>

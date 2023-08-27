@@ -1,10 +1,20 @@
 import { NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 
+
+
 export async function GET() {
 
   const headersList = headers();
   const token = headersList.get("token");
+
+  const optionsDate: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    weekday: 'long',
+    hour: "numeric"
+  };
 
   const products = await fetch(
     `https://internship.purrweb.site/api/subscribe/self`,
@@ -26,7 +36,7 @@ export async function GET() {
       subscriptions: res.map((item: any) => ({
         id: item.id,
         name: item.product.name,
-        date: new Date(+item.currentPeriodEnd * 1000),
+        date: new Date(+item.currentPeriodEnd * 1000).toLocaleString("en-US", optionsDate),
         price: item.product.prices[0].price,
         status: item.status,
         productId: item.productId,

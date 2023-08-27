@@ -10,7 +10,7 @@ export type TSubscription = {
   name: string,
   date: string,
   price: string,
-  status: string,
+  status: TStatus,
   productId: number,
   sitesCount: number
 };

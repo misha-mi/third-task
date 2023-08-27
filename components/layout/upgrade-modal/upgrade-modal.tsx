@@ -25,6 +25,14 @@ const UpgradeModal = ({ changeableSubscription, onClose }: IUpgradeModal) => {
   const dispatch = useAppDispatch();
   const token = useAppSelector(store => store.auth.token);
 
+  const optionsDate: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    weekday: 'long',
+    hour: "numeric"
+  };
+
   const handlerChangeSubscription: THandlerChangeSubscription = (productId) => {
     postChangeSubscription(token, productId, changeableSubscription.subscriptionId)
       .then(res => {
@@ -32,7 +40,7 @@ const UpgradeModal = ({ changeableSubscription, onClose }: IUpgradeModal) => {
           dispatch(getCodesById({ subscriptionId: changeableSubscription.subscriptionId, token }));
 
           dispatch(updateSubscription({
-            date: new Date(+res.data.currentPeriodEnd).toString(),
+            date: new Date(+res.data.currentPeriodEnd * 1000).toLocaleString("en-US", optionsDate),
             id: res.data.id,
             name: subscription[res.data.productId - 1].name,
             price: subscription[res.data.productId - 1].prices[0].price,
