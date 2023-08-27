@@ -9,4 +9,4 @@ export interface IButton {
   loading?: boolean;
   disabled?: boolean
   onClick?: () => void;
-}
+};

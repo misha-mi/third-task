@@ -1,5 +1,5 @@
 import "./logo.sass";
-import logo from "@/public/Logo.png";
+import logo from "@/lib/Logo.png";
 
 import Image from "next/image";
 

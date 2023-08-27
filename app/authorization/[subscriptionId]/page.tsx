@@ -1,6 +1,7 @@
 import "./checkout.sass";
 import { IChequePage } from "./type";
 import { TProduct } from "@/types";
+import { Metadata } from "next";
 
 import Cheque from "@/components/ui/cheque/cheque";
 import Title from "@/components/ui/title/title";
@@ -9,6 +10,10 @@ import ReduxProvider from "@/components/HOC/provider";
 import PurchaseButton from "@/components/ui/purchase-button/purchase-button";
 
 import getProducts from "@/services/get-products";
+
+export const metadata: Metadata = {
+  title: "GScore | Buy"
+}
 
 export async function generateStaticParams() {
   const subscriptions = await getProducts();

@@ -1,5 +1,6 @@
-import { NextResponse } from 'next/server';
-import { headers } from 'next/headers';
+import { NextResponse } from "next/server";
+import { headers } from "next/headers";
+import { TGetCodes } from "../get-purchased-subscriptions/type";
 
 export async function GET(req: Request) {
 
@@ -10,7 +11,7 @@ export async function GET(req: Request) {
   const token = headersList.get("token")
 
   let products = await fetch(
-    `https://internship.purrweb.site/api/code/self`,
+    "https://internship.purrweb.site/api/code/self",
     {
       headers: {
         "accept": "application/json",
@@ -20,10 +21,10 @@ export async function GET(req: Request) {
   ).then(res => res.json());
 
   if (subscriptionId) {
-    products = products.filter((item: any) => item.subscribe.id === +subscriptionId)
+    products = products.filter((item: TGetCodes) => item.subscribe.id === +subscriptionId);
   }
 
-  products = !products.message ? products.map((item: any) => ({
+  products = !products.message ? products.map((item: TGetCodes) => ({
     codeId: item.id,
     code: item.code,
     origin: item.origin || "",

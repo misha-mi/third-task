@@ -6,8 +6,8 @@ export async function POST(req: Request) {
   const response = await fetch("https://internship.purrweb.site/api/users/sign-up", {
     method: "POST",
     headers: {
-      'accept': "application/json",
-      'Content-type': " application/json"
+      "accept": "application/json",
+      "Content-type": " application/json"
     },
     body: JSON.stringify(body)
   })
@@ -17,6 +17,7 @@ export async function POST(req: Request) {
         res.message = [res.message];
       }
       return res;
-    })
-  return NextResponse.json({ response })
+    });
+
+  return NextResponse.json({ response });
 }

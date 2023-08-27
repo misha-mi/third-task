@@ -1,10 +1,15 @@
 import "./home.sass";
+import { Metadata } from "next";
 
 import Products from "@/components/layout/products/products";
 import Link from "next/link";
 import Title from "@/components/ui/title/title";
 
 export const dynamicParams = false;
+
+export const metadata: Metadata = {
+  title: "GScore"
+}
 
 export default async function Home() {
 

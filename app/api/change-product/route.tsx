@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
-import { headers } from 'next/headers';
+import { NextResponse } from "next/server";
+import { headers } from "next/headers";
 
 export async function POST(req: Request) {
 
@@ -14,12 +14,12 @@ export async function POST(req: Request) {
       method: "POST",
       headers: {
         "accept": "application/json",
-        'Content-type': " application/json",
+        "Content-type": "application/json",
         "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify(data)
     }
   )
-    .then(res => res.json())
+    .then(res => res.json());
   return NextResponse.json(products);
 }

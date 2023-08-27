@@ -1,10 +1,15 @@
 import { IAuthorization } from "./type";
+import { Metadata } from "next";
 
 import Link from "next/link";
 import Title from "@/components/ui/title/title";
 
 import SignUpForm from "@/components/layout/forms/sign-up-form/sign-up-form";
 import ReduxProvider from "@/components/HOC/provider";
+
+export const metadata: Metadata = {
+  title: "GScore | Sign Up"
+}
 
 export default function Authorization({ searchParams }: IAuthorization) {
   return (

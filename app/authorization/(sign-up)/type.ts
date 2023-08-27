@@ -1,1 +1,1 @@
-export interface IAuthorization { searchParams: { destinationPath: string } }
+export interface IAuthorization { searchParams: { destinationPath: string } };

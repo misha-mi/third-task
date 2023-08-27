@@ -1,7 +1,11 @@
 import ChangePasswordForm from "@/components/layout/forms/change-password-form/change-password-form";
 import ReduxProvider from "@/components/HOC/provider";
 import Title from "@/components/ui/title/title"
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "GScore | Change Password"
+}
 
 const Settings = () => {
   return (

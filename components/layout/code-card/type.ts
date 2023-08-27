@@ -1,4 +1,4 @@
-import { TStatus } from "@/types"
+import { TStatus } from "@/types";
 
 
 export interface ILicenseCard {
@@ -8,6 +8,6 @@ export interface ILicenseCard {
   upgrade: boolean,
   onCheckCode: () => void
   isChecked: boolean
-}
+};
 
-export type THandlerActive = (domain: string, code: string) => void
+export type THandlerActive = (domain: string, code: string) => void;

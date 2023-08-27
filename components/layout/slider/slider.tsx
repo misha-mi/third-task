@@ -4,7 +4,7 @@ import "./slider.sass"
 import ArrowSVG from "@/lib/svg/arrow-svg";
 import { ISlider, THandlerSwitchingSlider } from "./type";
 
-import { useRef, useState } from "react";
+import { TouchEventHandler, useRef, useState } from "react";
 
 const Slider = ({ children, loading }: ISlider) => {
 
@@ -23,11 +23,11 @@ const Slider = ({ children, loading }: ISlider) => {
     }
   }
 
-  const handlerTouchStart = (event: any) => {
+  const handlerTouchStart = (event: React.TouchEvent) => {
     setStartX(event.touches[0].clientX);
   }
 
-  const handlerTouchEnd = (event: any) => {
+  const handlerTouchEnd = (event: React.TouchEvent) => {
     if (event.changedTouches[0].clientX - startX > 50 && slide !== 1) {
       handlerSwitchingSlider(-1);
     } else if (event.changedTouches[0].clientX - startX < -50 && slide !== children.length) {

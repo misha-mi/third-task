@@ -2,14 +2,19 @@
 import "./cheque-page.sass";
 import { IChequePage } from "./type";
 import { TProduct } from "@/types";
+import { Metadata } from "next";
 
 import PrivateRoute from "@/components/HOC/private-route";
 import Button from "@/components/ui/button/button";
 import Cheque from "@/components/ui/cheque/cheque";
 import Title from "@/components/ui/title/title";
+import Link from "next/link";
 
 import getProducts from "@/services/get-products";
-import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "GScore | Cheque"
+}
 
 export const dynamicParams = false;
 

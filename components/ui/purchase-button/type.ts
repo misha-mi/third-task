@@ -1,1 +1,1 @@
-export interface IPurchaseButton { subscriptionId: number }
+export interface IPurchaseButton { subscriptionId: number };

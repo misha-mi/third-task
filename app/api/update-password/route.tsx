@@ -1,5 +1,5 @@
-import { headers } from 'next/headers';
-import { NextResponse } from 'next/server';
+import { headers } from "next/headers";
+import { NextResponse } from "next/server";
 
 export async function PATCH(req: Request) {
   const data = await req.json();
@@ -13,7 +13,7 @@ export async function PATCH(req: Request) {
       method: "PATCH",
       headers: {
         "accept": "application/json",
-        'Content-type': " application/json",
+        "Content-type": " application/json",
         "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify(data)
@@ -25,7 +25,7 @@ export async function PATCH(req: Request) {
         res.message = [res.message];
       }
       return res;
-    })
+    });
 
   return NextResponse.json(products);
 }

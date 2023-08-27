@@ -1,7 +1,7 @@
 
-import { IPrivateRoute } from './type';
+import { IPrivateRoute } from "./type";
 
-import { cookies } from 'next/headers';
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 import getUserData from "@/services/get-user-data";

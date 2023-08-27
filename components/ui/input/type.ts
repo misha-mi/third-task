@@ -1,15 +1,9 @@
-import { IChangePassword, ILogInForm, ISignUpForm, IUserForm } from "@/components/layout/forms/type";
-import { UseFormRegister } from "react-hook-form";
 
-type TRegister =
-  UseFormRegister<ILogInForm> |
-  UseFormRegister<IChangePassword> |
-  UseFormRegister<ISignUpForm> |
-  UseFormRegister<IUserForm>;
+import { UseFormRegister } from "react-hook-form";
 
 export interface IInput {
   placeholder: "username" | "password" | "email" | "currentPassword" | "newPassword";
-  register: TRegister
+  register: UseFormRegister<any>
   required: string;
   status?: string;
   error?: boolean

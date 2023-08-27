@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
-import { headers } from 'next/headers';
+import { NextResponse } from "next/server";
+import { headers } from "next/headers";
 
 export async function GET() {
 
@@ -7,7 +7,7 @@ export async function GET() {
   const token = headersList.get("token");
 
   const user = await fetch(
-    `https://internship.purrweb.site/api/users/me`,
+    "https://internship.purrweb.site/api/users/me",
     {
       headers: {
         "accept": "application/json",

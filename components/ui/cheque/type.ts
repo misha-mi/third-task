@@ -4,4 +4,4 @@ export interface ICheque {
     price: string
   },
   basket?: boolean
-}
+};

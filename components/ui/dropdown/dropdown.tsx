@@ -18,7 +18,7 @@ const Dropdown = () => {
 
     document.cookie = 'token=; path=/; expires=-1';
     location.replace("/");
-  }
+  };
 
   return (
     <div className="dropdown">

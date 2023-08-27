@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import "./button.sass";
 import { IButton } from "./type";

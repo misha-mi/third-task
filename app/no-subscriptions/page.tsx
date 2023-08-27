@@ -1,9 +1,14 @@
 import "./no-subscriptions.sass";
 import CloseSVG from "@/lib/svg/close-svg";
+import { Metadata } from "next";
 
 import Title from "@/components/ui/title/title"
 import Link from "next/link"
 import Button from "@/components/ui/button/button"
+
+export const metadata: Metadata = {
+  title: "GScore | No Subscriptions"
+}
 
 const NoSubscriptions = () => {
   return (

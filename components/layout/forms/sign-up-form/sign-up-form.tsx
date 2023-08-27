@@ -1,6 +1,5 @@
 "use client"
 import "../form.sass";
-import { ISignUpForm } from "../type";
 
 import Input from "@/components/ui/input/input";
 import Button from "@/components/ui/button/button";
@@ -9,6 +8,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import postSignUp from "@/services/post-sign-up";
+import { ISignUpForm } from "../type";
 
 
 const SignUpForm = () => {
