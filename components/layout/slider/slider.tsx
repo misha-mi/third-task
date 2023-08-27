@@ -13,7 +13,6 @@ const Slider = ({ children, loading }: ISlider) => {
   const [position, setPosition] = useState(0);
   const [slide, setSlide] = useState(1);
   const [startX, setStartX] = useState(0);
-  const [differenceY, setDifferenceY] = useState(0);
 
   const handlerSwitchingSlider: THandlerSwitchingSlider = (step) => {
     if (refBand.current) {
@@ -26,7 +25,6 @@ const Slider = ({ children, loading }: ISlider) => {
 
   const handlerTouchStart = (event: any) => {
     setStartX(event.touches[0].clientX);
-    setDifferenceY(event.touches[0].clientY);
   }
 
   const handlerTouchEnd = (event: any) => {

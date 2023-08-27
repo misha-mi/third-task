@@ -1,32 +1,31 @@
 "use client"
+
 import "./upgrade-modal.sass";
+import CloseSVG from "@/lib/svg/close-svg";
+import { IUpgradeModal, THandlerChangeSubscription } from "./type";
+import { TProduct } from "@/types";
 
 import Status from "@/components/ui/status/status";
 import Button from "@/components/ui/button/button";
 
-import postChangeSubscription from "@/services/post-change-subscription";
-import { useEffect, useState } from "react";
-import getProducts from "@/services/get-products";
 import { useAppDispatch, useAppSelector } from "@/store/redux-hooks";
 import { getCodesById } from "@/store/ducks/subscriptions/actions";
 import { setSitesCount, updateSubscription } from "@/store/ducks/subscriptions";
-import CloseSVG from "@/lib/svg/close-svg";
+
+import postChangeSubscription from "@/services/post-change-subscription";
+import getProducts from "@/services/get-products";
+
+import { useEffect, useState } from "react";
 
 
-const UpgradeModal = ({ changeableSubscription, onClose }: {
-  changeableSubscription: {
-    subscriptionId: number,
-    activeProductId: number
-  },
-  onClose: () => void
-}) => {
+const UpgradeModal = ({ changeableSubscription, onClose }: IUpgradeModal) => {
 
-  const [subscription, setSubscriptions] = useState<any>();
+  const [subscription, setSubscriptions] = useState<TProduct[]>([]);
 
   const dispatch = useAppDispatch();
   const token = useAppSelector(store => store.auth.token);
 
-  const handlerChangeSubscription = (productId: number) => {
+  const handlerChangeSubscription: THandlerChangeSubscription = (productId) => {
     postChangeSubscription(token, productId, changeableSubscription.subscriptionId)
       .then(res => {
         if (!res.data.message) {
@@ -60,13 +59,13 @@ const UpgradeModal = ({ changeableSubscription, onClose }: {
     changeableSubscription.subscriptionId ? (
       <div className="upgrade-modal">
         {
-          subscription.map((item: any) => (
+          subscription.map((item) => (
             <div className="upgrade-modal__subscription" key={item.id}>
               <div className="upgrade-modal__price">{item.prices[0].price}$</div>
               <div className="upgrade-modal__name">{item.name}</div>
               <div className="upgrade-modal__status">
                 {item.id === changeableSubscription.activeProductId ? (
-                  <Status status="active" />
+                  <Status status="ACTIVE" />
                 ) : (
                   <Button
                     text="Change"

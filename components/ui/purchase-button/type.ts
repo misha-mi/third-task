@@ -1,0 +1,1 @@
+export interface IPurchaseButton { subscriptionId: number }

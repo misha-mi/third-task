@@ -2,6 +2,7 @@
 import "./code-card.sass";
 import CopySVG from "@/lib/svg/copy-svg";
 import CheckSVG from "@/lib/svg/check-svg";
+import { ILicenseCard, THandlerActive } from "./type";
 
 import Button from "@/components/ui/button/button";
 import Status from "@/components/ui/status/status";
@@ -10,14 +11,6 @@ import { useRef, useState } from "react";
 import { useAppDispatch } from "@/store/redux-hooks";
 import { activateCode } from "@/store/ducks/subscriptions/actions";
 
-interface ILicenseCard {
-  code: string,
-  origin: string,
-  status: string,
-  upgrade: boolean,
-  onCheckCode: () => void
-  isChecked: boolean
-}
 
 const CodeCard = ({ code, status, origin, upgrade, onCheckCode, isChecked }: ILicenseCard) => {
   const [domain, setDomain] = useState("");
@@ -28,7 +21,7 @@ const CodeCard = ({ code, status, origin, upgrade, onCheckCode, isChecked }: ILi
   const dispatch = useAppDispatch();
 
 
-  const handlerActivateCode = (domain: string, code: string) => {
+  const handlerActivateCode: THandlerActive = (domain, code) => {
     setActivateLoading(true);
     dispatch(activateCode({ domain, code }))
       .then(() => setActivateLoading(false));
@@ -92,7 +85,7 @@ const CodeCard = ({ code, status, origin, upgrade, onCheckCode, isChecked }: ILi
       </div>
 
       <div className="code-card_ml28px code-card__status">
-        <Status status={status.toLowerCase()} />
+        <Status status={status} />
       </div>
 
     </div >

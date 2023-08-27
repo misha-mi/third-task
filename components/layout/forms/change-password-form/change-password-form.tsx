@@ -1,7 +1,7 @@
 "use client"
 
 import "../form.sass";
-import { IForm } from "./type";
+import { IChangePassword } from "../type";
 
 import Button from "@/components/ui/button/button";
 import Input from "@/components/ui/input/input";
@@ -15,11 +15,11 @@ import patchUpdatePassword from "@/services/patch-update-password";
 const ChangePasswordForm = () => {
 
   const [status, setStatus] = useState("start");
-  const { register, handleSubmit, formState: { errors } } = useForm<IForm>();
+  const { register, handleSubmit, formState: { errors } } = useForm<IChangePassword>();
 
   const token = useAppSelector(store => store.auth.token);
 
-  const handlerSubmit = (data: IForm) => {
+  const handlerSubmit = (data: IChangePassword) => {
     setStatus("loading");
     patchUpdatePassword(token, data)
       .then(res => {
@@ -39,7 +39,7 @@ const ChangePasswordForm = () => {
       <div className="form__input">
         <Input
           register={register}
-          placeholder="Current Password"
+          placeholder="currentPassword"
           required={"Current Password is required"}
           status={status}
           error={status[0].includes("password") || Boolean(errors.currentPassword?.message)}
@@ -51,7 +51,7 @@ const ChangePasswordForm = () => {
       <div className="form__input">
         <Input
           register={register}
-          placeholder="New Password"
+          placeholder="newPassword"
           required={"New Password is required"}
           status={status}
           error={Boolean(errors.newPassword?.message)}

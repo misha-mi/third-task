@@ -1,16 +1,18 @@
 import "./purchased-subscriptions-list.sass";
+import { IPurchasedSubscriptionsList, THandlerChangeSubscription, THandlerViewSubscription } from "./type";
+import { TSubscription } from "@/types";
 
 import Slider from "../slider/slider";
 import SubscriptionCard from "../subscription-card/subscription-card";
 
 import { useAppDispatch, useAppSelector } from "@/store/redux-hooks";
-
-import { useEffect } from "react";
 import { getUsersSubscriptions, getCodesById } from "@/store/ducks/subscriptions/actions";
 import { setSitesCount, setViewSubscriptionsId } from "@/store/ducks/subscriptions";
+
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-const PurchasedSubscriptionsList = ({ isUpgrade, onSetChangeableSubscription }: { isUpgrade: boolean, onSetChangeableSubscription: ({ subscriptionId, activeProductId }: { subscriptionId: number, activeProductId: number }) => void }) => {
+const PurchasedSubscriptionsList = ({ isUpgrade, onSetChangeableSubscription }: IPurchasedSubscriptionsList) => {
 
   const router = useRouter();
 
@@ -30,13 +32,13 @@ const PurchasedSubscriptionsList = ({ isUpgrade, onSetChangeableSubscription }: 
   }, [])
 
 
-  const handlerViewSubscription = (newSubscriptionId: number, sitesCount: number) => {
+  const handlerViewSubscription: THandlerViewSubscription = (newSubscriptionId, sitesCount) => {
     dispatch(getCodesById({ subscriptionId: newSubscriptionId, token }));
     dispatch(setViewSubscriptionsId(newSubscriptionId));
     dispatch(setSitesCount(sitesCount));
   }
 
-  const handlerChangeSubscriptions = (subscriptionId: number, activeProductId: number) => {
+  const handlerChangeSubscription: THandlerChangeSubscription = (subscriptionId: number, activeProductId: number) => {
     onSetChangeableSubscription({ subscriptionId, activeProductId });
     dispatch(setViewSubscriptionsId(subscriptionId));
   }
@@ -45,7 +47,7 @@ const PurchasedSubscriptionsList = ({ isUpgrade, onSetChangeableSubscription }: 
     <>
       <Slider loading={loading}>
         {!loading ? (
-          subscriptions.map((item: any) => (
+          subscriptions.map((item: TSubscription) => (
             <SubscriptionCard
               name={item.name}
               date={item.date}
@@ -53,7 +55,7 @@ const PurchasedSubscriptionsList = ({ isUpgrade, onSetChangeableSubscription }: 
               status={item.status}
               isUpgrade={isUpgrade}
               onView={() => handlerViewSubscription(item.id, item.sitesCount)}
-              onChange={() => handlerChangeSubscriptions(item.id, item.productId)}
+              onChange={() => handlerChangeSubscription(item.id, item.productId)}
               key={item.id}
             />
           ))

@@ -1,6 +1,6 @@
 "use client"
 import "../form.sass";
-import { IForm } from "./type";
+import { ISignUpForm } from "../type";
 
 import Input from "@/components/ui/input/input";
 import Button from "@/components/ui/button/button";
@@ -15,9 +15,9 @@ const SignUpForm = () => {
 
   const [status, setStatus] = useState("start");
 
-  const { register, handleSubmit, formState: { errors } } = useForm<IForm>();
+  const { register, handleSubmit, formState: { errors } } = useForm<ISignUpForm>();
 
-  const handlerSubmit = (data: IForm) => {
+  const handlerSubmit = (data: ISignUpForm) => {
     setStatus("loading");
     postSignUp(data).then((res) => {
       if (!res.response.message) {
@@ -33,7 +33,7 @@ const SignUpForm = () => {
       <div className="form__input">
         <Input
           register={register}
-          placeholder="Username"
+          placeholder="username"
           required={"Username is required"}
           status={status}
           error={status.includes("username") || Boolean(errors.username?.message)}
@@ -44,7 +44,7 @@ const SignUpForm = () => {
       <div className="form__input">
         <Input
           register={register}
-          placeholder="Email"
+          placeholder="email"
           required={"Email is required"}
           status={status}
           error={status[0].includes("email") || Boolean(errors.email?.message)}
@@ -59,7 +59,7 @@ const SignUpForm = () => {
       <div className="form__input">
         <Input
           register={register}
-          placeholder="Password"
+          placeholder="password"
           required={"Password is required"}
           status={status}
           error={status[0].includes("password") || Boolean(errors.password?.message)}

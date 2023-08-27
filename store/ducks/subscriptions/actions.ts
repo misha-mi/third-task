@@ -1,4 +1,5 @@
-import { IGetCodesById, IActivateCode, TCode } from "./type";
+import { IGetCodesById, IActivateCode } from "./type";
+import { TCode } from "@/types";
 
 import getCode from "@/services/get-codes";
 import getPurchasedSubscriptions from "@/services/get-purchased-subscriptions";

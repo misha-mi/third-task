@@ -5,9 +5,6 @@ import { IButton } from "./type";
 
 import Spinner from "../spinner/spinner";
 
-import { useState } from "react";
-
-
 const Button = ({
   text,
   theme = "primary1",

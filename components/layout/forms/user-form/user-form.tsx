@@ -1,7 +1,7 @@
 "use client";
 
 import "../form.sass";
-import { IForm } from "./type";
+import { IUserForm } from "../type";
 
 import Button from "@/components/ui/button/button";
 import Input from "@/components/ui/input/input";
@@ -23,7 +23,7 @@ const UserForm = () => {
   const email = useAppSelector(store => store.auth.email);
   const token = useAppSelector(store => store.auth.token);
 
-  const { register, handleSubmit, formState: { errors } } = useForm<IForm>(
+  const { register, handleSubmit, formState: { errors } } = useForm<IUserForm>(
     {
       defaultValues: {
         username: username,
@@ -32,7 +32,7 @@ const UserForm = () => {
     }
   );
 
-  const handlerSubmit = (data: IForm) => {
+  const handlerSubmit = (data: IUserForm) => {
     setStatus("loading");
     patchUserData(token, data)
       .then(res => {
@@ -55,7 +55,7 @@ const UserForm = () => {
       <div className="form__input">
         <Input
           register={register}
-          placeholder="Username"
+          placeholder="username"
           required={"username is required"}
           status={status}
           error={status[0].includes("username") || Boolean(errors.username?.message)}
@@ -66,7 +66,7 @@ const UserForm = () => {
       <div className="form__input">
         <Input
           register={register}
-          placeholder="Email"
+          placeholder="email"
           required={"email is required"}
           status={status}
           error={status[0].includes("email") || Boolean(errors.email?.message)}

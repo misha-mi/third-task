@@ -1,7 +1,6 @@
 "use client"
 
 import "../form.sass";
-import { IForm, ILogInForm } from "./type";
 
 import Input from "@/components/ui/input/input";
 import Button from "@/components/ui/button/button";
@@ -12,15 +11,16 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 
 import postSignIn from "@/services/post-sign-in";
+import { IDestinationPath, ILogInForm } from "../type";
 
 
-const LogInForm = ({ destinationPath }: ILogInForm) => {
+const LogInForm = ({ destinationPath }: IDestinationPath) => {
 
   const [status, setStatus] = useState("start");
   const dispatch = useAppDispatch();
-  const { register, handleSubmit, formState: { errors } } = useForm<IForm>();
+  const { register, handleSubmit, formState: { errors } } = useForm<ILogInForm>();
 
-  const handlerSubmit = (data: IForm) => {
+  const handlerSubmit = (data: ILogInForm) => {
     setStatus("loading");
     postSignIn(data).then(res => {
       if (!res.response.message) {
@@ -45,7 +45,7 @@ const LogInForm = ({ destinationPath }: ILogInForm) => {
       <div className="form__input">
         <Input
           register={register}
-          placeholder="Email"
+          placeholder="email"
           required={"Email is required"}
           status={status}
           error={status[0].includes("email") || Boolean(errors.email?.message)}
@@ -60,7 +60,7 @@ const LogInForm = ({ destinationPath }: ILogInForm) => {
       <div className="form__input">
         <Input
           register={register}
-          placeholder="Password"
+          placeholder="password"
           required={"Password is required"}
           status={status}
           error={status[0].includes("password") || Boolean(errors.password?.message)}

@@ -1,4 +1,5 @@
 import "./codes-list.sass";
+import { ICodeList, THandlerCheckCode, TMarkedCodes } from "./type";
 
 import CodeCard from "../code-card/code-card"
 import Button from "@/components/ui/button/button";
@@ -9,9 +10,9 @@ import { useAppDispatch, useAppSelector } from "@/store/redux-hooks";
 import { getCodesById } from "@/store/ducks/subscriptions/actions";
 import { useState } from "react";
 
-const CodesList = ({ isUpgrade }: { isUpgrade: boolean }) => {
+const CodesList = ({ isUpgrade }: ICodeList) => {
 
-  const [markedCodes, setMarkedCodes] = useState<number[]>([]);
+  const [markedCodes, setMarkedCodes] = useState<TMarkedCodes>([]);
 
   const dispatch = useAppDispatch();
 
@@ -24,7 +25,7 @@ const CodesList = ({ isUpgrade }: { isUpgrade: boolean }) => {
   const loadingCodes = useAppSelector(store => store.subscriptions.loadingCodes);
   const loading = loadingSubscriptions || loadingCodes;
 
-  const handlerCheckCode = (codeId: number) => {
+  const handlerCheckCode: THandlerCheckCode = (codeId) => {
     setMarkedCodes(state => {
       if (!state.includes(codeId)) {
         return [...state, codeId]

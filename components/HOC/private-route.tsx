@@ -1,10 +1,12 @@
-import { ReactElement } from "react";
+
+import { IPrivateRoute } from './type';
 
 import { cookies } from 'next/headers';
 import { redirect } from "next/navigation";
+
 import getUserData from "@/services/get-user-data";
 
-const PrivateRoute = async ({ children, destinationPath }: { children: ReactElement, destinationPath: string }) => {
+const PrivateRoute = async ({ children, destinationPath }: IPrivateRoute) => {
 
   const cookiesStore = cookies();
   const token = cookiesStore.get("token");

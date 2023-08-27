@@ -1,6 +1,6 @@
 import "./products.sass";
-import { TSubscription } from "./type"
 import CheckSVG from "@/lib/svg/check-svg";
+import { TProduct } from "@/types";
 
 import Link from "next/link";
 import Button from "@/components/ui/button/button";
@@ -12,7 +12,7 @@ import { cookies } from 'next/headers';
 
 
 const Products = async () => {
-  const subscriptions: TSubscription[] = await getProducts();
+  const subscriptions: TProduct[] = await getProducts();
 
   const cookiesStore = cookies();
   const token = cookiesStore.get("token");
@@ -25,7 +25,7 @@ const Products = async () => {
 
   return (
     <div className="products">
-      {subscriptions.map((item: TSubscription, id: number) => (
+      {subscriptions.map((item: TProduct, id: number) => (
         <div className={"products__item" + (id === 1 ? " products_primary" : "")} key={item.id}>
 
           <div className="products__price">{"$" + item.prices[0].price}</div>

@@ -1,16 +1,17 @@
 "use client";
+
 import "./subscription-card.sass";
+import { ISubscriptionCard } from "./type";
 
 import Button from "@/components/ui/button/button"
 import Status from "@/components/ui/status/status";
-import { ISubscriptionCard } from "./type";
 
 const SubscriptionCard = ({ name, date, price, status, isUpgrade, onView, onChange }: ISubscriptionCard) => {
   return (
     <article className={"subscription-card"} >
       <header className="subscription-card__header">
         <div className="subscription-card__gscore">Gscore</div>
-        <Status status={status.toLowerCase()} />
+        <Status status={status} />
       </header>
 
       <div className="subscription-card__divider"></div>

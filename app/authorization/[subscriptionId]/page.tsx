@@ -1,5 +1,6 @@
 import "./checkout.sass";
-import { TSubscription, IChequePage } from "./type";
+import { IChequePage } from "./type";
+import { TProduct } from "@/types";
 
 import Cheque from "@/components/ui/cheque/cheque";
 import Title from "@/components/ui/title/title";
@@ -12,14 +13,14 @@ import getProducts from "@/services/get-products";
 export async function generateStaticParams() {
   const subscriptions = await getProducts();
 
-  return subscriptions.map((subscription: TSubscription) => ({
+  return subscriptions.map((subscription: TProduct) => ({
     subscriptionId: String(subscription.id)
   }))
 }
 
 const Checkout = async ({ params: { subscriptionId } }: IChequePage) => {
 
-  const subscription: TSubscription = (await getProducts())[+subscriptionId - 1];
+  const subscription: TProduct = (await getProducts())[+subscriptionId - 1];
 
   return (
     <PrivateRoute destinationPath={`/authorization/${subscriptionId}`}>

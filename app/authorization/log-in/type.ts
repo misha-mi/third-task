@@ -1,0 +1,1 @@
+export interface ILogIn { searchParams: { destinationPath: string } };

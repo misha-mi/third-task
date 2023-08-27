@@ -6,7 +6,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { PayloadAction } from "@reduxjs/toolkit";
 import { TSubscription } from "@/types";
-import { redirect } from "next/navigation";
 
 
 const initialState: ISubscriptionState = {
@@ -72,6 +71,10 @@ const subscriptionsSlice = createSlice({
   }
 });
 
-export const { updateSubscription, setViewSubscriptionsId, setSitesCount } = subscriptionsSlice.actions;
+export const {
+  updateSubscription,
+  setViewSubscriptionsId,
+  setSitesCount
+} = subscriptionsSlice.actions;
 
 export default subscriptionsSlice.reducer;

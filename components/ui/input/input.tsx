@@ -25,7 +25,7 @@ const Input = ({ placeholder, register, required, status, error = false, pattern
         className="input__input"
         placeholder={placeholder}
         {...register(
-          (placeholder[0].toLowerCase() + placeholder.slice(1)).replace(" ", ""),
+          placeholder,
           {
             required,
             minLength: minLength ? (
