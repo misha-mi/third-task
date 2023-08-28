@@ -2,6 +2,8 @@ import ChangePasswordForm from "@/components/layout/forms/change-password-form/c
 import ReduxProvider from "@/components/HOC/provider";
 import Title from "@/components/ui/title/title"
 import { Metadata } from "next";
+import { Suspense } from "react";
+import Loading from "../loading";
 
 export const metadata: Metadata = {
   title: "GScore | Change Password"
@@ -15,9 +17,11 @@ const Settings = () => {
         <Title titleText="Change password" type="h2" />
       </div>
 
-      <ReduxProvider>
-        <ChangePasswordForm />
-      </ReduxProvider>
+      <Suspense fallback={<Loading />}>
+        <ReduxProvider>
+          <ChangePasswordForm />
+        </ReduxProvider>
+      </Suspense>
 
     </div>
   )

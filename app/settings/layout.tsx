@@ -22,7 +22,6 @@ export default function SettingLayout({
           <Title titleText="Settings" />
 
           <SettingsTabs />
-
           {children}
         </div>
       </div>

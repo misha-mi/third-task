@@ -4,6 +4,8 @@ import { Metadata } from "next";
 import Products from "@/components/layout/products/products";
 import Link from "next/link";
 import Title from "@/components/ui/title/title";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export const dynamicParams = false;
 
@@ -22,7 +24,9 @@ export default async function Home() {
         </div>
 
         <div className="home__products">
-          <Products />
+          <Suspense fallback={<Loading />}>
+            <Products />
+          </Suspense>
         </div>
 
         <p className="home__more">Have more than 10 sites?</p>

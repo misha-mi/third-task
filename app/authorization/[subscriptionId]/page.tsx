@@ -8,8 +8,10 @@ import Title from "@/components/ui/title/title";
 import PrivateRoute from "@/components/HOC/private-route";
 import ReduxProvider from "@/components/HOC/provider";
 import PurchaseButton from "@/components/ui/purchase-button/purchase-button";
+import { Suspense } from "react";
 
 import getProducts from "@/services/get-products";
+import Loading from "../loading";
 
 export const metadata: Metadata = {
   title: "GScore | Buy"
@@ -33,22 +35,24 @@ const Checkout = async ({ params: { subscriptionId } }: IChequePage) => {
 
         <Title titleText="Checkout" />
 
-        <div className="checkout__cheque">
-          <Cheque subscription={{ name: subscription.name, price: subscription.prices[0].price }} basket={true} />
-        </div>
+        <Suspense fallback={<Loading />}>
+          <div className="checkout__cheque">
+            <Cheque subscription={{ name: subscription.name, price: subscription.prices[0].price }} basket={true} />
+          </div>
 
-        <div className="checkout__total">
-          <p className="checkout__key">Total:</p>
-          <p className="checkout__value">
-            ${subscription.prices[0].price}
-          </p>
-        </div>
+          <div className="checkout__total">
+            <p className="checkout__key">Total:</p>
+            <p className="checkout__value">
+              ${subscription.prices[0].price}
+            </p>
+          </div>
 
-        <div className="checkout__button">
-          <ReduxProvider>
-            <PurchaseButton subscriptionId={+subscriptionId} />
-          </ReduxProvider>
-        </div>
+          <div className="checkout__button">
+            <ReduxProvider>
+              <PurchaseButton subscriptionId={+subscriptionId} />
+            </ReduxProvider>
+          </div>
+        </Suspense>
 
       </div>
     </PrivateRoute>

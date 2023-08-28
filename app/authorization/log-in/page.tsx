@@ -5,6 +5,7 @@ import Title from "@/components/ui/title/title";
 import LogInForm from "@/components/layout/forms/log-in-form/log-in-form";
 import ReduxProvider from "@/components/HOC/provider";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "GScore | Sign In"

@@ -1,7 +1,7 @@
 
 import Spinner from "@/components/ui/spinner/spinner";
 
-export default async function Loading() {
+export default function Loading() {
 
   return (
     <div className="loading">

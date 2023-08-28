@@ -57,7 +57,7 @@ const CodesList = ({ isUpgrade }: ICodeList) => {
   return (
     <>
       <div className="codes-list__licenses">
-        {!loading && !isHoldAndEqualityCodes ? (
+        {!loading && !isHoldAndEqualityCodes && codes.length !== 0 ? (
           codes.map((item) => (
             <CodeCard
               code={item.code}

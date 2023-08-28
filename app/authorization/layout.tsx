@@ -2,6 +2,8 @@ import "./authorization.sass";
 
 import type { Metadata } from 'next';
 import Steps from '@/components/ui/steps/steps';
+import { Suspense } from "react";
+import Loading from "../loading";
 
 export const metadata: Metadata = {
   title: 'GScore | Authorization ',

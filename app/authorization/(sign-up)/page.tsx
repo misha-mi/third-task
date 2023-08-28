@@ -7,11 +7,12 @@ import Title from "@/components/ui/title/title";
 import SignUpForm from "@/components/layout/forms/sign-up-form/sign-up-form";
 import ReduxProvider from "@/components/HOC/provider";
 
+
 export const metadata: Metadata = {
   title: "GScore | Sign Up"
 }
 
-export default function Authorization({ searchParams }: IAuthorization) {
+export default async function Authorization({ searchParams }: IAuthorization) {
   return (
     <>
       <div className="authorization__title">

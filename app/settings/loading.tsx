@@ -1,11 +1,11 @@
 
-import Spinner from "@/components/ui/spinner/spinner";
-
-export default async function Loading() {
+export default function Loading() {
 
   return (
-    <div className="loading">
-      <Spinner color="primary1" />
+    <div className="settings-loading">
+      <div className="settings-loading__skeleton settings-loading__input"></div>
+      <div className="settings-loading__skeleton settings-loading__input"></div>
+      <div className="settings-loading__skeleton settings-loading__button"></div>
     </div>
   )
 }

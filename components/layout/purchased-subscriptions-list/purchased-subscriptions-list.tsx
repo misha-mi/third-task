@@ -43,11 +43,11 @@ const PurchasedSubscriptionsList = ({ isUpgrade, onSetChangeableSubscription }: 
 
     dispatch(setViewSubscriptionsId(subscriptionId));
   }
-
+  console.log(subscriptions);
   return (
     <>
       <Slider loading={loading}>
-        {!loading ? (
+        {!loading && subscriptions.length !== 0 ? (
           subscriptions.map((item: TSubscription) => (
             <SubscriptionCard
               name={item.name}

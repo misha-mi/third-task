@@ -9,16 +9,23 @@ import Logo from "@/components/ui/logo/logo";
 import Link from "next/link";
 
 import { useAppSelector } from "@/store/redux-hooks";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import useOutsideClick from "@/hooks/useOutsideClick";
 
 const Nav = () => {
 
-  const [openDropdown, setOpenDropdown] = useState<boolean>(false);
+  const dropdownRef = useRef(null);
+  const navRef = useRef(null);
+
+  useOutsideClick(dropdownRef, () => setIsOpen(false));
+  useOutsideClick(navRef, () => setOpenNav(false));
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [openNav, setOpenNav] = useState<boolean>(false);
 
   const username = useAppSelector(state => state.auth.username);
 
-  const chevronClassName = "nav__chevron" + (openDropdown ? " active" : "");
+  const chevronClassName = "nav__chevron" + (isOpen ? " active" : "");
   const navClassName = "nav" + (openNav ? " open" : "");
 
   return (
@@ -35,7 +42,7 @@ const Nav = () => {
           </div>
 
           <div className={navClassName}>
-            <div className="nav__wrapper">
+            <div className="nav__wrapper" ref={navRef}>
 
               <div className="nav__header">
                 <CloseSVG
@@ -47,19 +54,20 @@ const Nav = () => {
 
               <Link className="nav__my-subscriptions" href="/subscriptions">My subscriptions</Link>
 
-              <div className="nav__dividers">
+              <div className="nav__dividers" ref={dropdownRef}>
                 <div
                   className="nav__user"
-                  onClick={() => setOpenDropdown(state => !state)}
+                  onClick={() => {
+                    setIsOpen(state => !state)
+                  }}
                 >
                   {username}
                   <ChevronSVG className={`${chevronClassName}`} />
                 </div>
-                {openDropdown ? (
-                  <div className="nav__dropdown">
-                    <Dropdown />
-                  </div>
-                ) : null}
+
+                <div className="nav__dropdown">
+                  <Dropdown isOpen={isOpen} onClose={() => setIsOpen(false)} />
+                </div>
               </div>
 
             </div>

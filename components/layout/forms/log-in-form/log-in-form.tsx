@@ -29,7 +29,7 @@ const LogInForm = ({ destinationPath }: IDestinationPath) => {
         dispatch(setToken(res.response.token));
         dispatch(setEmail(res.response.user.email));
 
-        document.cookie = `token = ${res.response.token}; expires=3600`;
+        document.cookie = `token = ${res.response.token}; expires=36000`;
         location.replace(destinationPath)
       } else {
         setStatus(res.response.message);

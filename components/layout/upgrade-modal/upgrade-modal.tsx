@@ -21,6 +21,7 @@ import { useEffect, useState } from "react";
 const UpgradeModal = ({ changeableSubscription, onClose }: IUpgradeModal) => {
 
   const [subscription, setSubscriptions] = useState<TProduct[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
   const token = useAppSelector(store => store.auth.token);
@@ -34,6 +35,8 @@ const UpgradeModal = ({ changeableSubscription, onClose }: IUpgradeModal) => {
   };
 
   const handlerChangeSubscription: THandlerChangeSubscription = (productId) => {
+    setLoading(true);
+
     postChangeSubscription(token, productId, changeableSubscription.subscriptionId)
       .then(res => {
         if (!res.data.message) {
@@ -49,9 +52,10 @@ const UpgradeModal = ({ changeableSubscription, onClose }: IUpgradeModal) => {
             sitesCount: subscription[res.data.productId - 1].sitesCount
           }));
 
-          dispatch(setSitesCount(subscription[res.data.productId - 1].sitesCount));
-
           onClose();
+          setLoading(false);
+
+          dispatch(setSitesCount(subscription[res.data.productId - 1].sitesCount));
         }
       })
   }
@@ -77,6 +81,7 @@ const UpgradeModal = ({ changeableSubscription, onClose }: IUpgradeModal) => {
                 ) : (
                   <Button
                     text="Change"
+                    loading={loading}
                     onClick={() => handlerChangeSubscription(item.id)}
                   />
                 )}
