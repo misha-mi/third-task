@@ -1,6 +1,5 @@
 import { TStatus } from "@/types";
 
-
 export interface ILicenseCard {
   code: string,
   origin: string,

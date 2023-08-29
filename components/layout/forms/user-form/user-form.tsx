@@ -12,11 +12,13 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 
 import patchUserData from "@/services/patch-users-data";
+import { TStatusRequest } from "@/types";
 
 
 const UserForm = () => {
 
-  const [status, setStatus] = useState("start");
+  const [statusRequest, setStatusRequest] = useState<TStatusRequest>();
+  const [errorMessages, setErrorMessages] = useState<string[]>([]);
 
   const dispatch = useAppDispatch();
   const username = useAppSelector(store => store.auth.username);
@@ -33,16 +35,20 @@ const UserForm = () => {
   );
 
   const handlerSubmit = (data: IUserForm) => {
-    setStatus("loading");
+
+    setErrorMessages([]);
+    setStatusRequest("loading");
+
     patchUserData(token, data)
       .then(res => {
         if (!res.data.message) {
           dispatch(setUsername(res.data.username));
           dispatch(setEmail(res.data.email));
 
-          setStatus("success")
+          setStatusRequest("success")
         } else {
-          setStatus(res.data.message);
+          setStatusRequest("error");
+          setErrorMessages(res.data.message);
         }
       });
   }
@@ -57,8 +63,8 @@ const UserForm = () => {
           register={register}
           placeholder="username"
           required={"username is required"}
-          status={status}
-          error={status[0].includes("username") || Boolean(errors.username?.message)}
+          statusRequest={statusRequest}
+          error={errorMessages[0]?.includes("username") || Boolean(errors.username?.message)}
         />
         <p className="form__error">{errors.username?.message}</p>
       </div>
@@ -68,8 +74,8 @@ const UserForm = () => {
           register={register}
           placeholder="email"
           required={"email is required"}
-          status={status}
-          error={status[0].includes("email") || Boolean(errors.email?.message)}
+          statusRequest={statusRequest}
+          error={errorMessages[0]?.includes("email") || Boolean(errors.email?.message)}
           pattern={{
             value: /[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+/,
             message: "Email must be an email"
@@ -78,15 +84,15 @@ const UserForm = () => {
         <p className="form__error">{errors.email?.message}</p>
       </div>
 
-      <p className="form__error">{typeof status !== "string" ? status[0] : null}</p>
-      <p className="form__success">{status === "success" ? "Change user date is success" : null}</p>
+      <p className="form__error">{statusRequest === "error" ? errorMessages[0] : null}</p>
+      <p className="form__success">{statusRequest === "success" ? "Change user date is success" : null}</p>
 
       <div className="form__button">
         <Button
           text={"Save"}
           width="w200px"
-          loading={status === "loading"}
-          onClick={() => setStatus("after")}
+          loading={statusRequest === "loading"}
+          onClick={() => setStatusRequest("after request")}
         />
       </div>
     </form>

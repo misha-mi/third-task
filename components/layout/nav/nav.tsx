@@ -12,7 +12,11 @@ import { useAppSelector } from "@/store/redux-hooks";
 import { useRef, useState } from "react";
 import useOutsideClick from "@/hooks/useOutsideClick";
 
+
 const Nav = () => {
+
+  const cookiesList = document.cookie.split(";");
+  const token = cookiesList.find(item => item.includes("token"))?.replace("token=", "")
 
   const dropdownRef = useRef(null);
   const navRef = useRef(null);
@@ -30,7 +34,7 @@ const Nav = () => {
 
   return (
     <>
-      {username ? (
+      {username && token ? (
         <>
           <div
             className="nav__burger"

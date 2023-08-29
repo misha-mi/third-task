@@ -32,3 +32,5 @@ export type TProduct = {
 };
 
 export type TStatus = "ACTIVE" | "HOLD" | "INACTIVE";
+
+export type TStatusRequest = "after request" | "loading" | "success" | "error";

@@ -12,16 +12,22 @@ import { useState } from "react";
 
 import postSignIn from "@/services/post-sign-in";
 import { IDestinationPath, ILogInForm } from "../type";
+import { TStatusRequest } from "@/types";
 
 
 const LogInForm = ({ destinationPath }: IDestinationPath) => {
 
-  const [status, setStatus] = useState("start");
+  const [statusRequest, setStatusRequest] = useState<TStatusRequest>();
+  const [errorMessages, setErrorMessages] = useState<string[]>([]);
+
   const dispatch = useAppDispatch();
   const { register, handleSubmit, formState: { errors } } = useForm<ILogInForm>();
 
   const handlerSubmit = (data: ILogInForm) => {
-    setStatus("loading");
+
+    setErrorMessages([]);
+    setStatusRequest("loading");
+
     postSignIn(data).then(res => {
       if (!res.response.message) {
 
@@ -30,9 +36,11 @@ const LogInForm = ({ destinationPath }: IDestinationPath) => {
         dispatch(setEmail(res.response.user.email));
 
         document.cookie = `token = ${res.response.token}; expires=36000`;
-        location.replace(destinationPath)
+        setStatusRequest("success");
+        location.replace(destinationPath);
       } else {
-        setStatus(res.response.message);
+        setStatusRequest("error");
+        setErrorMessages(res.data.message);
       }
     })
   }
@@ -47,8 +55,8 @@ const LogInForm = ({ destinationPath }: IDestinationPath) => {
           register={register}
           placeholder="email"
           required={"Email is required"}
-          status={status}
-          error={status[0].includes("email") || Boolean(errors.email?.message)}
+          statusRequest={statusRequest}
+          error={errorMessages[0]?.includes("email") || Boolean(errors.email?.message)}
           pattern={{
             value: /[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+/,
             message: "Email must be an email"
@@ -62,21 +70,21 @@ const LogInForm = ({ destinationPath }: IDestinationPath) => {
           register={register}
           placeholder="password"
           required={"Password is required"}
-          status={status}
-          error={status[0].includes("password") || Boolean(errors.password?.message)}
+          statusRequest={statusRequest}
+          error={errorMessages[0]?.includes("password") || Boolean(errors.password?.message)}
           minLength={6}
         />
         <p className="form__error">{errors.password?.message}</p>
       </div>
 
-      <p className="form__error">{typeof status !== "string" ? status[0] : null}</p>
+      <p className="form__error">{statusRequest === "error" ? errorMessages[0] : null}</p>
 
       <div className="form__button">
         <Button
           text={"Log in"}
           width="w200px"
-          loading={status === "loading"}
-          onClick={() => setStatus("after")}
+          loading={statusRequest === "loading" || statusRequest === "success"}
+          onClick={() => setStatusRequest("after request")}
         />
       </div>
     </form>

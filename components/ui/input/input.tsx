@@ -6,13 +6,13 @@ import CloseSVG from "@/lib/svg/close-svg";
 
 import { IInput } from "./type";
 
-const Input = ({ placeholder, register, required, status, error = false, pattern, minLength = 0 }: IInput) => {
+const Input = ({ placeholder, register, required, statusRequest, error = false, pattern, minLength = 0 }: IInput) => {
 
   let inputClassName: string;
 
   const inputName = placeholder[0].toUpperCase() + placeholder.replace(/[A-ZА-ЯЁ]/g, " $&").slice(1);
 
-  if (status === "start") {
+  if (!statusRequest) {
     inputClassName = "input"
   } else if (!error) {
     inputClassName = "input input_success"

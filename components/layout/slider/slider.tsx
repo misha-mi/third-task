@@ -4,7 +4,7 @@ import "./slider.sass"
 import ArrowSVG from "@/lib/svg/arrow-svg";
 import { ISlider, THandlerSwitchingSlider } from "./type";
 
-import { TouchEventHandler, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 const Slider = ({ children, loading }: ISlider) => {
 
